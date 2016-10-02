@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen" Style="{DynamicResource DefaultWindow}"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="MainWindow" Height="350" Width="500" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,13 +20,13 @@
             <Button Grid.Column="1" x:Name="btnExit"  Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0" Style="{StaticResource ExitButton}" />
             <Button Grid.Column="1" x:Name="btnMinimize" Width="20" Height="20"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,20,0" Style="{StaticResource MinimizeButton}"/>
         </Grid>
-        
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            
+
             <Border Padding="0, 10">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -65,14 +65,14 @@
                 </Grid>
             </Border>
 
-
-            <RichTextBox x:Name="txtLog" Grid.Row="3" Grid.ColumnSpan="3" Padding="5" FontSize="12" VerticalScrollBarVisibility="Auto">
+            <RichTextBox x:Name="txtLog" Grid.Row="1" Padding="5" BorderThickness="1" BorderBrush="Gray"
+                         Margin="5,0" FontSize="12" IsReadOnly="True" VerticalScrollBarVisibility="Auto">
                 <RichTextBox.Document>
                     <FlowDocument Focusable="True" LineHeight="1" />
                 </RichTextBox.Document>
             </RichTextBox>
         </Grid>
-        
-        
+
+
     </Grid>
 </Window>
