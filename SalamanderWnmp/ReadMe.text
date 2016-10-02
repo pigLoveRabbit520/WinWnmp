@@ -1,0 +1,14 @@
+/**************************Salamander制作**************************/
+做这个小工具当然是自己开发用的
+其中碰到了一些小问题，在此记录下咯
+1. 手动安装mysql服务：
+mysqld --install  mh-mysql  --defaults-file="D:\software\wnmp-MH\mysql\my.ini"
+其中mh-mysql为服务名，可以随便取
+
+2. 启动服务
+net start mh-mysql 
+
+3.php-cgi如果单纯用命令php-cgi.exe -b 127.0.0.1:9000  -c your_php_path\php.ini会有自动退出问题
+所有在程序中添加环境变量PHP_FCGI_MAX_REQUESTS
+
+4. 命令启动nginx时，workingDirectory一定要设置为nginx的目录
