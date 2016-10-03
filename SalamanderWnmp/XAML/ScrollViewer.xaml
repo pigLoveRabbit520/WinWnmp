@@ -211,6 +211,7 @@
       Content="M 0 0 L 4 4 L 0 8 Z"/>
         </Grid>
     </ControlTemplate>
+    
     <!-- Style for overall  ScrollBar -->
     <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -223,7 +224,6 @@
                         Value="{StaticResource HorizontalScrollBar}" />
             </Trigger>
             <Trigger Property="Orientation" Value="Vertical">
-                <Setter Property="Width" Value="18"/>
                 <Setter Property="Height" Value="Auto" />
                 <Setter Property="Template"
                         Value="{StaticResource VerticalScrollBar}" />

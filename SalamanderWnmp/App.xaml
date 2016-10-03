@@ -17,10 +17,6 @@
                 <Setter Property="FontSize" Value="15" />
             </Style>
 
-            <!--自定义滚动条的宽度-->
-            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">6</sys:Double>
-            <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarHeightKey}">6</sys:Double>
-
             <!--窗体的默认样式-->
             <Style x:Key="DefaultWindow" TargetType="{x:Type Window}">
                 <Setter Property="AllowsTransparency" Value="True"/>
@@ -201,6 +197,10 @@
                     <TextBlock FontStyle="Italic" Text="ymf.com" FontSize="13"/>
                 </VisualBrush.Visual>
             </VisualBrush>
+
+            <!--自定义滚动条的宽度-->
+            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">12</sys:Double>
+            <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarHeightKey}">12</sys:Double>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="XAML/ScrollViewer.xaml" />
