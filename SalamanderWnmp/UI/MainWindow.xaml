@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
+        xmlns:local="clr-namespace:SalamanderWnmp.UI"
         WindowStartupLocation="CenterScreen" Style="{DynamicResource DefaultWindow}"
         Title="MainWindow" Height="350" Width="500" Loaded="Window_Loaded">
     <Grid>
@@ -17,8 +18,29 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static prop:Resources.AppName}" FontSize="15" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
-            <Button Grid.Column="1" x:Name="btnExit"  Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0" Style="{StaticResource ExitButton}" />
-            <Button Grid.Column="1" x:Name="btnMinimize" Width="20" Height="20"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,20,0" Style="{StaticResource MinimizeButton}"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button x:Name="btnShowMenu" Width="20" Height="20" Style="{StaticResource ShowMenuButton}"/>
+                <Button x:Name="btnMinimize" Width="20" Height="20" Style="{StaticResource MinimizeButton}"/>
+                <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" />
+            </StackPanel>
+
+            <Popup Grid.Column="4" x:Name="popupMenu" AllowsTransparency="True" Placement="Bottom" StaysOpen="False" 
+                   PlacementTarget="{Binding ElementName=btnShowMenu}" 
+				PopupAnimation="Slide">
+                <Border BorderThickness="2" BorderBrush="Beige" Background="#fafafa">
+                    <Grid ButtonBase.Click="MenuItem_Click">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <local:ImageMenu x:Name="Output" MyText="导出" />
+                        <local:ImageMenu x:Name="About" Grid.Row="1" MyText="{x:Static prop:Resources.About}" MySource="/Images/Setting/about.png"/>
+                    </Grid>
+                </Border>
+            </Popup>
+
         </Grid>
 
         <Grid Grid.Row="1">

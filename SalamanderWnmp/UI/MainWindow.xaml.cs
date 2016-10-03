@@ -66,6 +66,9 @@ namespace SalamanderWnmp.UI
                 case "btnMinimize":
                     this.WindowState = WindowState.Minimized;
                     break;
+                case "btnShowMenu":
+                    popupMenu.IsOpen = true;
+                    break;
             }
             e.Handled = true;
         }
@@ -230,6 +233,20 @@ namespace SalamanderWnmp.UI
                     mysql.Stop();
                     break;
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ImageMenu btn = (ImageMenu)e.Source;
+            switch (btn.Name)
+            {
+                case "About":
+                    MessageBox.Show("Salamander制作");
+                    break;
+                case "Output":
+                    break;
+            }
+            e.Handled = true;
         }
 
 
