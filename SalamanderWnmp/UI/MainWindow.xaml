@@ -35,12 +35,10 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <local:ImageMenu x:Name="Output" MyText="导出" />
                         <local:ImageMenu x:Name="About" Grid.Row="1" MyText="{x:Static prop:Resources.About}" MySource="/Images/Setting/about.png"/>
                     </Grid>
                 </Border>
             </Popup>
-
         </Grid>
 
         <Grid Grid.Row="1">

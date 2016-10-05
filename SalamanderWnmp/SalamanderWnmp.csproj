@@ -53,10 +53,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UI\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ImageMenu.cs" />
     <Compile Include="UI\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="UI\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -134,6 +141,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Setting\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\author.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

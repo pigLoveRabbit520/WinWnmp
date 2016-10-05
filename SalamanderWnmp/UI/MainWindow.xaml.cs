@@ -241,11 +241,13 @@ namespace SalamanderWnmp.UI
             switch (btn.Name)
             {
                 case "About":
-                    MessageBox.Show("Salamander制作");
+                    AboutWindow win = new AboutWindow();
+                    win.Show();
                     break;
                 case "Output":
                     break;
             }
+            popupMenu.IsOpen = false;
             e.Handled = true;
         }
 
