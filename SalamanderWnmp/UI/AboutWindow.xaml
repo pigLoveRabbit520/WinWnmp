@@ -4,6 +4,21 @@
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
         Title="AboutWindow" Height="250" Width="300">
+    <Window.Resources>
+        <Storyboard x:Key="RotateHeadStoryboard">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"   Duration="00:00:05" RepeatBehavior="Forever"  Storyboard.TargetName="imgPortrait" 
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame   Value="120"/>
+                <SplineDoubleKeyFrame    Value="240"/>
+                <SplineDoubleKeyFrame    Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource RotateHeadStoryboard}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,7 +37,14 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
             </StackPanel>
         </Grid>
-        <Image Grid.Row="1" Source="/Images/author.png" VerticalAlignment="Center" Margin="8"/>
+        <Image x:Name="imgPortrait" Grid.Row="1" Source="/Images/author.png" 
+               HorizontalAlignment="Center" Margin="8" RenderTransformOrigin="0.5, 0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform  Angle="0" />
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
         <TextBlock Grid.Row="2" TextAlignment="Center" LineHeight="2" Padding="0,10">
             Author: Salamander<LineBreak />
             QQ: 1906747819<LineBreak />
