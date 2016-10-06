@@ -123,4 +123,7 @@
   <data name="AppName" xml:space="preserve">
     <value>Wnmp</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
 </root>

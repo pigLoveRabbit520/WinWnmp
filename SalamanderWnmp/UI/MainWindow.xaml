@@ -35,7 +35,8 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <local:ImageMenu x:Name="About" Grid.Row="1" MyText="{x:Static prop:Resources.About}" MySource="/Images/Setting/about.png"/>
+                        <local:ImageMenu x:Name="MenuSettings" Grid.Row="0" MyText="{x:Static prop:Resources.Settings}" MySource="/Images/Menu/settings.png"/>
+                        <local:ImageMenu x:Name="MenuAbout" Grid.Row="1" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/about.png"/>
                     </Grid>
                 </Border>
             </Popup>

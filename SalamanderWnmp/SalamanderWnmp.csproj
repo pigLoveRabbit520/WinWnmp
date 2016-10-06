@@ -60,6 +60,9 @@
     <Compile Include="UI\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\SettingWindow.xaml.cs">
+      <DependentUpon>SettingWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="UI\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +88,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\OptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,10 +147,13 @@
     <Resource Include="Images\menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Setting\about.png" />
+    <Resource Include="Images\Menu\about.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\author.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Menu\settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,30 @@
+﻿<Window x:Class="SalamanderWnmp.UI.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
+        WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
+        Title="SettingWindow" Height="340" Width="360" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--标题栏-->
+        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="title_MouseDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static prop:Resources.Settings}" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
+            </StackPanel>
+        </Grid>
+        
+        <ListBox Grid.Row="1" Margin="5" x:Name="lbPHPExt">
+            
+        </ListBox>
+    </Grid>
+</Window>

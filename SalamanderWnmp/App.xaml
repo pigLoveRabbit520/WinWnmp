@@ -175,7 +175,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Grid x:Name="gridImage" Background="#f4f4f4">
-                                        <Image Width="20" Height="20" x:Name="image" Source="{TemplateBinding MySource}" Margin="3"/>
+                                        <Image Width="15" Height="15" x:Name="image" Source="{TemplateBinding MySource}" Margin="3"/>
                                     </Grid>
                                     <TextBlock Grid.Column="1" x:Name="textBlock"  TextAlignment="Left" Padding="0,0,5,0"
                                        VerticalAlignment="Center" FontSize="12" Text="{TemplateBinding MyText}" Margin="5,1,2,1"/>

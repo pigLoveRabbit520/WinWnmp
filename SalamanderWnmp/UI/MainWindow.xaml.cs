@@ -38,7 +38,6 @@ namespace SalamanderWnmp.UI
             InitializeComponent();
 
             Settings.ReadSettings();
-            Settings.UpdateSettings();
 
             SetupNginx();
             SetupMysql();
@@ -238,13 +237,16 @@ namespace SalamanderWnmp.UI
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             ImageMenu btn = (ImageMenu)e.Source;
+            Window win = null;
             switch (btn.Name)
             {
-                case "About":
-                    AboutWindow win = new AboutWindow();
+                case "MenuAbout":
+                    win = new AboutWindow();
                     win.Show();
                     break;
-                case "Output":
+                case "MenuSettings":
+                    win = new SettingWindow();
+                    win.Show();
                     break;
             }
             popupMenu.IsOpen = false;
