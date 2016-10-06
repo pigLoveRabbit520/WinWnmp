@@ -8,7 +8,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--标题栏-->
@@ -22,9 +21,27 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
             </StackPanel>
         </Grid>
-        
-        <ListBox Grid.Row="1" Margin="5" x:Name="lbPHPExt">
+        <TabControl Grid.Row="1">
+            <TabItem Header="常规">
+                
+            </TabItem>
             
-        </ListBox>
+            <TabItem Header="PHP">
+                <ListBox  Margin="5" x:Name="lbPHPExt">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding}" Margin="5" VerticalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

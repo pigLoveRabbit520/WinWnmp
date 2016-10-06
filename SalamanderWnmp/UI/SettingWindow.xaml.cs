@@ -46,7 +46,8 @@ namespace SalamanderWnmp.UI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Settings.ReadSettings();
-
+            PHPConfigurationMgr.LoadPHPExtensions("php");
+            lbPHPExt.ItemsSource = PHPConfigurationMgr.phpExtName;
             e.Handled = true;
         }
     }

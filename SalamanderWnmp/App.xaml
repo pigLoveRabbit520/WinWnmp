@@ -198,6 +198,13 @@
                 </VisualBrush.Visual>
             </VisualBrush>
 
+            <Style TargetType="ListBox">
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            </Style>
+
             <!--自定义滚动条的宽度-->
             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">12</sys:Double>
             <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarHeightKey}">12</sys:Double>
@@ -206,5 +213,7 @@
                 <ResourceDictionary Source="XAML/ScrollViewer.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        
+        
     </Application.Resources>
 </Application>

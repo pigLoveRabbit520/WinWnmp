@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
 
 namespace SalamanderWnmp.Configuration
 {
@@ -25,18 +26,16 @@ namespace SalamanderWnmp.Configuration
             TmpIniFile = File.ReadAllText(IniFilePath);
         }
 
-        public void LoadPHPExtensions(string phpBinPath)
+        public void LoadPHPExtensions(string phpDirName)
         {
-            if (phpBinPath == "Default") {
-                ExtensionPath = UI.MainWindow.StartupPath + "/php/ext/";
-                IniFilePath = UI.MainWindow.StartupPath + "/php/php.ini";
-            } else {
-                ExtensionPath = UI.MainWindow.StartupPath + "/php/phpbins/" + phpBinPath + "/ext/";
-                IniFilePath = UI.MainWindow.StartupPath + "/php/phpbins/" + phpBinPath + "/php.ini";
-            }
 
+            ExtensionPath = UI.MainWindow.StartupPath + String.Format("/{0}/ext/", phpDirName);
+            IniFilePath = UI.MainWindow.StartupPath + String.Format("/{0}/php.ini", phpDirName);
             if (!Directory.Exists(ExtensionPath))
+            {
+                MessageBox.Show("php 扩展目录未找到");
                 return;
+            }
             phpExtName = Directory.GetFiles(ExtensionPath, "*.dll");
             phpExtensions = new PHPExtension[phpExtName.Length];
             UserPHPExtentionValues = new bool[phpExtName.Length];
