@@ -76,6 +76,12 @@ namespace SalamanderWnmp.Programs
         }
         public virtual void Start()
         {
+            if(IsRunning())
+            {
+                Log.wnmp_log_notice(String.Format("{0} is running", progName), 
+                    progLogSection);
+                return;
+            }
             try {
                 StartProcess(exeName, startArgs);
                 Log.wnmp_log_notice("Started " + progName, progLogSection);
@@ -88,7 +94,11 @@ namespace SalamanderWnmp.Programs
         {
             if (killStop == false)
                 StartProcess(exeName, stopArgs, true);
-
+            if(!IsRunning())
+            {
+                Log.wnmp_log_notice(String.Format("{0} is not running", progName), progLogSection);
+                return;
+            }
             var processes = Process.GetProcessesByName(procName);
             foreach (var process in processes) {
                     process.Kill();

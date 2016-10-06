@@ -13,14 +13,16 @@ namespace SalamanderWnmp.Programs
 
         private string GetPHPIniPath()
         {
-            if (Settings.phpDirName.Value == "Default")
-                return MainWindow.StartupPath + "/php/php.ini";
-            else
-                return MainWindow.StartupPath + "/" + Settings.phpDirName.Value + "/php.ini";
+            return MainWindow.StartupPath + "/" + Settings.phpDirName.Value + "/php.ini";
         }
 
         public override void Start()
         {
+            if(this.IsRunning())
+            {
+                Log.wnmp_log_notice("PHP is running", progLogSection);
+                return;
+            }
             uint ProcessCount = Settings.PHP_Processes.Value;
             short port = Settings.PHP_Port.Value;
             string phpini = GetPHPIniPath();
