@@ -21,7 +21,7 @@
             <Style x:Key="DefaultWindow" TargetType="{x:Type Window}">
                 <Setter Property="AllowsTransparency" Value="True"/>
                 <Setter Property="WindowStyle" Value="None"/>
-                <Setter Property="ResizeMode" Value="NoResize"/>
+                <Setter Property="ResizeMode" Value="CanMinimize"/>
                 <Setter Property="Icon" Value="Icons/logo.ico" />
                 <Setter Property="Template">
                     <Setter.Value>
