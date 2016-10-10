@@ -104,8 +104,6 @@ namespace SalamanderWnmp.UI
             mysql.statusLabel = lblMysql;
             mysql.confDir = "/mysql/";
             mysql.logDir = "/mysql/data/";
-            if (!mysql.ServiceExists())
-                mysql.InstallService();
         }
 
         public void SetupPHP()
@@ -152,6 +150,12 @@ namespace SalamanderWnmp.UI
             Log.setLogComponent(this.txtLog);
             DoCheckIfAppsAreRunningTimer();
             CheckForApps();
+            // 安装mysql服务
+            if (Directory.Exists(StartupPath + "/mysql"))
+            {
+                if (!mysql.ServiceExists())
+                    mysql.InstallService();
+            }
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
