@@ -59,6 +59,7 @@
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackNginx_Click">
                         <Image Source="/Images/nginx.png" Width="80"  Height="60"/>
                         <TextBlock x:Name="lblNginx" Margin="0, 5" Text="X" HorizontalAlignment="Center"/>
+                        <ToggleButton></ToggleButton>
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="btnOpenNginx" Content="打开" VerticalAlignment="Center" Padding="10, 5" />
                             <Button x:Name="btnCloseNginx" Content="关闭" VerticalAlignment="Center" Padding="10, 5" Margin="8,0,0,0" />
