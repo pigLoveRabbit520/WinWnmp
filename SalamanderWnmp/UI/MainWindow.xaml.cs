@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -257,7 +258,14 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
+        private void nginxToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            nginx.Start();
+        }
 
-
+        private void nginxToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            nginx.Stop();
+        }
     }
 }

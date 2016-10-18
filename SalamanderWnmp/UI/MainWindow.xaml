@@ -56,14 +56,19 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackNginx_Click">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Source="/Images/nginx.png" Width="80"  Height="60"/>
                         <TextBlock x:Name="lblNginx" Margin="0, 5" Text="X" HorizontalAlignment="Center"/>
-                        <ToggleButton></ToggleButton>
-                        <StackPanel Orientation="Horizontal">
-                            <Button x:Name="btnOpenNginx" Content="打开" VerticalAlignment="Center" Padding="10, 5" />
-                            <Button x:Name="btnCloseNginx" Content="关闭" VerticalAlignment="Center" Padding="10, 5" Margin="8,0,0,0" />
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="开" />
+                            <ToggleButton Grid.Column="1" Checked="nginxToggleButton_Checked" Unchecked="nginxToggleButton_Unchecked" />
+                            <TextBlock Text="关" Grid.Column="2" />
+                        </Grid>
                     </StackPanel>
 
 
