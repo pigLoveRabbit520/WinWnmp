@@ -72,22 +72,34 @@
                     </StackPanel>
 
 
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Button.Click="StackPHP_Click">
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Source="/Images/php.png" Height="60" />
                         <TextBlock x:Name="lblPHP" Text="X" Margin="0, 5" HorizontalAlignment="Center"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button x:Name="btnOpenPHP" Content="打开" VerticalAlignment="Center" Padding="10, 5" />
-                            <Button x:Name="btnClosePHP" Content="关闭" VerticalAlignment="Center" Padding="10, 5" Margin="8,0,0,0"/>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="开" />
+                            <ToggleButton Grid.Column="1" Checked="phpToggleButton_Checked" Unchecked="phpToggleButton_Unchecked" />
+                            <TextBlock Text="关" Grid.Column="2" />
+                        </Grid>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Button.Click="StackMysql_Click">
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="/Images/mysql.png" Height="60"/>
                         <TextBlock x:Name="lblMysql" Text="X" Margin="0, 5" HorizontalAlignment="Center"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="打开" x:Name="btnOpenMysql" VerticalAlignment="Center" Padding="10, 5" />
-                            <Button Content="关闭" x:Name="btnCloseMysql" VerticalAlignment="Center" Padding="10, 5" Margin="8,0,0,0"/>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="开" />
+                            <ToggleButton Grid.Column="1" Checked="mysqlToggleButton_Checked" Unchecked="mysqlToggleButton_Unchecked" />
+                            <TextBlock Text="关" Grid.Column="2" />
+                        </Grid>
                     </StackPanel>
                 </Grid>
             </Border>

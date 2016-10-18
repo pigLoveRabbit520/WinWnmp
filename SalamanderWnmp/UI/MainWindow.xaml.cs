@@ -211,20 +211,6 @@ namespace SalamanderWnmp.UI
             }
         }
 
-        private void StackPHP_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)e.Source;
-            switch (btn.Name)
-            {
-                case "btnOpenPHP":
-                    php.Start();
-                    break;
-                case "btnClosePHP":
-                    php.Stop();
-                    break;
-            }
-        }
-
         private void StackMysql_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)e.Source;
@@ -261,11 +247,37 @@ namespace SalamanderWnmp.UI
         private void nginxToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             nginx.Start();
+            e.Handled = true;
         }
 
         private void nginxToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             nginx.Stop();
+            e.Handled = true;
+        }
+
+        private void phpToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            php.Start();
+            e.Handled = true;
+        }
+
+        private void phpToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            php.Stop();
+            e.Handled = true;
+        }
+
+        private void mysqlToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            mysql.Start();
+            e.Handled = true;
+        }
+
+        private void mysqlToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            mysql.Stop();
+            e.Handled = true;
         }
     }
 }
