@@ -249,7 +249,10 @@ namespace SalamanderWnmp.UI
 
         private void nginxToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            nginx.Start();
+            if(!nginx.IsRunning())
+            {
+                nginx.Start();
+            }
             e.Handled = true;
         }
 
@@ -261,7 +264,10 @@ namespace SalamanderWnmp.UI
 
         private void phpToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            php.Start();
+            if(!php.IsRunning())
+            {
+                php.Start();
+            }
             e.Handled = true;
         }
 
@@ -273,7 +279,10 @@ namespace SalamanderWnmp.UI
 
         private void mysqlToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            mysql.Start();
+            if(!mysql.IsRunning())
+            {
+                mysql.Start();
+            }
             e.Handled = true;
         }
 
