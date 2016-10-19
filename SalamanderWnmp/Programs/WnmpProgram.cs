@@ -4,10 +4,11 @@ using SalamanderWnmp.Configuration;
 using SalamanderWnmp.UI;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.ComponentModel;
 
 namespace SalamanderWnmp.Programs
 {
-    public class WnmpProgram
+    public class WnmpProgram: INotifyPropertyChanged
     {
         public TextBlock statusLabel { get; set; } // Label that shows the programs status
         public string exeName { get; set; }    // Location of the executable file
@@ -24,6 +25,26 @@ namespace SalamanderWnmp.Programs
         //public ContextMenuStrip logContextMenu { get; set; }    // Displays all the programs log files in |logDir|
   
         public Process ps = new Process();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        // 是否在运行
+        private bool running = false;
+
+        public bool Running
+        {
+            get
+            {
+                return this.running;
+            }
+            set
+            {
+                this.running = value;
+                if(PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Running"));
+                }
+            }
+        }
 
         public WnmpProgram()
         {
@@ -51,12 +72,23 @@ namespace SalamanderWnmp.Programs
             statusLabel.Foreground = new SolidColorBrush(Colors.DarkRed);
         }
 
+
+        /// <summary>
+        /// 设置状态
+        /// </summary>
         public void SetStatusLabel()
         {
             if (this.IsRunning() == true)
+            {
                 SetStartedLabel();
+                this.Running = true;
+            }
             else
+            {
                 SetStoppedLabel();
+                this.Running = false;
+            }
+               
         }
 
         public void StartProcess(string exe, string args, bool wait = false)

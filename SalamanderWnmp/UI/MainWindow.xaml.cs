@@ -43,6 +43,9 @@ namespace SalamanderWnmp.UI
             SetupNginx();
             SetupMysql();
             SetupPHP();
+            this.btnNginx.DataContext = nginx;
+            this.btnPHP.DataContext = php;
+            this.btnMysql.DataContext = mysql;
         }
 
 
@@ -159,7 +162,7 @@ namespace SalamanderWnmp.UI
             }
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
-
+            // 自动启动
             if (Settings.StartNginxOnLaunch.Value)
                 nginx.Start();
             if (Settings.StartMySQLOnLaunch.Value)

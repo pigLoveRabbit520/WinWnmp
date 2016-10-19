@@ -12,6 +12,9 @@
         </Setter>
     </Style>
 
+    <Color x:Key="IndigoPrimary300">#7986cb</Color>
+    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource IndigoPrimary300}"/>
+
     <Style TargetType="{x:Type ToggleButton}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Foreground" Value="{DynamicResource ThemeColor}" />

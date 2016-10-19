@@ -66,7 +66,8 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="关" HorizontalAlignment="Center"/>
-                            <ToggleButton Grid.Column="1" Checked="nginxToggleButton_Checked" Unchecked="nginxToggleButton_Unchecked" />
+                            <ToggleButton x:Name="btnNginx" Grid.Column="1" Checked="nginxToggleButton_Checked" IsChecked="{Binding Running}"
+                                          Unchecked="nginxToggleButton_Unchecked" />
                             <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
@@ -82,7 +83,8 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="关" HorizontalAlignment="Center"/>
-                            <ToggleButton Grid.Column="1" Checked="phpToggleButton_Checked" Unchecked="phpToggleButton_Unchecked" />
+                            <ToggleButton x:Name="btnPHP" Grid.Column="1" Checked="phpToggleButton_Checked" Unchecked="phpToggleButton_Unchecked"
+                                          IsChecked="{Binding Running}"/>
                             <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
@@ -97,7 +99,8 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="关" HorizontalAlignment="Center"/>
-                            <ToggleButton Grid.Column="1" Checked="mysqlToggleButton_Checked" Unchecked="mysqlToggleButton_Unchecked" />
+                            <ToggleButton x:Name="btnMysql" Grid.Column="1" Checked="mysqlToggleButton_Checked" 
+                                          Unchecked="mysqlToggleButton_Unchecked" IsChecked="{Binding Running}"/>
                             <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
