@@ -62,12 +62,12 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="开" />
+                            <TextBlock Text="关" HorizontalAlignment="Center"/>
                             <ToggleButton Grid.Column="1" Checked="nginxToggleButton_Checked" Unchecked="nginxToggleButton_Unchecked" />
-                            <TextBlock Text="关" Grid.Column="2" />
+                            <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
 
@@ -78,12 +78,12 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="开" />
+                            <TextBlock Text="关" HorizontalAlignment="Center"/>
                             <ToggleButton Grid.Column="1" Checked="phpToggleButton_Checked" Unchecked="phpToggleButton_Unchecked" />
-                            <TextBlock Text="关" Grid.Column="2" />
+                            <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
 
@@ -93,12 +93,12 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="开" />
+                            <TextBlock Text="关" HorizontalAlignment="Center"/>
                             <ToggleButton Grid.Column="1" Checked="mysqlToggleButton_Checked" Unchecked="mysqlToggleButton_Unchecked" />
-                            <TextBlock Text="关" Grid.Column="2" />
+                            <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
