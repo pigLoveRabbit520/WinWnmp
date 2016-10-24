@@ -218,6 +218,10 @@ namespace SalamanderWnmp.UI
                 case "MenuDir":
                     Process.Start("explorer.exe", StartupPath);
                     break;
+                case "MenuColor":
+                    win = new ChangeThemeColorWindow();
+                    win.Show();
+                    break;
             }
             popupMenu.IsOpen = false;
             e.Handled = true;

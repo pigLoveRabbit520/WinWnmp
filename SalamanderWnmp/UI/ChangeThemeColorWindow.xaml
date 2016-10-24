@@ -1,0 +1,33 @@
+﻿<Window x:Class="SalamanderWnmp.UI.ChangeThemeColorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SalamanderWnmp.UI"
+        Title="ChangeThemeColor" Height="250" Width="350" Style="{StaticResource DefaultWindow}" 
+              WindowStartupLocation="CenterScreen">
+    <Border BorderBrush="Black" BorderThickness="1">
+        <Grid Background="{StaticResource ThemeBackColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--标题栏-->
+            <DockPanel x:Name="dockTitle" Background="{DynamicResource ThemeColor}" LastChildFill="False" MouseDown="title_MouseDown">
+                <TextBlock x:Name="txtTitle" Text="调色板" Foreground="White" DockPanel.Dock="Left" Margin="5,4,0,4" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="btnExit" DockPanel.Dock="Right" Style="{StaticResource ExitButton}" Click="btnExit_Click" />
+            </DockPanel>
+
+            <Grid Grid.Row="1" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <local:ColorPicker Grid.Row="0" x:Name="colorPicker" Margin="2" Padding="3" ColorChanged="colorPicker_ColorChanged" Color="{StaticResource ThemeColor}"/>
+                <Button Grid.Row="1" HorizontalAlignment="Left" Height="40" Width="80" Margin="5,0,0,0" x:Name="btnChangeThemeColor" Click="btnChangeThemeColor_Click" Content="设置主题颜色" Foreground="White"/>
+                <Button Grid.Row="1" Click="cmdSet_Click" Height="40" Width="80" HorizontalAlignment="Center" Content="重置颜色" Foreground="White"/>
+                <Button Grid.Row="1" Command="Undo" Height="40" Width="80" Margin="0,0,5,0" HorizontalAlignment="Right" CommandTarget="{Binding ElementName=colorPicker}"  Content="撤消" Foreground="White"/>
+                <TextBlock Grid.Row="2" Name="lblColor" Margin="5"></TextBlock>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -63,6 +63,12 @@
     <Compile Include="UI\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\ChangeThemeColorWindow.xaml.cs">
+      <DependentUpon>ChangeThemeColorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ImageMenu.cs" />
     <Compile Include="UI\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
@@ -73,6 +79,14 @@
     <Page Include="UI\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ChangeThemeColorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Menu\dir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Menu\skin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

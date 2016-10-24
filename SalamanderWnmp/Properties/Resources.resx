@@ -123,6 +123,9 @@
   <data name="AppName" xml:space="preserve">
     <value>Wnmp</value>
   </data>
+  <data name="ChangColor" xml:space="preserve">
+    <value>调色</value>
+  </data>
   <data name="MainDir" xml:space="preserve">
     <value>主目录</value>
   </data>
