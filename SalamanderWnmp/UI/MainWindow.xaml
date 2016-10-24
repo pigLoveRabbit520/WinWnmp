@@ -41,7 +41,8 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <local:ImageMenu x:Name="MenuSettings" Grid.Row="0" MyText="{x:Static prop:Resources.Settings}" MySource="/Images/Menu/settings.png"/>
-                        <local:ImageMenu x:Name="MenuAbout" Grid.Row="1" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/about.png"/>
+                        <local:ImageMenu x:Name="MenuDir" Grid.Row="1" MyText="{x:Static prop:Resources.MainDir}" MySource="/Images/Menu/dir.png"/>
+                        <local:ImageMenu x:Name="MenuAbout" Grid.Row="2" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/about.png"/>
                     </Grid>
                 </Border>
             </Popup>
@@ -61,9 +62,10 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackNginx">
                         <Image Source="/Images/nginx.png" Width="80"  Height="60"/>
-                        <TextBlock x:Name="lblNginx" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="lblNginx" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                   HorizontalAlignment="Center"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -78,9 +80,10 @@
                     </StackPanel>
 
 
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackPHP">
                         <Image Source="/Images/php.png" Height="60" />
-                        <TextBlock x:Name="lblPHP" Text="X" Margin="0, 5" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="lblPHP" Margin="0, 5"  Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                   HorizontalAlignment="Center"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -94,9 +97,10 @@
                         </Grid>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="stackMysql">
                         <Image Source="/Images/mysql.png" Height="60"/>
-                        <TextBlock x:Name="lblMysql" Text="X" Margin="0, 5" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="lblMysql" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                   HorizontalAlignment="Center"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -112,8 +116,8 @@
                 </Grid>
             </Border>
 
-            <RichTextBox x:Name="txtLog" Grid.Row="1" Padding="5" BorderThickness="1" BorderBrush="Gray"
-                         Margin="5,0" FontSize="12" IsReadOnly="True" VerticalScrollBarVisibility="Auto">
+            <RichTextBox x:Name="txtLog" Grid.Row="1" Padding="5" BorderThickness="1" BorderBrush="Gray" FocusVisualStyle="{x:Null}"
+                         Margin="5" FontSize="12" IsReadOnly="True" VerticalScrollBarVisibility="Auto">
                 <RichTextBox.Document>
                     <FlowDocument Focusable="True" LineHeight="1" />
                 </RichTextBox.Document>

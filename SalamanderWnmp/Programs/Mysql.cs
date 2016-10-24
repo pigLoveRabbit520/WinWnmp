@@ -36,8 +36,13 @@ namespace SalamanderWnmp.Programs
 
         public override void Start()
         {
+            if(MysqlController.Status == ServiceControllerStatus.Running)
+            {
+                return;
+            }
             try {
                 MysqlController.Start();
+                MysqlController.WaitForStatus(ServiceControllerStatus.Running);
                 Log.wnmp_log_notice("Started " + progName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
@@ -46,8 +51,13 @@ namespace SalamanderWnmp.Programs
 
         public override void Stop()
         {
+            if(MysqlController.Status == ServiceControllerStatus.Stopped)
+            {
+                return;
+            }
             try {
                 MysqlController.Stop();
+                MysqlController.WaitForStatus(ServiceControllerStatus.Stopped);
                 Log.wnmp_log_notice("Stopped " + progName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_notice("Stop(): " + ex.Message, progLogSection);

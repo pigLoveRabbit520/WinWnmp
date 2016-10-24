@@ -2,6 +2,7 @@
 using SalamanderWnmp.Programs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -43,9 +44,9 @@ namespace SalamanderWnmp.UI
             SetupNginx();
             SetupMysql();
             SetupPHP();
-            this.btnNginx.DataContext = nginx;
-            this.btnPHP.DataContext = php;
-            this.btnMysql.DataContext = mysql;
+            this.stackNginx.DataContext = nginx;
+            this.stackPHP.DataContext = php;
+            this.stackMysql.DataContext = mysql;
         }
 
 
@@ -177,9 +178,9 @@ namespace SalamanderWnmp.UI
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += (s, e) =>
             {
-                nginx.SetStatusLabel();
-                mysql.SetStatusLabel();
-                php.SetStatusLabel();
+                nginx.SetStatus();
+                mysql.SetStatus();
+                php.SetStatus();
             };
             timer.Start();
         }
@@ -200,34 +201,6 @@ namespace SalamanderWnmp.UI
                 Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
         }
 
-        private void StackNginx_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)e.Source;
-            switch(btn.Name)
-            {
-                case "btnOpenNginx":
-                    nginx.Start();
-                    break;
-                case "btnCloseNginx":
-                    nginx.Stop();
-                    break;
-            }
-        }
-
-        private void StackMysql_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)e.Source;
-            switch (btn.Name)
-            {
-                case "btnOpenMysql":
-                    mysql.Start();
-                    break;
-                case "btnCloseMysql":
-                    mysql.Stop();
-                    break;
-            }
-        }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             ImageMenu btn = (ImageMenu)e.Source;
@@ -242,6 +215,9 @@ namespace SalamanderWnmp.UI
                     win = new SettingWindow();
                     win.Show();
                     break;
+                case "MenuDir":
+                    Process.Start("explorer.exe", StartupPath);
+                    break;
             }
             popupMenu.IsOpen = false;
             e.Handled = true;
@@ -249,10 +225,7 @@ namespace SalamanderWnmp.UI
 
         private void nginxToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            if(!nginx.IsRunning())
-            {
-                nginx.Start();
-            }
+            nginx.Start();
             e.Handled = true;
         }
 
@@ -264,10 +237,7 @@ namespace SalamanderWnmp.UI
 
         private void phpToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            if(!php.IsRunning())
-            {
-                php.Start();
-            }
+            php.Start();
             e.Handled = true;
         }
 
@@ -279,10 +249,7 @@ namespace SalamanderWnmp.UI
 
         private void mysqlToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            if(!mysql.IsRunning())
-            {
-                mysql.Start();
-            }
+            mysql.Start();
             e.Handled = true;
         }
 

@@ -79,6 +79,15 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 主目录 的本地化字符串。
+        /// </summary>
+        public static string MainDir {
+            get {
+                return ResourceManager.GetString("MainDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 设置 的本地化字符串。
         /// </summary>
         public static string Settings {

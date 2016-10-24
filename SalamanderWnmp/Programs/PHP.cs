@@ -20,7 +20,6 @@ namespace SalamanderWnmp.Programs
         {
             if(this.IsRunning())
             {
-                Log.wnmp_log_notice("PHP is running", progLogSection);
                 return;
             }
             uint ProcessCount = Settings.PHP_Processes.Value;

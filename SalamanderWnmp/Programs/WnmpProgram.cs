@@ -54,38 +54,18 @@ namespace SalamanderWnmp.Programs
             //logContextMenu.ItemClicked += logContextMenu_ItemClicked;
         }
 
-        /// <summary>
-        /// Changes the labels apperance to started
-        /// </summary>
-        private void SetStartedLabel()
-        {
-            statusLabel.Text = "\u221A";
-            statusLabel.Foreground = new SolidColorBrush(Colors.Green);
-        }
-
-        /// <summary>
-        /// Changes the labels apperance to stopped
-        /// </summary>
-        private void SetStoppedLabel()
-        {
-            statusLabel.Text = "X";
-            statusLabel.Foreground = new SolidColorBrush(Colors.DarkRed);
-        }
-
 
         /// <summary>
         /// 设置状态
         /// </summary>
-        public void SetStatusLabel()
+        public void SetStatus()
         {
             if (this.IsRunning() == true)
             {
-                SetStartedLabel();
                 this.Running = true;
             }
             else
             {
-                SetStoppedLabel();
                 this.Running = false;
             }
                
@@ -110,8 +90,6 @@ namespace SalamanderWnmp.Programs
         {
             if(IsRunning())
             {
-                Log.wnmp_log_notice(String.Format("{0} is running", progName), 
-                    progLogSection);
                 return;
             }
             try {
@@ -124,13 +102,12 @@ namespace SalamanderWnmp.Programs
 
         public virtual void Stop()
         {
-            if (killStop == false)
-                StartProcess(exeName, stopArgs, true);
             if(!IsRunning())
             {
-                Log.wnmp_log_notice(String.Format("{0} is not running", progName), progLogSection);
                 return;
             }
+            if (killStop == false)
+                StartProcess(exeName, stopArgs, true);
             var processes = Process.GetProcessesByName(procName);
             foreach (var process in processes) {
                     process.Kill();
