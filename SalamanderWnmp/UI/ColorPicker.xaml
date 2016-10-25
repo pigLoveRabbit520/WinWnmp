@@ -39,7 +39,7 @@
 
 
         <Rectangle Grid.Column="2" Grid.RowSpan="4"
-                 Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl}},Path=Padding}"
+                 Margin="7,0,0,0"
                  Width="50" Stroke="Black" StrokeThickness="1" Fill="{Binding Color, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl}}}">
         </Rectangle>
 
