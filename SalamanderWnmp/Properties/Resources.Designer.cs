@@ -81,9 +81,9 @@ namespace SalamanderWnmp.Properties {
         /// <summary>
         ///   查找类似 调色 的本地化字符串。
         /// </summary>
-        public static string ChangColor {
+        public static string ChangeColor {
             get {
-                return ResourceManager.GetString("ChangColor", resourceCulture);
+                return ResourceManager.GetString("ChangeColor", resourceCulture);
             }
         }
         
