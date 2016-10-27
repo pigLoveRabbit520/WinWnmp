@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Media;
 
 namespace SalamanderWnmp.Configuration
 {
@@ -12,8 +13,9 @@ namespace SalamanderWnmp.Configuration
         public Option<string> Editor = new Option<string> {
             Name = "editor", Description = "Editor Path", Value = "notepad.exe",
         };
-        public Option<bool> StartWithWindows = new Option<bool> {
-            Name = "startupWithWindows", Description = "Start Wnmp with Windows", Value = false,
+        public Option<Brush> ThemeColor = new Option<Brush>
+        {
+            Name = "themeColor", Description = "Theme Color", Value = (Brush)new BrushConverter().ConvertFromString("#16a085"),
         };
         public Option<bool> StartNginxOnLaunch = new Option<bool> {
             Name = "startNginxOnLaunch", Description = "Start Nginx when Wnmp starts", Value = false,
@@ -26,9 +28,6 @@ namespace SalamanderWnmp.Configuration
         };
         public Option<bool> MinimizeWnmpToTray = new Option<bool> {
             Name = "miniMizeWnmpToTray", Description = "Minimize to tray instead of minimizing", Value = false,
-        };
-        public Option<bool> AutoCheckForUpdates = new Option<bool> {
-            Name = "autoCheckForUpdates", Description = "Automatically check for updates", Value = true,
         };
         public Option<uint> UpdateFrequency = new Option<uint> {
             Name = "updateFrequency", Description = "Update frequency(In days)", Value = 7,
@@ -57,14 +56,13 @@ namespace SalamanderWnmp.Configuration
         public Ini()
         {
             options.Add(Editor);
-            options.Add(StartWithWindows);
+            options.Add(ThemeColor);
             options.Add(StartNginxOnLaunch);
             options.Add(StartMySQLOnLaunch);
             options.Add(StartPHPOnLaunch);
             options.Add(StartMinimizedToTray);
             options.Add(MinimizeWnmpToTray);
             options.Add(MinimizeInsteadOfClosing);
-            options.Add(AutoCheckForUpdates);
             options.Add(FirstRun);
             options.Add(UpdateFrequency);
             options.Add(PHP_Processes);

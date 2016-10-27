@@ -140,6 +140,7 @@
                 </Setter>
             </Style>
 
+            <SolidColorBrush x:Key="CommomButtonBackColor" Color="#e8e8e8" />
 
             <!--普通Button的控件模板-->
             <Style TargetType="{x:Type Button}">
@@ -150,7 +151,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Grid x:Name="grid" Background="#16a085">
+                            <Grid x:Name="grid" Background="{StaticResource CommomButtonBackColor}">
                                 <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Grid>
                             <ControlTemplate.Triggers>

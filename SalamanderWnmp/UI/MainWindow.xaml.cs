@@ -41,6 +41,13 @@ namespace SalamanderWnmp.UI
 
             Settings.ReadSettings();
 
+            ini();
+        }
+
+        private void ini()
+        {
+            // 设置主题颜色
+            Application.Current.Resources["ThemeColor"] = Settings.ThemeColor.Value;
             SetupNginx();
             SetupMysql();
             SetupPHP();
@@ -48,7 +55,6 @@ namespace SalamanderWnmp.UI
             this.stackPHP.DataContext = php;
             this.stackMysql.DataContext = mysql;
         }
-
 
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
         {
