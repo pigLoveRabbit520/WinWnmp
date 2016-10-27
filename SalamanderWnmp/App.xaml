@@ -145,18 +145,22 @@
             <!--普通Button的控件模板-->
             <Style TargetType="{x:Type Button}">
                 <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Foreground" Value="Black" />
                 <Setter Property="Cursor" Value="Hand" />
                 <Setter Property="FontSize" Value="10"/>
+                <Setter Property="BorderBrush" Value="#cbcbcb" />
+                <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Grid x:Name="grid" Background="{StaticResource CommomButtonBackColor}">
-                                <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Grid>
+                            <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
+                                <Grid x:Name="grid" Background="{StaticResource CommomButtonBackColor}">
+                                    <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Border>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" TargetName="grid" Value="#109693"/>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="grid" Value="#c1c1c1"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="False">
                                     <Setter Property="Background" TargetName="grid" Value="#FFC9C7C7"/>

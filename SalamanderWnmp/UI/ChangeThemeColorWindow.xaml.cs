@@ -1,16 +1,13 @@
-﻿using System;
+﻿using SalamanderWnmp.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SalamanderWnmp.UI
 {
@@ -24,20 +21,26 @@ namespace SalamanderWnmp.UI
             InitializeComponent();
         }
 
-        private void btnChangeThemeColor_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Resources["ThemeColor"] = colorPicker.Color;
-        }
+        public Ini Settings = new Ini();
 
         private void cmdSet_Click(object sender, RoutedEventArgs e)
         {
-            colorPicker.Color = SystemColors.ActiveCaptionBrush;
+            var defaultColor = (SolidColorBrush)new BrushConverter().ConvertFromString(Properties.Resources.DefaultThemeColor);
+            Application.Current.Resources["ThemeColor"] = defaultColor;
+            colorPicker.Color = defaultColor;
         }
 
         private void colorPicker_ColorChanged(object sender, RoutedPropertyChangedEventArgs<SolidColorBrush> e)
         {
             if (lblColor != null)
                 lblColor.Text = "新的颜色是" + e.NewValue.ToString();
+            Application.Current.Resources["ThemeColor"] = colorPicker.Color;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.ThemeColor.Value = colorPicker.Color;
+            Settings.UpdateSettings();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -51,6 +54,12 @@ namespace SalamanderWnmp.UI
             {
                 DragMove();
             }
+            e.Handled = true;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Settings.ReadSettings();
             e.Handled = true;
         }
     }

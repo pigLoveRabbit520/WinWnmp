@@ -88,6 +88,15 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 #16a085 的本地化字符串。
+        /// </summary>
+        public static string DefaultThemeColor {
+            get {
+                return ResourceManager.GetString("DefaultThemeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 主目录 的本地化字符串。
         /// </summary>
         public static string MainDir {
