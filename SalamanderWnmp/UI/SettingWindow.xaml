@@ -21,7 +21,7 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
             </StackPanel>
         </Grid>
-        <TabControl Grid.Row="1">
+        <TabControl Grid.Row="1" TabStripPlacement="Left" Style="{StaticResource TabControlStyle}">
             <TabItem Header="常规">
                 
             </TabItem>

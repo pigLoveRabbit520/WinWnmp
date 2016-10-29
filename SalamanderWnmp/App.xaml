@@ -9,6 +9,7 @@
         <ResourceDictionary>
 
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="XAML/TabControl.xaml" />
                 <ResourceDictionary Source="XAML/ToggleButton.xaml" />
                 <ResourceDictionary Source="XAML/ScrollViewer.xaml" />
             </ResourceDictionary.MergedDictionaries>
