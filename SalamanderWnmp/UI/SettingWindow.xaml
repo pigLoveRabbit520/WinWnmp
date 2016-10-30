@@ -23,7 +23,45 @@
         </Grid>
         <TabControl Grid.Row="1" TabStripPlacement="Left" Style="{StaticResource TabControlStyle}">
             <TabItem Header="常规">
-                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="自动启动Nginx" />
+                    <ToggleButton Grid.Column="1" />
+
+                    <TextBlock Grid.Row="1" Text="自动启动PHP" />
+                    <ToggleButton Grid.Row="1" Grid.Column="1" />
+
+                    <TextBlock Grid.Row="2" Text="自动启动Mysql" />
+                    <ToggleButton Grid.Row="2" Grid.Column="1" />
+
+                    <TextBlock Grid.Row="3" Text="Nginx目录名" />
+                    <TextBox Grid.Row="3" Grid.Column="1" />
+
+                    <TextBlock Grid.Row="4" Text="PHP目录名" />
+                    <TextBox Grid.Row="4" Grid.Column="1" />
+
+                    <TextBlock Grid.Row="5" Text="Mysql目录名" />
+                    <TextBox Grid.Row="5" Grid.Column="1" />
+
+                    <TextBlock Grid.Row="6" Text="PHP进程数" />
+                    <TextBox Grid.Row="6" Grid.Column="1" />
+
+                    <Button Grid.ColumnSpan="2"  Grid.Row="7" Width="100" Margin="0, 5" Content="保存设置"/>
+                </Grid>
             </TabItem>
             
             <TabItem Header="PHP">
