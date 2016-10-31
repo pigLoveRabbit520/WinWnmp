@@ -167,7 +167,7 @@ namespace SalamanderWnmp.UI
             DoCheckIfAppsAreRunningTimer();
             CheckForApps();
             // 安装mysql服务
-            if (Directory.Exists(StartupPath + "/mysql"))
+            if (Directory.Exists(StartupPath + Settings.mysqlDirName.Value))
             {
                 if (!mysql.ServiceExists())
                     mysql.InstallService();
@@ -223,15 +223,8 @@ namespace SalamanderWnmp.UI
                     win.Show();
                     break;
                 case "MenuSettings":
-                    if(settingWin != null)
-                    {
-                        settingWin.Activate();
-                    }
-                    else
-                    {
-                        settingWin = new SettingWindow();
-                        win.Show();
-                    }
+                    settingWin = new SettingWindow();
+                    settingWin.Show();
                     break;
                 case "MenuDir":
                     Process.Start("explorer.exe", StartupPath);
