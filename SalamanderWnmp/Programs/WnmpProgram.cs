@@ -14,6 +14,7 @@ namespace SalamanderWnmp.Programs
         public string exeName { get; set; }    // Location of the executable file
         public string procName { get; set; }   // Name of the process
         public string progName { get; set; }   // User-friendly name of the program 
+        public string workingDir { get; set; }   // working directory
         public Log.LogSection progLogSection { get; set; } // LogSection of the program
         public string startArgs { get; set; }  // Start Arguments
         public string stopArgs { get; set; }   // Stop Arguments if KillStop is false
@@ -77,7 +78,7 @@ namespace SalamanderWnmp.Programs
             ps.StartInfo.Arguments = args;
             ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.RedirectStandardOutput = true;
-            ps.StartInfo.WorkingDirectory = MainWindow.StartupPath + "/nginx";
+            ps.StartInfo.WorkingDirectory = workingDir;
             ps.StartInfo.CreateNoWindow = true;
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             ps.Start();
@@ -128,23 +129,6 @@ namespace SalamanderWnmp.Programs
         //    var ptLowerLeft = new Point(0, btnSender.Height);
         //    ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
         //    configContextMenu.Show(ptLowerLeft);
-        //}
-
-        //public void LogButton(object sender)
-        //{
-        //    var btnSender = (Button)sender;
-        //    var ptLowerLeft = new Point(0, btnSender.Height);
-        //    ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
-        //    logContextMenu.Show(ptLowerLeft);
-        //}
-
-        //private void configContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        //{
-        //    try {
-        //        Process.Start(Settings.Editor.Value, frmMain.StartupPath + confDir + e.ClickedItem.Text);
-        //    } catch (Exception ex) {
-        //        Log.wnmp_log_error(ex.Message, progLogSection);
-        //    }
         //}
 
         //private void logContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

@@ -32,23 +32,53 @@ namespace SalamanderWnmp.Configuration
         public Option<uint> UpdateFrequency = new Option<uint> {
             Name = "updateFrequency", Description = "Update frequency(In days)", Value = 7,
         };
-        public Option<string> phpDirName = new Option<string> {
-            Name = "phpDirName", Description = "PHP directory name", Value = "php",
+        public Option<string> nginxDirName = new Option<string>
+        {
+            Name = "nginxDirName",
+            Description = "Nginx directory name",
+            Value = "nginx",
         };
-        public Option<short> PHP_Port = new Option<short> {
-            Name = "phpPort", Description = "Starting PHP Port", Value = 9000,
+        public Option<string> mysqlDirName = new Option<string>
+        {
+            Name = "mysqlDirName",
+            Description = "Mysql directory name",
+            Value = "mysql",
         };
-        public Option<uint> PHP_Processes = new Option<uint> {
-            Name = "phpProcesses", Description = "Amount of PHP processes", Value = 2,
+        public Option<string> phpDirName = new Option<string>
+        {
+            Name = "phpDirName",
+            Description = "PHP directory name",
+            Value = "php",
         };
-        public Option<bool> FirstRun = new Option<bool> {
-            Name = "firstRun", Description = "First run", Value = true,
+        public Option<short> PHP_Port = new Option<short>
+        {
+            Name = "phpPort",
+            Description = "Starting PHP Port",
+            Value = 9000,
         };
-        public Option<bool> MinimizeInsteadOfClosing = new Option<bool> {
-            Name = "miniMizeInsteadOfClosing", Description = "Minimize to tray instead of closing", Value = false,
+        public Option<uint> PHP_Processes = new Option<uint>
+        {
+            Name = "phpProcesses",
+            Description = "Amount of PHP processes",
+            Value = 2,
         };
-        public Option<bool> StartMinimizedToTray = new Option<bool> {
-            Name = "startMinimizedToTray", Description = "Start Wnmp minimized to tray", Value = false,
+        public Option<bool> FirstRun = new Option<bool>
+        {
+            Name = "firstRun",
+            Description = "First run",
+            Value = true,
+        };
+        public Option<bool> MinimizeInsteadOfClosing = new Option<bool>
+        {
+            Name = "miniMizeInsteadOfClosing",
+            Description = "Minimize to tray instead of closing",
+            Value = false,
+        };
+        public Option<bool> StartMinimizedToTray = new Option<bool>
+        {
+            Name = "startMinimizedToTray",
+            Description = "Start Wnmp minimized to tray",
+            Value = false,
         };
 
         private List<IOption> options = new List<IOption>();

@@ -1,7 +1,5 @@
 ﻿using SalamanderWnmp.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,6 +47,11 @@ namespace SalamanderWnmp.UI
             PHPConfigurationMgr.LoadPHPExtensions("php");
             lbPHPExt.ItemsSource = PHPConfigurationMgr.phpExtName;
             e.Handled = true;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.UpdateSettings();
         }
     }
 }

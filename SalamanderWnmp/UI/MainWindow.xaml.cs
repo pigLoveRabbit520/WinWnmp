@@ -34,6 +34,8 @@ namespace SalamanderWnmp.UI
         public static string StartupPath { get { return AppDomain.CurrentDomain.BaseDirectory; } }
 
         public Ini Settings = new Ini();
+        // 设置界面
+        private SettingWindow settingWin = null;
 
         public MainWindow()
         {
@@ -87,9 +89,10 @@ namespace SalamanderWnmp.UI
         private void SetupNginx()
         {
             nginx.Settings = Settings;
-            nginx.exeName = StartupPath.Replace(@"\", "/") + "/nginx/nginx.exe";
+            nginx.exeName = StartupPath + String.Format("{0}/nginx.exe", Settings.nginxDirName.Value);
             nginx.procName = "nginx";
             nginx.progName = "Nginx";
+            nginx.workingDir = StartupPath + Settings.nginxDirName.Value;
             nginx.progLogSection = Log.LogSection.WNMP_NGINX;
             nginx.startArgs = "";
             nginx.stopArgs = "-s stop";
@@ -99,24 +102,6 @@ namespace SalamanderWnmp.UI
             nginx.logDir = "/logs/";
         }
 
-        private void SetupMysql()
-        {
-            mysql.Settings = Settings;
-            mysql.exeName = StartupPath + "/mysql/bin/mysqld.exe";
-            mysql.procName = "mysqld";
-            mysql.progName = "mysql";
-            mysql.progLogSection = Log.LogSection.WNMP_MARIADB;
-            string lo = "--install-manual " + MysqlProgram.ServiceName + " --default-file=\"" +
-                StartupPath.Replace(@"\", "/") + "/mysql/my.ini\"";
-            mysql.startArgs = "--install-manual " + MysqlProgram.ServiceName + " --defaults-file=\"" +
-                StartupPath + "\\mysql\\my.ini\"";
-            mysql.stopArgs = "/c sc delete " + MysqlProgram.ServiceName;
-            mysql.killStop = true;
-            mysql.statusLabel = lblMysql;
-            mysql.confDir = "/mysql/";
-            mysql.logDir = "/mysql/data/";
-        }
-
         public void SetupPHP()
         {
             php.Settings = Settings;
@@ -124,6 +109,7 @@ namespace SalamanderWnmp.UI
                 + "/php-cgi.exe";
             php.procName = "php-cgi";
             php.progName = "PHP";
+            php.workingDir = StartupPath + Settings.phpDirName.Value;
             php.progLogSection = Log.LogSection.WNMP_PHP;
             php.killStop = true;
             php.statusLabel = lblPHP;
@@ -131,6 +117,25 @@ namespace SalamanderWnmp.UI
             php.logDir = "/php/logs/";
             //SetCurlCAPath();
         }
+
+        private void SetupMysql()
+        {
+            mysql.Settings = Settings;
+            mysql.exeName = StartupPath + String.Format("{0}/bin/mysqld.exe", Settings.mysqlDirName.Value);
+            mysql.procName = "mysqld";
+            mysql.progName = "mysql";
+            mysql.workingDir = StartupPath + Settings.mysqlDirName.Value;
+            mysql.progLogSection = Log.LogSection.WNMP_MARIADB;
+            mysql.startArgs = "--install-manual " + MysqlProgram.ServiceName + " --defaults-file=\"" +
+                StartupPath + String.Format("\\{0}\\my.ini\"", Settings.mysqlDirName.Value);
+            mysql.stopArgs = "/c sc delete " + MysqlProgram.ServiceName;
+            mysql.killStop = true;
+            mysql.statusLabel = lblMysql;
+            mysql.confDir = "/mysql/";
+            mysql.logDir = "/mysql/data/";
+        }
+
+     
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool SetDllDirectory(string path);
@@ -218,8 +223,15 @@ namespace SalamanderWnmp.UI
                     win.Show();
                     break;
                 case "MenuSettings":
-                    win = new SettingWindow();
-                    win.Show();
+                    if(settingWin != null)
+                    {
+                        settingWin.Activate();
+                    }
+                    else
+                    {
+                        settingWin = new SettingWindow();
+                        win.Show();
+                    }
                     break;
                 case "MenuDir":
                     Process.Start("explorer.exe", StartupPath);
