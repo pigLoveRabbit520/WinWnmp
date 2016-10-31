@@ -6,7 +6,7 @@
     <SolidColorBrush x:Key="TabControl.ActivedItemHeaderBackground" Color="#e7eaee" />
     <SolidColorBrush x:Key="TabControl.BodyBackground" Color="#353535" />
     <SolidColorBrush x:Key="TabControl.BorderBrush" Color="Gray" />
-    <SolidColorBrush x:Key="TabItem.Foreground" Color="#777777" />
+    <SolidColorBrush x:Key="TabItem.Foreground" Color="#000" />
     <SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#ececec" />
 
 

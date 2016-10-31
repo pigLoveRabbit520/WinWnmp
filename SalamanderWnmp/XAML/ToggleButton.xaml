@@ -12,6 +12,8 @@
         </Setter>
     </Style>
 
+    <!--圆形按钮默认颜色-->
+    <SolidColorBrush x:Key="ThumbDefaultBack" Color="#f0f0f0"></SolidColorBrush>
     <Color x:Key="IndigoPrimary300">#7986cb</Color>
     <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource IndigoPrimary300}"/>
 
@@ -107,7 +109,7 @@
                                         <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
                                     </AdornerDecorator.CacheMode>
                                     <Ellipse x:Name="Thumb"
-                                             Fill="#FFFAFAFA" Stroke="{x:Null}" 
+                                             Fill="{StaticResource ThumbDefaultBack}" Stroke="{x:Null}" 
                                              HorizontalAlignment="Center" VerticalAlignment="Center"
                                              Width="25" Height="25"
                                              Margin="0,0,0,0"
