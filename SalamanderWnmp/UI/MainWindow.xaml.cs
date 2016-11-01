@@ -31,7 +31,7 @@ namespace SalamanderWnmp.UI
         private readonly WnmpProgram nginx = new WnmpProgram();
         private readonly PHPProgram php = new PHPProgram();
         // 应用启动目录
-        public static string StartupPath { get { return AppDomain.CurrentDomain.BaseDirectory; } }
+        public static string StartupPath { get { return Constants.APP_STARTUP_PATH; } }
 
         public Ini Settings = new Ini();
         // 设置界面

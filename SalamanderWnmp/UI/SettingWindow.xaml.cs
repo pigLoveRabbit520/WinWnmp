@@ -1,5 +1,6 @@
 ﻿using SalamanderWnmp.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,7 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using static SalamanderWnmp.Configuration.PHPConfigurationManager;
 
 namespace SalamanderWnmp.UI
 {
@@ -44,14 +45,23 @@ namespace SalamanderWnmp.UI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Settings.ReadSettings();
-            PHPConfigurationMgr.LoadPHPExtensions("php");
-            lbPHPExt.ItemsSource = PHPConfigurationMgr.phpExtName;
+            PHPConfigurationMgr.LoadPHPExtensions(Settings.phpDirName.Value);
+            lbPHPExt.ItemsSource = PHPConfigurationMgr.GetExtensions();
+            txtTotal.Text = String.Format("(总{0}项)", lbPHPExt.Items.Count);
             e.Handled = true;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void btnSaveRegular_Click(object sender, RoutedEventArgs e)
         {
             Settings.UpdateSettings();
+            e.Handled = true;
+        }
+
+        private void btnSavePHPExt_Click(object sender, RoutedEventArgs e)
+        {
+            PHPConfigurationMgr.SavePHPIniOptions();
+            this.Close();
+            e.Handled = true;
         }
     }
 }

@@ -41,6 +41,7 @@ namespace SalamanderWnmp.UI
         {
             Settings.ThemeColor.Value = colorPicker.Color;
             Settings.UpdateSettings();
+            this.Close();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

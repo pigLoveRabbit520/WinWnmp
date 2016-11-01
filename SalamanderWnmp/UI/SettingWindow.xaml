@@ -60,25 +60,38 @@
                     <TextBlock Grid.Row="6" Text="PHP进程数" VerticalAlignment="Center" />
                     <TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Width="80" HorizontalAlignment="Left"/>
 
-                    <Button Grid.ColumnSpan="2"  Grid.Row="7" Width="100" Margin="0,10,0,0" Padding="6" Content="保存设置" Click="btnSave_Click"/>
+                    <Button Grid.ColumnSpan="2"  Grid.Row="7" Width="100" Margin="0,10,0,0" Padding="0, 4" Content="保存设置" Click="btnSaveRegular_Click"/>
                 </Grid>
             </TabItem>
             
             <TabItem Header="PHP">
-                <ListBox  Margin="5" x:Name="lbPHPExt">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <CheckBox VerticalAlignment="Center"/>
-                                <TextBlock Grid.Column="1" Text="{Binding}" Margin="5" VerticalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <Grid Margin="15, 10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                        <TextBlock Text="勾选需要的扩展"  FontSize="14"/>
+                        <TextBlock x:Name="txtTotal" FontSize="14"/>
+                    </StackPanel>
+                    <ListBox Grid.Row="1"  x:Name="lbPHPExt">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsLoad, Mode=TwoWay}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding ExtName, Mode=TwoWay}" Margin="5" VerticalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Button Grid.Row="2" Content="保存设置" Margin="0,10,0,0" Padding="0, 4" Width="100" Click="btnSavePHPExt_Click"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
