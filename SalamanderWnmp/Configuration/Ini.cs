@@ -58,13 +58,6 @@ namespace SalamanderWnmp.Configuration
             Value = false,
         };
 
-        public Option<uint> UpdateFrequency { get { return this.updateFrequency; } set { this.updateFrequency = value; } }
-        private Option<uint> updateFrequency = new Option<uint>
-        {
-            Name = "updateFrequency",
-            Description = "Update frequency(In days)",
-            Value = 7,
-        };
 
         public Option<string> NginxDirName { get { return this.nginxDirName; } set { this.nginxDirName = value; } }
         private Option<string> nginxDirName = new Option<string>
@@ -134,7 +127,6 @@ namespace SalamanderWnmp.Configuration
             options.Add(StartMinimizedToTray);
             options.Add(MinimizeWnmpToTray);
             options.Add(FirstRun);
-            options.Add(UpdateFrequency);
             options.Add(PHP_Processes);
             options.Add(PHP_Port);
             options.Add(PHPDirName);
