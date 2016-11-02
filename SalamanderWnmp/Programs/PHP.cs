@@ -13,7 +13,7 @@ namespace SalamanderWnmp.Programs
 
         private string GetPHPIniPath()
         {
-            return MainWindow.StartupPath + "/" + Settings.phpDirName.Value + "/php.ini";
+            return MainWindow.StartupPath + "/" + Settings.PHPDirName.Value + "/php.ini";
         }
 
         public override void Start()

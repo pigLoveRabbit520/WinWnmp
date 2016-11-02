@@ -89,10 +89,10 @@ namespace SalamanderWnmp.UI
         private void SetupNginx()
         {
             nginx.Settings = Settings;
-            nginx.exeName = StartupPath + String.Format("{0}/nginx.exe", Settings.nginxDirName.Value);
+            nginx.exeName = StartupPath + String.Format("{0}/nginx.exe", Settings.NginxDirName.Value);
             nginx.procName = "nginx";
             nginx.progName = "Nginx";
-            nginx.workingDir = StartupPath + Settings.nginxDirName.Value;
+            nginx.workingDir = StartupPath + Settings.NginxDirName.Value;
             nginx.progLogSection = Log.LogSection.WNMP_NGINX;
             nginx.startArgs = "";
             nginx.stopArgs = "-s stop";
@@ -105,11 +105,11 @@ namespace SalamanderWnmp.UI
         public void SetupPHP()
         {
             php.Settings = Settings;
-            php.exeName = StartupPath.Replace(@"\", "/") + "/" + php.Settings.phpDirName.Value
+            php.exeName = StartupPath.Replace(@"\", "/") + "/" + php.Settings.PHPDirName.Value
                 + "/php-cgi.exe";
             php.procName = "php-cgi";
             php.progName = "PHP";
-            php.workingDir = StartupPath + Settings.phpDirName.Value;
+            php.workingDir = StartupPath + Settings.PHPDirName.Value;
             php.progLogSection = Log.LogSection.WNMP_PHP;
             php.killStop = true;
             php.statusLabel = lblPHP;
@@ -121,13 +121,13 @@ namespace SalamanderWnmp.UI
         private void SetupMysql()
         {
             mysql.Settings = Settings;
-            mysql.exeName = StartupPath + String.Format("{0}/bin/mysqld.exe", Settings.mysqlDirName.Value);
+            mysql.exeName = StartupPath + String.Format("{0}/bin/mysqld.exe", Settings.MysqlDirName.Value);
             mysql.procName = "mysqld";
             mysql.progName = "mysql";
-            mysql.workingDir = StartupPath + Settings.mysqlDirName.Value;
+            mysql.workingDir = StartupPath + Settings.MysqlDirName.Value;
             mysql.progLogSection = Log.LogSection.WNMP_MARIADB;
             mysql.startArgs = "--install-manual " + MysqlProgram.ServiceName + " --defaults-file=\"" +
-                StartupPath + String.Format("\\{0}\\my.ini\"", Settings.mysqlDirName.Value);
+                StartupPath + String.Format("\\{0}\\my.ini\"", Settings.MysqlDirName.Value);
             mysql.stopArgs = "/c sc delete " + MysqlProgram.ServiceName;
             mysql.killStop = true;
             mysql.statusLabel = lblMysql;
@@ -167,7 +167,7 @@ namespace SalamanderWnmp.UI
             DoCheckIfAppsAreRunningTimer();
             CheckForApps();
             // 安装mysql服务
-            if (Directory.Exists(StartupPath + Settings.mysqlDirName.Value))
+            if (Directory.Exists(StartupPath + Settings.MysqlDirName.Value))
             {
                 if (!mysql.ServiceExists())
                     mysql.InstallService();
@@ -177,7 +177,7 @@ namespace SalamanderWnmp.UI
             // 自动启动
             if (Settings.StartNginxOnLaunch.Value)
                 nginx.Start();
-            if (Settings.StartMySQLOnLaunch.Value)
+            if (Settings.StartMysqlOnLaunch.Value)
                 mysql.Start();
             if (Settings.StartPHPOnLaunch.Value)
                 php.Start();

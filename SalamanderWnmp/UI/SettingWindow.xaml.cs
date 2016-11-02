@@ -25,6 +25,8 @@ namespace SalamanderWnmp.UI
         public SettingWindow()
         {
             InitializeComponent();
+            Settings.ReadSettings();
+            gridRegular.DataContext = Settings;
         }
 
         private void btn_Click(object sender, RoutedEventArgs e)
@@ -44,10 +46,9 @@ namespace SalamanderWnmp.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Settings.ReadSettings();
-            PHPConfigurationMgr.LoadPHPExtensions(Settings.phpDirName.Value);
+            PHPConfigurationMgr.LoadPHPExtensions(Settings.PHPDirName.Value);
             lbPHPExt.ItemsSource = PHPConfigurationMgr.GetExtensions();
-            txtTotal.Text = String.Format("(总{0}项)", lbPHPExt.Items.Count);
+            txtTotal.DataContext = lbPHPExt;
             e.Handled = true;
         }
 

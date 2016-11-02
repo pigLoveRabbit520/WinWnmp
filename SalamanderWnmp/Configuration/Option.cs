@@ -14,10 +14,10 @@ namespace SalamanderWnmp.Configuration
 
     public class Option<T> : IOption
     {
-        public string Name;
-        public string Description;
-        public string iniValue;
-        public T Value;
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string iniValue { get; set; }
+        public T Value { get; set; }
 
         public void ReadIniValue(string IniFileStr)
         {
