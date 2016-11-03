@@ -4,6 +4,11 @@ WPF制作的wnmp环境
 
 ![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/19766037/36fbe8fa-9c7e-11e6-92b1-d4537ca1cc0c.jpg)
 
+# 注意
+php 版本为5.6.26 32位版本，需要VC11运行库支持，下载：https://www.microsoft.com/zh-cn/download/details.aspx?id=30679
+选择VSU4\vcredist_x86.exe下载
+
+
 
 # 配置
 
