@@ -1,0 +1,11 @@
+﻿main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_ValueToString，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_Init，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_Finish，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_ShutDown，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_NewContext，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_DestroyContext，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_InitStandardClasses，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_NewObject，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_EvaluateScript，该符号在函数 main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 __imp_JS_GetStringBytes，该符号在函数 main 中被引用
+C:\Users\mh\Desktop\MySM\x64\Debug\MySM.exe : fatal error LNK1120: 10 个无法解析的外部命令

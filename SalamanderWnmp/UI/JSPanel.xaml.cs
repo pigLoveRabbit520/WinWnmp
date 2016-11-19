@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -36,6 +34,18 @@ namespace SalamanderWnmp.UI
         {
             this.Close();
             e.Handled = true;
+        }
+
+
+        [DllImport("SM.dll", EntryPoint = "runJS", CharSet = CharSet.Ansi,
+          CallingConvention = CallingConvention.Cdecl)]
+        extern static IntPtr runJS(StringBuilder str);
+
+        private void btnRun_Click(object sender, RoutedEventArgs e)
+        {
+            IntPtr intPtr = runJS(new StringBuilder(this.txtCode.Text));
+            string str = Marshal.PtrToStringAnsi(intPtr);
+            this.txtOutput.Text = str;
         }
     }
 }

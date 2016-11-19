@@ -6,11 +6,13 @@
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         mc:Ignorable="d"
-        Title="JSPanel" Height="400" Width="450" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterScreen">
+        Title="JSPanel" Height="460" Width="450" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--标题栏-->
         <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="title_MouseDown">
@@ -23,5 +25,16 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
             </StackPanel>
         </Grid>
+
+
+        <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" BorderThickness="1">
+            
+        </TextBox>
+
+        <Button Grid.Row="2" Content="运行" Padding="10, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
+
+        <TextBox x:Name="txtOutput" Grid.Row="3" Margin="10" BorderThickness="1">
+
+        </TextBox>
     </Grid>
 </Window>
