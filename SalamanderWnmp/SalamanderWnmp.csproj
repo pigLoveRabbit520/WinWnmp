@@ -70,6 +70,9 @@
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\ImageMenu.cs" />
+    <Compile Include="UI\JSPanel.xaml.cs">
+      <DependentUpon>JSPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
     <Page Include="UI\ColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\JSPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

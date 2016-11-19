@@ -97,6 +97,15 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 JS面板 的本地化字符串。
+        /// </summary>
+        public static string JSPanel {
+            get {
+                return ResourceManager.GetString("JSPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 主目录 的本地化字符串。
         /// </summary>
         public static string MainDir {

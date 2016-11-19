@@ -129,6 +129,9 @@
   <data name="DefaultThemeColor" xml:space="preserve">
     <value>#16a085</value>
   </data>
+  <data name="JSPanel" xml:space="preserve">
+    <value>JS面板</value>
+  </data>
   <data name="MainDir" xml:space="preserve">
     <value>主目录</value>
   </data>

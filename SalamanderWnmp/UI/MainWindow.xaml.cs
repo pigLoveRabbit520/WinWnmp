@@ -222,6 +222,10 @@ namespace SalamanderWnmp.UI
                     win = new AboutWindow();
                     win.Show();
                     break;
+                case "MenuJSPanel":
+                    win = new JSPanel();
+                    win.Show();
+                    break;
                 case "MenuSettings":
                     settingWin = new SettingWindow();
                     settingWin.Show();
