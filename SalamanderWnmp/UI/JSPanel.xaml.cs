@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SalamanderWnmp.UI
 {
@@ -46,6 +42,16 @@ namespace SalamanderWnmp.UI
             IntPtr intPtr = runJS(new StringBuilder(this.txtCode.Text));
             string str = Marshal.PtrToStringAnsi(intPtr);
             this.txtOutput.Text = str;
+        }
+
+        private void txtCode_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Tab)
+            {
+                int index = txtCode.SelectionStart;
+                //txtCode.
+            }
+            e.Handled = true;
         }
     }
 }
