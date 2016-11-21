@@ -27,9 +27,7 @@
         </Grid>
 
 
-        <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" BorderThickness="1">
-            
-        </TextBox>
+        <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" BorderThickness="1" AcceptsReturn="True" />
 
         <Button Grid.Row="2" Content="运行" Padding="10, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
 
