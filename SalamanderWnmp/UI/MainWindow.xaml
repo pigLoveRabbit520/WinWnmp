@@ -42,7 +42,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <local:ImageMenu x:Name="MenuSettings" Grid.Row="0" MyText="{x:Static prop:Resources.Settings}" MySource="/Images/Menu/settings.png"/>
-                        <local:ImageMenu x:Name="MenuJSPanel" Grid.Row="1" MyText="{x:Static prop:Resources.JSPanel}" MySource="/Images/Menu/skin.png"/>
+                        <local:ImageMenu x:Name="MenuJSPanel" Grid.Row="1" MyText="{x:Static prop:Resources.JSPanel}" MySource="/Images/Menu/js.png"/>
                         <local:ImageMenu x:Name="MenuDir" Grid.Row="2" MyText="{x:Static prop:Resources.MainDir}" MySource="/Images/Menu/dir.png"/>
                         <local:ImageMenu x:Name="MenuColor" Grid.Row="3" MyText="{x:Static prop:Resources.ChangeColor}" MySource="/Images/Menu/skin.png"/>
                         <local:ImageMenu x:Name="MenuAbout" Grid.Row="4" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/about.png"/>
