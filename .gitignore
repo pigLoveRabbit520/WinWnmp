@@ -1,3 +1,9 @@
 bin/
 obj/
 x64/
+*.suo
+Debug/
+Release/
+*.mdb
+*.ldb
+*.config
