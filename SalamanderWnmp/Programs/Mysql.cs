@@ -36,9 +36,16 @@ namespace SalamanderWnmp.Programs
 
         public override void Start()
         {
-            if(MysqlController.Status == ServiceControllerStatus.Running)
+            try
             {
-                return;
+                if (MysqlController.Status == ServiceControllerStatus.Running)
+                {
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+                Log.wnmp_log_notice("You need to be the administrator to Start Mysql Service", progLogSection);
             }
             try {
                 MysqlController.Start();

@@ -33,15 +33,15 @@ namespace SalamanderWnmp.UI
         }
 
 
-        [DllImport("SM.dll", EntryPoint = "runJS", CharSet = CharSet.Ansi,
-          CallingConvention = CallingConvention.Cdecl)]
-        extern static IntPtr runJS(StringBuilder str);
+        //[DllImport("SM.dll", EntryPoint = "runJS", CharSet = CharSet.Ansi,
+        //  CallingConvention = CallingConvention.Cdecl)]
+        //extern static IntPtr runJS(StringBuilder str);
 
         private void btnRun_Click(object sender, RoutedEventArgs e)
         {
-            IntPtr intPtr = runJS(new StringBuilder(this.txtCode.Text));
-            string str = Marshal.PtrToStringAnsi(intPtr);
-            this.txtOutput.Text = str;
+            //IntPtr intPtr = runJS(new StringBuilder(this.txtCode.Text));
+            //string str = Marshal.PtrToStringAnsi(intPtr);
+            //this.txtOutput.Text = str;
         }
 
         private void txtCode_PreviewKeyDown(object sender, KeyEventArgs e)
