@@ -7,3 +7,4 @@ Release/
 *.mdb
 *.ldb
 *.config
+/.vs
