@@ -29,7 +29,7 @@
 
         <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" BorderThickness="1"  AcceptsReturn="True" AcceptsTab="True"/>
 
-        <Button Grid.Row="2" Content="运行" Padding="10, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
+        <Button Grid.Row="2" Content="运行" Padding="25, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
 
         <TextBox x:Name="txtOutput" Grid.Row="3" Margin="10" BorderThickness="1">
 

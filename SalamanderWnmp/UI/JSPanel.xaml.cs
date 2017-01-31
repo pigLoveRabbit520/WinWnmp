@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -32,16 +34,48 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
-
-        //[DllImport("SM.dll", EntryPoint = "runJS", CharSet = CharSet.Ansi,
-        //  CallingConvention = CallingConvention.Cdecl)]
-        //extern static IntPtr runJS(StringBuilder str);
-
         private void btnRun_Click(object sender, RoutedEventArgs e)
         {
-            //IntPtr intPtr = runJS(new StringBuilder(this.txtCode.Text));
-            //string str = Marshal.PtrToStringAnsi(intPtr);
-            //this.txtOutput.Text = str;
+            string code = this.txtCode.Text;
+            if(string.IsNullOrEmpty(code))
+            {
+                MessageBox.Show("请输入js代码");
+                return;
+            }
+            this.txtOutput.Text = RunNode(code);
+        }
+
+        /// <summary>
+        /// 运行js脚本
+        /// </summary>
+        /// <param name="code"></param>
+        private string RunNode(string code)
+        {
+            Process scriptProc = new Process();
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "node.exe";
+            info.RedirectStandardError = true;
+            info.RedirectStandardInput = true;
+            info.RedirectStandardOutput = true;
+            info.UseShellExecute = false;
+            info.CreateNoWindow = true;
+            scriptProc.StartInfo = info;
+            try
+            {
+                scriptProc.Start();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("node未安装或者未设置node环境变量！");
+                return "";
+            }
+            StreamWriter writer = scriptProc.StandardInput;
+            writer.WriteLine(code);
+            writer.Close();
+            string outStr = scriptProc.StandardOutput.ReadToEnd();
+            scriptProc.Close();
+            return outStr;
+
         }
 
         private void txtCode_PreviewKeyDown(object sender, KeyEventArgs e)
