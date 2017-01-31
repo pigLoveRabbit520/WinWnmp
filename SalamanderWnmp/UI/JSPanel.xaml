@@ -27,7 +27,27 @@
         </Grid>
 
 
-        <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" BorderThickness="1"  AcceptsReturn="True" AcceptsTab="True"/>
+        <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" BorderThickness="1"  AcceptsReturn="True" AcceptsTab="True">
+            <TextBox.Resources>
+                <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Left" AlignmentY="Top">
+                    <VisualBrush.Visual>
+                        <TextBlock FontStyle="Italic" Text="请输入代码"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </TextBox.Resources>
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>            
+        </TextBox>
 
         <Button Grid.Row="2" Content="运行" Padding="25, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
 
