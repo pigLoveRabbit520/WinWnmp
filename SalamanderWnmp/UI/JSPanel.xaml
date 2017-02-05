@@ -27,7 +27,7 @@
         </Grid>
 
 
-        <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" Padding="5" BorderThickness="1"  AcceptsReturn="True" AcceptsTab="True">
+        <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" Padding="5" BorderThickness="1"  AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
             <TextBox.Resources>
                 <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Left" AlignmentY="Top">
                     <VisualBrush.Visual>
@@ -53,7 +53,7 @@
 
         <Button Grid.Row="2" Content="运行" Padding="25, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
 
-        <TextBox x:Name="txtOutput" Grid.Row="3" Margin="10" Padding="5" BorderThickness="1">
+        <TextBox x:Name="txtOutput" Grid.Row="3" Margin="10" Padding="5" BorderThickness="1" VerticalScrollBarVisibility="Auto">
 
         </TextBox>
     </Grid>
