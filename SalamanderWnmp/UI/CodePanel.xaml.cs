@@ -54,8 +54,8 @@ namespace SalamanderWnmp.UI
             Process scriptProc = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = "node.exe";
+            info.Arguments = "-e " + String.Format("\"{0}\"", code);
             info.RedirectStandardError = true;
-            info.RedirectStandardInput = true;
             info.RedirectStandardOutput = true;
             info.UseShellExecute = false;
             info.CreateNoWindow = true;
@@ -69,10 +69,12 @@ namespace SalamanderWnmp.UI
                 MessageBox.Show("node未安装或者未设置node环境变量！");
                 return "";
             }
-            StreamWriter writer = scriptProc.StandardInput;
-            writer.WriteLine(code);
-            writer.Close();
             string outStr = scriptProc.StandardOutput.ReadToEnd();
+            // 有错误，读取错误信息
+            if(String.IsNullOrEmpty(outStr))
+            {
+                outStr = scriptProc.StandardError.ReadToEnd();
+            }
             scriptProc.Close();
             return outStr;
 

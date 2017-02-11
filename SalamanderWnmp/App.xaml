@@ -9,9 +9,12 @@
         <ResourceDictionary>
 
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="XAML/Colors.xaml" />
                 <ResourceDictionary Source="XAML/TabControl.xaml" />
                 <ResourceDictionary Source="XAML/ToggleButton.xaml" />
                 <ResourceDictionary Source="XAML/ScrollViewer.xaml" />
+                <ResourceDictionary Source="XAML/Ficon.xaml" />
+                <ResourceDictionary Source="XAML/CheckBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
             <!--主题色-->

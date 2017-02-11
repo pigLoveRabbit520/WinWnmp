@@ -6,11 +6,17 @@
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         mc:Ignorable="d"
-        Title="JSPanel" Height="460" Width="450" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterScreen">
+        Title="JSPanel" Height="540" Width="540" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1.4*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -26,8 +32,15 @@
             </StackPanel>
         </Grid>
 
+        <Border Grid.Row="1" Padding="10, 8">
+            <WrapPanel>
+                <RadioButton>JavaScript</RadioButton>
+                <RadioButton>PHP</RadioButton>
+                <RadioButton>Go</RadioButton>
+            </WrapPanel>
+        </Border>
 
-        <TextBox x:Name="txtCode" Grid.Row="1" Margin="10" Padding="5" BorderThickness="1"  AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
+        <TextBox x:Name="txtCode" Grid.Row="2" Margin="10" Padding="5" BorderThickness="1"  AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
             <TextBox.Resources>
                 <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Left" AlignmentY="Top">
                     <VisualBrush.Visual>
@@ -51,9 +64,9 @@
             </TextBox.Style>            
         </TextBox>
 
-        <Button Grid.Row="2" Content="运行" Padding="25, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
+        <Button Grid.Row="3" Content="运行" Padding="25, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
 
-        <TextBox x:Name="txtOutput" Grid.Row="3" Margin="10" Padding="5" BorderThickness="1" VerticalScrollBarVisibility="Auto">
+        <TextBox x:Name="txtOutput" Grid.Row="4" Margin="10" Padding="5" BorderThickness="1" VerticalScrollBarVisibility="Auto">
 
         </TextBox>
     </Grid>
