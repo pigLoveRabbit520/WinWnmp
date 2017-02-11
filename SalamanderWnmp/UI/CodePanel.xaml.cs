@@ -11,7 +11,7 @@ using System.Windows.Input;
 namespace SalamanderWnmp.UI
 {
     /// <summary>
-    /// JSPanel.xaml 的交互逻辑
+    /// CodePanel.xaml 的交互逻辑
     /// </summary>
     public partial class CodePanel : Window
     {
@@ -60,6 +60,13 @@ namespace SalamanderWnmp.UI
             }
         }
 
+        /// <summary>
+        /// 执行代码委托
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private delegate string RunCode(string code);
+
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -74,7 +81,20 @@ namespace SalamanderWnmp.UI
                 MessageBox.Show("请输入代码");
                 return;
             }
-            this.txtOutput.Text = RunNode(code);
+            RunCode runCode = null;
+            switch(selectedLan)
+            {
+                case ProgramLan.JavaScript:
+                    runCode = RunNode;
+                    break;
+                case ProgramLan.PHP:
+                    runCode = RunPHP;
+                    break;
+                default:
+                    runCode = DefaultRunCode;
+                    break;
+            }
+            this.txtOutput.Text = runCode(code);
         }
 
         /// <summary>
@@ -112,6 +132,47 @@ namespace SalamanderWnmp.UI
 
         }
 
+        /// <summary>
+        /// 运行PHP脚本
+        /// </summary>
+        /// <param name="code"></param>
+        private string RunPHP(string code)
+        {
+            Process scriptProc = new Process();
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = Constants.APP_STARTUP_PATH + "/" + Common.Settings.PHPDirName.Value
+                + "/php.exe";
+            info.Arguments = "-r " + String.Format("\"{0}\"", code);
+            info.RedirectStandardError = true;
+            info.RedirectStandardOutput = true;
+            info.UseShellExecute = false;
+            info.CreateNoWindow = true;
+            scriptProc.StartInfo = info;
+            try
+            {
+                scriptProc.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("PHP目录不存在！");
+                return "";
+            }
+            string outStr = scriptProc.StandardOutput.ReadToEnd();
+            // 有错误，读取错误信息
+            if (String.IsNullOrEmpty(outStr))
+            {
+                outStr = scriptProc.StandardError.ReadToEnd();
+            }
+            scriptProc.Close();
+            return outStr;
+
+        }
+
+        public string DefaultRunCode(string code)
+        {
+            return "还未实现哦 \\﻿(•◡•)/";
+        }
+
         private void txtCode_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Tab)
@@ -129,7 +190,7 @@ namespace SalamanderWnmp.UI
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.txtOutput.Text = "";            
         }
     }
 }
