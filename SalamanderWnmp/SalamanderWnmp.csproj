@@ -98,8 +98,8 @@
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\ImageMenu.cs" />
-    <Compile Include="UI\JSPanel.xaml.cs">
-      <DependentUpon>JSPanel.xaml</DependentUpon>
+    <Compile Include="UI\CodePanel.xaml.cs">
+      <DependentUpon>CodePanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
@@ -116,7 +116,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\JSPanel.xaml">
+    <Page Include="UI\CodePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Menu\js.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Menu\code.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

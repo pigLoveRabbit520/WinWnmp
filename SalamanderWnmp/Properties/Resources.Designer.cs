@@ -88,20 +88,20 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 编程面板 的本地化字符串。
+        /// </summary>
+        public static string CodePanel {
+            get {
+                return ResourceManager.GetString("CodePanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 #16a085 的本地化字符串。
         /// </summary>
         public static string DefaultThemeColor {
             get {
                 return ResourceManager.GetString("DefaultThemeColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 JS面板 的本地化字符串。
-        /// </summary>
-        public static string JSPanel {
-            get {
-                return ResourceManager.GetString("JSPanel", resourceCulture);
             }
         }
         
