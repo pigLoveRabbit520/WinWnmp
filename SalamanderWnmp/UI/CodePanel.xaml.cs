@@ -37,7 +37,8 @@ namespace SalamanderWnmp.UI
         {
             JavaScript,
             PHP,
-            Go
+            Go,
+            CSharp
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
