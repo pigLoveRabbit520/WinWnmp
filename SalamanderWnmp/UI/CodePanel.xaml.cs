@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace SalamanderWnmp.UI
             InitializeComponent();
         }
 
+
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -26,6 +28,36 @@ namespace SalamanderWnmp.UI
                 DragMove();
             }
             e.Handled = true;
+        }
+
+        /// <summary>
+        /// 编程语言枚举
+        /// </summary>
+        public enum ProgramLan
+        {
+            JavaScript,
+            PHP,
+            Go
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        // 选择的编程语言
+        private ProgramLan selectedLan = ProgramLan.JavaScript;
+
+        public ProgramLan SelectedLan
+        {
+            get
+            {
+                return this.selectedLan;
+            }
+            set
+            {
+                this.selectedLan = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("SelectedLan"));
+                }
+            }
         }
 
         private void btn_Click(object sender, RoutedEventArgs e)
@@ -39,7 +71,7 @@ namespace SalamanderWnmp.UI
             string code = this.txtCode.Text;
             if(string.IsNullOrEmpty(code))
             {
-                MessageBox.Show("请输入js代码");
+                MessageBox.Show("请输入代码");
                 return;
             }
             this.txtOutput.Text = RunNode(code);
@@ -88,6 +120,16 @@ namespace SalamanderWnmp.UI
                 //txtCode.
             }
             e.Handled = true;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.lanList.DataContext = this;
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

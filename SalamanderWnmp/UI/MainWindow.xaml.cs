@@ -33,7 +33,6 @@ namespace SalamanderWnmp.UI
         // 应用启动目录
         public static string StartupPath { get { return Constants.APP_STARTUP_PATH; } }
 
-        public Ini Settings = new Ini();
         // 设置界面
         private SettingWindow settingWin = null;
 
@@ -41,7 +40,7 @@ namespace SalamanderWnmp.UI
         {
             InitializeComponent();
 
-            Settings.ReadSettings();
+            Common.Settings.ReadSettings();
 
             ini();
         }
@@ -49,7 +48,7 @@ namespace SalamanderWnmp.UI
         private void ini()
         {
             // 设置主题颜色
-            Application.Current.Resources["ThemeColor"] = Settings.ThemeColor.Value;
+            Application.Current.Resources["ThemeColor"] = Common.Settings.ThemeColor.Value;
             SetupNginx();
             SetupMysql();
             SetupPHP();
@@ -88,11 +87,11 @@ namespace SalamanderWnmp.UI
 
         private void SetupNginx()
         {
-            nginx.Settings = Settings;
-            nginx.exeName = StartupPath + String.Format("{0}/nginx.exe", Settings.NginxDirName.Value);
+            nginx.Settings = Common.Settings;
+            nginx.exeName = StartupPath + String.Format("{0}/nginx.exe", Common.Settings.NginxDirName.Value);
             nginx.procName = "nginx";
             nginx.progName = "Nginx";
-            nginx.workingDir = StartupPath + Settings.NginxDirName.Value;
+            nginx.workingDir = StartupPath + Common.Settings.NginxDirName.Value;
             nginx.progLogSection = Log.LogSection.WNMP_NGINX;
             nginx.startArgs = "";
             nginx.stopArgs = "-s stop";
@@ -104,12 +103,12 @@ namespace SalamanderWnmp.UI
 
         public void SetupPHP()
         {
-            php.Settings = Settings;
+            php.Settings = Common.Settings;
             php.exeName = StartupPath.Replace(@"\", "/") + "/" + php.Settings.PHPDirName.Value
                 + "/php-cgi.exe";
             php.procName = "php-cgi";
             php.progName = "PHP";
-            php.workingDir = StartupPath + Settings.PHPDirName.Value;
+            php.workingDir = StartupPath + Common.Settings.PHPDirName.Value;
             php.progLogSection = Log.LogSection.WNMP_PHP;
             php.killStop = true;
             php.statusLabel = lblPHP;
@@ -120,14 +119,14 @@ namespace SalamanderWnmp.UI
 
         private void SetupMysql()
         {
-            mysql.Settings = Settings;
-            mysql.exeName = StartupPath + String.Format("{0}/bin/mysqld.exe", Settings.MysqlDirName.Value);
+            mysql.Settings = Common.Settings;
+            mysql.exeName = StartupPath + String.Format("{0}/bin/mysqld.exe", Common.Settings.MysqlDirName.Value);
             mysql.procName = "mysqld";
             mysql.progName = "mysql";
-            mysql.workingDir = StartupPath + Settings.MysqlDirName.Value;
+            mysql.workingDir = StartupPath + Common.Settings.MysqlDirName.Value;
             mysql.progLogSection = Log.LogSection.WNMP_MARIADB;
             mysql.startArgs = "--install-manual " + MysqlProgram.ServiceName + " --defaults-file=\"" +
-                StartupPath + String.Format("\\{0}\\my.ini\"", Settings.MysqlDirName.Value);
+                StartupPath + String.Format("\\{0}\\my.ini\"", Common.Settings.MysqlDirName.Value);
             mysql.stopArgs = "/c sc delete " + MysqlProgram.ServiceName;
             mysql.killStop = true;
             mysql.statusLabel = lblMysql;
@@ -167,7 +166,7 @@ namespace SalamanderWnmp.UI
             DoCheckIfAppsAreRunningTimer();
             CheckForApps();
             // 安装mysql服务
-            if (Directory.Exists(StartupPath + Settings.MysqlDirName.Value))
+            if (Directory.Exists(StartupPath + Common.Settings.MysqlDirName.Value))
             {
                 if (!mysql.ServiceExists())
                     mysql.InstallService();
@@ -175,11 +174,11 @@ namespace SalamanderWnmp.UI
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
             // 自动启动
-            if (Settings.StartNginxOnLaunch.Value)
+            if (Common.Settings.StartNginxOnLaunch.Value)
                 nginx.Start();
-            if (Settings.StartMysqlOnLaunch.Value)
+            if (Common.Settings.StartMysqlOnLaunch.Value)
                 mysql.Start();
-            if (Settings.StartPHPOnLaunch.Value)
+            if (Common.Settings.StartPHPOnLaunch.Value)
                 php.Start();
         }
 

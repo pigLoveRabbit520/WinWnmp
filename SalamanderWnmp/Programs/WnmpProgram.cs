@@ -123,22 +123,6 @@ namespace SalamanderWnmp.Programs
             Log.wnmp_log_notice("Restarted " + progName, progLogSection);
         }
 
-        //public void ConfigButton(object sender)
-        //{
-        //    var btnSender = (Button)sender;
-        //    var ptLowerLeft = new Point(0, btnSender.Height);
-        //    ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
-        //    configContextMenu.Show(ptLowerLeft);
-        //}
-
-        //private void logContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        //{
-        //    try {
-        //        Process.Start(Settings.Editor.Value, frmMain.StartupPath + logDir + e.ClickedItem.Text);
-        //    } catch (Exception ex) {
-        //        Log.wnmp_log_error(ex.Message, progLogSection);
-        //    }
-        //}
 
         public bool IsRunning()
         {

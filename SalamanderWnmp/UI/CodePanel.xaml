@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
+        xmlns:cvt="clr-namespace:SalamanderWnmp.Converter"
         mc:Ignorable="d"
-        Title="JSPanel" Height="540" Width="540" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterScreen">
+        Title="JSPanel" Height="540" Width="540" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
             <Setter Property="Margin" Value="0,0,8,0" />
         </Style>
+        <cvt:LanToBoolConverter x:Key="LanToBoolConverter"></cvt:LanToBoolConverter>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -32,11 +34,11 @@
             </StackPanel>
         </Grid>
 
-        <Border Grid.Row="1" Padding="10, 8">
+        <Border Grid.Row="1" Padding="10, 8" x:Name="lanList">
             <WrapPanel>
-                <RadioButton>JavaScript</RadioButton>
-                <RadioButton>PHP</RadioButton>
-                <RadioButton>Go</RadioButton>
+                <RadioButton GroupName="lan" IsChecked="{Binding SelectedLan,Converter={StaticResource LanToBoolConverter}, ConverterParameter=0}">JavaScript</RadioButton>
+                <RadioButton GroupName="lan" IsChecked="{Binding SelectedLan,Converter={StaticResource LanToBoolConverter}, ConverterParameter=1}">PHP</RadioButton>
+                <RadioButton GroupName="lan" IsChecked="{Binding SelectedLan,Converter={StaticResource LanToBoolConverter}, ConverterParameter=2}">Go</RadioButton>
             </WrapPanel>
         </Border>
 
@@ -64,9 +66,16 @@
             </TextBox.Style>            
         </TextBox>
 
-        <Button Grid.Row="3" Content="运行" Padding="25, 5" HorizontalAlignment="Center" Click="btnRun_Click"/>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button  Content="运行" Padding="0, 8" Width="100" HorizontalAlignment="Center" Click="btnRun_Click"/>
+            <Button Grid.Column="1" Content="清空控制台" Width="100" Padding="0, 8" HorizontalAlignment="Center" Click="btnClear_Click"/>
+        </Grid>
 
-        <TextBox x:Name="txtOutput" Grid.Row="4" Margin="10" Padding="5" BorderThickness="1" VerticalScrollBarVisibility="Auto">
+        <TextBox x:Name="txtOutput" Grid.Row="4" Margin="10" IsReadOnly="True" Padding="5" BorderThickness="1" VerticalScrollBarVisibility="Auto">
 
         </TextBox>
     </Grid>

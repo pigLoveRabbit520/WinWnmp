@@ -21,8 +21,6 @@ namespace SalamanderWnmp.UI
             InitializeComponent();
         }
 
-        public Ini Settings = new Ini();
-
         private void cmdSet_Click(object sender, RoutedEventArgs e)
         {
             var defaultColor = (SolidColorBrush)new BrushConverter().ConvertFromString(Properties.Resources.DefaultThemeColor);
@@ -39,8 +37,8 @@ namespace SalamanderWnmp.UI
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Settings.ThemeColor.Value = colorPicker.Color;
-            Settings.UpdateSettings();
+            Common.Settings.ThemeColor.Value = colorPicker.Color;
+            Common.Settings.UpdateSettings();
             this.Close();
         }
 
@@ -60,7 +58,7 @@ namespace SalamanderWnmp.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Settings.ReadSettings();
+            Common.Settings.ReadSettings();
             e.Handled = true;
         }
     }

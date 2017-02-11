@@ -18,14 +18,12 @@ namespace SalamanderWnmp.UI
     /// </summary>
     public partial class SettingWindow : Window
     {
-        public Ini Settings = new Ini();
         private PHPConfigurationManager PHPConfigurationMgr = new PHPConfigurationManager();
 
 
         public SettingWindow()
         {
             InitializeComponent();
-            Settings.ReadSettings();
         }
 
         private void btn_Click(object sender, RoutedEventArgs e)
@@ -45,8 +43,8 @@ namespace SalamanderWnmp.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            gridRegular.DataContext = Settings;
-            PHPConfigurationMgr.LoadPHPExtensions(Settings.PHPDirName.Value);
+            gridRegular.DataContext = Common.Settings;
+            PHPConfigurationMgr.LoadPHPExtensions(Common.Settings.PHPDirName.Value);
             lbPHPExt.ItemsSource = PHPConfigurationMgr.GetExtensions();
             txtTotal.DataContext = lbPHPExt;
             e.Handled = true;
@@ -54,7 +52,7 @@ namespace SalamanderWnmp.UI
 
         private void btnSaveRegular_Click(object sender, RoutedEventArgs e)
         {
-            Settings.UpdateSettings();
+            Common.Settings.UpdateSettings();
             this.Close();
             e.Handled = true;
         }
