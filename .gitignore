@@ -8,3 +8,4 @@ Release/
 *.ldb
 *.config
 /.vs
+/packages

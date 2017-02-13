@@ -115,6 +115,15 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Redis面板 的本地化字符串。
+        /// </summary>
+        public static string RedisPanel {
+            get {
+                return ResourceManager.GetString("RedisPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 设置 的本地化字符串。
         /// </summary>
         public static string Settings {

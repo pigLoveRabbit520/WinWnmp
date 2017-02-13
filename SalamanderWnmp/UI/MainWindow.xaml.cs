@@ -1,6 +1,7 @@
 ﻿using SalamanderWnmp.Configuration;
 using SalamanderWnmp.Programs;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -33,15 +34,17 @@ namespace SalamanderWnmp.UI
         // 应用启动目录
         public static string StartupPath { get { return Constants.APP_STARTUP_PATH; } }
 
-        // 设置界面
-        private SettingWindow settingWin = null;
+        // 显示的界面集合
+        private List<Window> showWins = new List<Window>();
+        // 
+        Hashtable winHash = new Hashtable();
 
         public MainWindow()
         {
             InitializeComponent();
 
             Common.Settings.ReadSettings();
-
+            AddWinHash();
             ini();
         }
 
@@ -55,6 +58,15 @@ namespace SalamanderWnmp.UI
             this.stackNginx.DataContext = nginx;
             this.stackPHP.DataContext = php;
             this.stackMysql.DataContext = mysql;
+        }
+
+        private void AddWinHash()
+        {
+            winHash.Add("MenuAbout", "AboutWindow");
+            winHash.Add("MenuJSPanel", "CodePanel");
+            winHash.Add("MenuRedis", "RedisWindow");
+            winHash.Add("MenuSettings", "SettingWindow");
+            winHash.Add("MenuColor", "ChangeThemeColorWindow");
         }
 
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
@@ -211,31 +223,79 @@ namespace SalamanderWnmp.UI
                 Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
         }
 
+
+        /// <summary>
+        /// window是否已经打开
+        /// </summary>
+        /// <param name="btnName"></param>
+        /// <param name="openWin">打开的window</param>
+        /// <returns></returns>
+        private bool HasWindowOpened(string btnName, ref Window openWin)
+        {
+            if (showWins.Count > 0)
+            {
+                foreach(Window win in showWins)
+                {
+                    if (win.GetType().Name == winHash[btnName].ToString())
+                    {
+                        openWin = win;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// 打开window
+        /// </summary>
+        /// <param name="btnName"></param>
+        private void OpenWindow(string btnName)
+        {
+            Window showWin = null;
+            switch (btnName)
+            {
+                case "MenuAbout":
+                    showWin = new AboutWindow();
+                    break;
+                case "MenuJSPanel":
+                    showWin = new CodePanel();
+                    break;
+                case "MenuRedis":
+                    showWin = new RedisWindow();
+                    break;
+                case "MenuSettings":
+                    showWin = new SettingWindow();
+                    break;
+                case "MenuColor":
+                    showWin = new ChangeThemeColorWindow();
+                    break;
+            }
+            showWins.Add(showWin);
+            showWin.Show();
+        }
+       
+
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             ImageMenu btn = (ImageMenu)e.Source;
-            Window win = null;
-            switch (btn.Name)
+
+            if(btn.Name == "MenuDir")
             {
-                case "MenuAbout":
-                    win = new AboutWindow();
-                    win.Show();
-                    break;
-                case "MenuJSPanel":
-                    win = new CodePanel();
-                    win.Show();
-                    break;
-                case "MenuSettings":
-                    settingWin = new SettingWindow();
-                    settingWin.Show();
-                    break;
-                case "MenuDir":
-                    Process.Start("explorer.exe", StartupPath);
-                    break;
-                case "MenuColor":
-                    win = new ChangeThemeColorWindow();
-                    win.Show();
-                    break;
+                Process.Start("explorer.exe", StartupPath);
+            }
+            else
+            {
+                Window showWin = null;
+                if (HasWindowOpened(btn.Name, ref showWin))
+                {
+                    showWin.Activate();
+                }
+                else
+                {
+                    OpenWindow(btn.Name);
+                }
             }
             popupMenu.IsOpen = false;
             e.Handled = true;
