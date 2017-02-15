@@ -273,9 +273,18 @@ namespace SalamanderWnmp.UI
                     break;
             }
             showWins.Add(showWin);
+            showWin.Closing += ChildWindow_Closing;
             showWin.Show();
         }
-       
+
+        private void ChildWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Window win = (Window)sender;
+            showWins.Remove(win);
+        }
+
+
+
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -336,5 +345,6 @@ namespace SalamanderWnmp.UI
             mysql.Stop();
             e.Handled = true;
         }
+
     }
 }
