@@ -1,5 +1,6 @@
 ﻿using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -11,6 +12,9 @@ namespace SalamanderWnmp.UI
     /// </summary>
     public partial class RedisWindow : Window
     {
+
+        private static ConnectionMultiplexer redisConn = null;
+
         public RedisWindow()
         {
             InitializeComponent();
@@ -33,16 +37,16 @@ namespace SalamanderWnmp.UI
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            using (ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("127.0.0.1"))
+            try
             {
-                IDatabase db = redis.GetDatabase();
-                //db.StringSet("name", "zwj1");
-                //db.KeyDelete("name");
-
-                TimeSpan t = new TimeSpan(0, 1, 0);
-
-
-              
+                redisConn = ConnectionMultiplexer.Connect("127.0.0.1");
+                IServer server = redisConn.GetServer("127.0.0.1", 6379);
+                IEnumerable<RedisKey> keys = server.Keys(pattern: "*");
+                lbKeys.ItemsSource = keys;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
