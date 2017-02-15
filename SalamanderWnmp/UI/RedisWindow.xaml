@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
          WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
-        Title="AboutWindow" Height="350" Width="500">
+        Title="AboutWindow" Height="350" Width="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
