@@ -35,7 +35,7 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -48,6 +48,12 @@ namespace SalamanderWnmp.UI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ListBoxItem_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            RedisKey key = (RedisKey)lbKeys.SelectedItem;
+            IDatabase db = redisConn.GetDatabase();
         }
     }
 }

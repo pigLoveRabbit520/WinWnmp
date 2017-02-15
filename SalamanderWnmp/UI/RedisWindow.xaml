@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
          WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
-        Title="AboutWindow" Height="350" Width="450">
+        Title="AboutWindow" Height="350" Width="550">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,7 +26,7 @@
             </StackPanel>
         </Grid>
         
-        <Button x:Name="button" Content="连接" HorizontalAlignment="Center"  Margin="0, 10" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Button x:Name="button" Content="连接" HorizontalAlignment="Center"  Margin="0, 10" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="btnConnect_Click"/>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -41,10 +41,16 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding .}" Foreground="Black" FontSize="12" HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Column="0" Text="{Binding .}" Foreground="Black" FontSize="12" HorizontalAlignment="Left" Margin="0,4"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ResourceKey={x:Type ListBoxItem}}">
+                        <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick">
+                        </EventSetter>
+                    </Style>
+                </ListBox.Resources>
             </ListBox>
 
             <TextBox Grid.Column="1" Margin="5">
