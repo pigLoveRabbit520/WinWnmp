@@ -6,6 +6,5 @@ Debug/
 Release/
 *.mdb
 *.ldb
-*.config
 /.vs
 /packages
