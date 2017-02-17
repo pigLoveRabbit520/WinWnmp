@@ -3,8 +3,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,6 +19,7 @@ namespace SalamanderWnmp.UI
         public CodePanel()
         {
             InitializeComponent();
+            DispatcherHelper.Initialize();
         }
 
 
@@ -61,12 +63,7 @@ namespace SalamanderWnmp.UI
             }
         }
 
-        /// <summary>
-        /// 执行代码委托
-        /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
-        private delegate string RunCode(string code);
+     
 
         private void btn_Click(object sender, RoutedEventArgs e)
         {
@@ -82,8 +79,18 @@ namespace SalamanderWnmp.UI
                 MessageBox.Show("请输入代码");
                 return;
             }
-            RunCode runCode = null;
-            switch(selectedLan)
+            Thread thread = new Thread(new ParameterizedThreadStart(ExecuteByProgramLan));
+            thread.Start(code);
+        }
+
+        /// <summary>
+        /// 通过编程语言执行代码
+        /// </summary>
+        /// <param name="code"></param>
+        private void ExecuteByProgramLan(object code)
+        {
+            Func<object, string> runCode = null;
+            switch (selectedLan)
             {
                 case ProgramLan.JavaScript:
                     runCode = RunNode;
@@ -95,19 +102,31 @@ namespace SalamanderWnmp.UI
                     runCode = DefaultRunCode;
                     break;
             }
-            this.txtOutput.Text = runCode(code);
+            Task<String> task = new Task<String>(runCode, code);
+            task.Start();
+            task.Wait();
+            DispatcherHelper.UIDispatcher.Invoke(new Action<String>(changOutputTxt), task.Result);
+        }
+
+        /// <summary>
+        /// 改变状态文本
+        /// </summary>
+        /// <param name="txt"></param>
+        private void changOutputTxt(String txt)
+        {
+            this.txtOutput.Text = txt;
         }
 
         /// <summary>
         /// 运行js脚本
         /// </summary>
         /// <param name="code"></param>
-        private string RunNode(string code)
+        private string RunNode(object code)
         {
             Process scriptProc = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = "node.exe";
-            info.Arguments = "-e " + String.Format("\"{0}\"", code);
+            info.Arguments = "-e " + String.Format("\"{0}\"", code.ToString());
             info.RedirectStandardError = true;
             info.RedirectStandardOutput = true;
             info.UseShellExecute = false;
@@ -137,7 +156,7 @@ namespace SalamanderWnmp.UI
         /// 运行PHP脚本
         /// </summary>
         /// <param name="code"></param>
-        private string RunPHP(string code)
+        private string RunPHP(object code)
         {
             Process scriptProc = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
@@ -169,7 +188,7 @@ namespace SalamanderWnmp.UI
 
         }
 
-        public string DefaultRunCode(string code)
+        public string DefaultRunCode(object code)
         {
             return "还未实现哦 \\﻿(•◡•)/";
         }
