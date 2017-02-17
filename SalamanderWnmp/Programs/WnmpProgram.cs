@@ -78,6 +78,7 @@ namespace SalamanderWnmp.Programs
             ps.StartInfo.Arguments = args;
             ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.RedirectStandardOutput = true;
+            ps.StartInfo.RedirectStandardError = true;
             ps.StartInfo.WorkingDirectory = workingDir;
             ps.StartInfo.CreateNoWindow = true;
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -95,7 +96,15 @@ namespace SalamanderWnmp.Programs
             }
             try {
                 StartProcess(exeName, startArgs);
-                Log.wnmp_log_notice("Started " + progName, progLogSection);
+                string err = ps.StandardError.ReadToEnd();
+                if(String.IsNullOrEmpty(err))
+                {
+                    Log.wnmp_log_notice("Started " + progName, progLogSection);
+                } 
+                else
+                {
+                    Log.wnmp_log_error("Failed: " + err, progLogSection);
+                }
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }
@@ -123,11 +132,13 @@ namespace SalamanderWnmp.Programs
             Log.wnmp_log_notice("Restarted " + progName, progLogSection);
         }
 
-
+        /// <summary>
+        /// 判断程序是否运行
+        /// </summary>
+        /// <returns></returns>
         public bool IsRunning()
         {
             var processes = Process.GetProcessesByName(procName);
-
             return (processes.Length != 0);
         }
     }

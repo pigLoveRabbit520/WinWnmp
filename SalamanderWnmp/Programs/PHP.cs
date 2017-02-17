@@ -32,9 +32,9 @@ namespace SalamanderWnmp.Programs
                     Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, progLogSection);
                     port++;
                 }
-                Log.wnmp_log_notice("PHP started", progLogSection);
+                Log.wnmp_log_notice("Started", progLogSection);
             } catch (Exception ex) {
-                Log.wnmp_log_error("StartPHP(): " + ex.Message, progLogSection);
+                Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }
         }
 
