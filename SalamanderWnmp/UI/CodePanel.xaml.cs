@@ -16,6 +16,7 @@ namespace SalamanderWnmp.UI
     /// </summary>
     public partial class CodePanel : Window
     {
+
         public CodePanel()
         {
             InitializeComponent();
@@ -41,6 +42,15 @@ namespace SalamanderWnmp.UI
             PHP,
             Go,
             CSharp
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private enum RunCodeStatus
+        {
+            Running,
+            Stop
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -89,6 +99,8 @@ namespace SalamanderWnmp.UI
         /// <param name="code"></param>
         private void ExecuteByProgramLan(object code)
         {
+            DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonContent), 
+                RunCodeStatus.Running);
             Func<object, string> runCode = null;
             switch (selectedLan)
             {
@@ -105,14 +117,35 @@ namespace SalamanderWnmp.UI
             Task<String> task = new Task<String>(runCode, code);
             task.Start();
             task.Wait();
-            DispatcherHelper.UIDispatcher.Invoke(new Action<String>(changOutputTxt), task.Result);
+            DispatcherHelper.UIDispatcher.Invoke(new Action<String>(ChangOutputTxt), task.Result);
+            DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonContent),
+                RunCodeStatus.Stop);
+        }
+
+        /// <summary>
+        /// 更改运行按钮的Content
+        /// </summary>
+        /// <param name="status"></param>
+        private void SetRunButtonContent(RunCodeStatus status)
+        {
+            switch(status)
+            {
+                case RunCodeStatus.Running:
+                    this.btnRun.Content = "执行中...";
+                    this.btnRun.IsEnabled = false;
+                    break;
+                case RunCodeStatus.Stop:
+                    this.btnRun.Content = "运行";
+                    this.btnRun.IsEnabled = true;
+                    break;
+            }
         }
 
         /// <summary>
         /// 改变状态文本
         /// </summary>
         /// <param name="txt"></param>
-        private void changOutputTxt(String txt)
+        private void ChangOutputTxt(String txt)
         {
             this.txtOutput.Text = txt;
         }

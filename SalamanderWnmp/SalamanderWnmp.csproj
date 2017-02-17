@@ -138,6 +138,9 @@
     <Compile Include="UI\CodePanel.xaml.cs">
       <DependentUpon>CodePanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\RedisWindow.xaml.cs">
       <DependentUpon>RedisWindow.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\CodePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Loading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +206,10 @@
     <Page Include="XAML\FIcon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="XAML\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="XAML\ScrollViewer.xaml">
       <SubType>Designer</SubType>

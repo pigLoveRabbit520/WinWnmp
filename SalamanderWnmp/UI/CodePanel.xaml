@@ -73,7 +73,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button  Content="运行" Padding="0, 8" Width="100" HorizontalAlignment="Center" Click="btnRun_Click"/>
+            <Button x:Name="btnRun"  Content="运行" Padding="0, 8" Width="100" HorizontalAlignment="Center" Click="btnRun_Click"/>
             <Button Grid.Column="1" Content="清空控制台" Width="100" Padding="0, 8" HorizontalAlignment="Center" Click="btnClear_Click"/>
         </Grid>
 
