@@ -116,7 +116,7 @@ namespace SalamanderWnmp.UI
         public void SetupPHP()
         {
             php.Settings = Common.Settings;
-            php.exeName = StartupPath.Replace(@"\", "/") + "/" + php.Settings.PHPDirName.Value
+            php.exeName = StartupPath + php.Settings.PHPDirName.Value
                 + "/php-cgi.exe";
             php.procName = "php-cgi";
             php.progName = "PHP";

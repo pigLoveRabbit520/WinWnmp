@@ -57,6 +57,10 @@ namespace SalamanderWnmp.UI
         // 选择的编程语言
         private ProgramLan selectedLan = ProgramLan.JavaScript;
 
+        private const string CODE_TMP_FILENAME = "code.tmp";
+        // 临时代码文件
+        string codeTmpPath = Constants.APP_STARTUP_PATH + CODE_TMP_FILENAME;
+
         public ProgramLan SelectedLan
         {
             get
@@ -101,25 +105,41 @@ namespace SalamanderWnmp.UI
         {
             DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonContent), 
                 RunCodeStatus.Running);
-            Func<object, string> runCode = null;
+
+            //// 创建临时文件
+            FileStream fs = new FileStream(codeTmpPath, FileMode.OpenOrCreate, FileAccess.ReadWrite); // 可以指定盘符
+            StreamWriter sw = new StreamWriter(fs);
+            // end 创建临时文件
+
+            Func<string> runCode = null;
             switch (selectedLan)
             {
                 case ProgramLan.JavaScript:
+                    sw.Write(code.ToString());
                     runCode = RunNode;
                     break;
                 case ProgramLan.PHP:
                     runCode = RunPHP;
+                    sw.WriteLine("<?php ");
+                    sw.Write(code.ToString());
                     break;
                 default:
+                    sw.Write(code.ToString());
                     runCode = DefaultRunCode;
                     break;
             }
-            Task<String> task = new Task<String>(runCode, code);
+            sw.Close(); // 关闭输入流
+            Task<String> task = new Task<String>(runCode);
             task.Start();
             task.Wait();
             DispatcherHelper.UIDispatcher.Invoke(new Action<String>(ChangOutputTxt), task.Result);
             DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonContent),
                 RunCodeStatus.Stop);
+            // 删除临时文件
+            if (File.Exists(codeTmpPath))
+            {
+                File.Delete(codeTmpPath);
+            }
         }
 
         /// <summary>
@@ -153,13 +173,13 @@ namespace SalamanderWnmp.UI
         /// <summary>
         /// 运行js脚本
         /// </summary>
-        /// <param name="code"></param>
-        private string RunNode(object code)
+        /// <returns></returns>
+        private string RunNode()
         {
             Process scriptProc = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = "node.exe";
-            info.Arguments = "-e " + String.Format("\"{0}\"", code.ToString());
+            info.Arguments = CODE_TMP_FILENAME;
             info.RedirectStandardError = true;
             info.RedirectStandardOutput = true;
             info.UseShellExecute = false;
@@ -188,14 +208,14 @@ namespace SalamanderWnmp.UI
         /// <summary>
         /// 运行PHP脚本
         /// </summary>
-        /// <param name="code"></param>
-        private string RunPHP(object code)
+        /// <returns></returns>
+        private string RunPHP()
         {
             Process scriptProc = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = Constants.APP_STARTUP_PATH + "/" + Common.Settings.PHPDirName.Value
+            info.FileName = Constants.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value
                 + "/php.exe";
-            info.Arguments = "-r " + String.Format("\"{0}\"", code);
+            info.Arguments = "-f " + CODE_TMP_FILENAME;
             info.RedirectStandardError = true;
             info.RedirectStandardOutput = true;
             info.UseShellExecute = false;
@@ -221,7 +241,11 @@ namespace SalamanderWnmp.UI
 
         }
 
-        public string DefaultRunCode(object code)
+        /// <summary>
+        /// 默认执行方式
+        /// </summary>
+        /// <returns></returns>
+        public string DefaultRunCode()
         {
             return "还未实现哦 \\﻿(•◡•)/";
         }
