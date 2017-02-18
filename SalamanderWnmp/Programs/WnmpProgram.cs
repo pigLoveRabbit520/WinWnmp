@@ -23,7 +23,7 @@ namespace SalamanderWnmp.Programs
         public string logDir { get; set; }     // Directory where all the programs log files are
         public Ini Settings { get; set; }
 
-        protected string errOutput = null; // Output when start the process fail
+        protected string errOutput = ""; // Output when start the process fail
 
 
   
@@ -76,30 +76,44 @@ namespace SalamanderWnmp.Programs
 
         public void StartProcess(string exe, string args, bool wait = false)
         {
+            ps = new Process();
             ps.StartInfo.FileName = exe;
             ps.StartInfo.Arguments = args;
             ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.RedirectStandardOutput = true;
             ps.StartInfo.RedirectStandardError = true;
-            ps.ErrorDataReceived += Ps_ErrorDataReceived;
             ps.StartInfo.WorkingDirectory = workingDir;
             ps.StartInfo.CreateNoWindow = true;
-            ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            ps.EnableRaisingEvents = true;
+            ps.ErrorDataReceived += Ps_ErrorDataReceived;
+            //ps.Exited += Ps_Exited;
             ps.Start();
 
+            ps.BeginOutputReadLine();
+            ps.BeginErrorReadLine();
+
+            
+            
             if (wait) {
                 ps.WaitForExit();
+                ps.Close();
             }
         }
 
+        private void Ps_Exited(object sender, EventArgs e)
+        {
+            Console.WriteLine("exit");
+        }
+
         /// <summary>
-        /// 启动进程出错触发
+        /// ErrorDataReceived event signals each time the process writes a line 
+        /// to the redirected StandardError stream
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Ps_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
-            errOutput = e.Data;
+            errOutput += e.Data;
         }
 
 
@@ -110,7 +124,7 @@ namespace SalamanderWnmp.Programs
                 return;
             }
             try {
-                StartProcess(exeName, startArgs);
+                StartProcess(exeName, startArgs, true);
                 if(String.IsNullOrEmpty(errOutput))
                 {
                     Log.wnmp_log_notice("Started " + progName, progLogSection);
@@ -118,7 +132,7 @@ namespace SalamanderWnmp.Programs
                 else
                 {
                     Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
-                    errOutput = null;
+                    errOutput = "";
                 }
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
