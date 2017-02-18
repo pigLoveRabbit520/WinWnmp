@@ -151,7 +151,7 @@ namespace SalamanderWnmp.Programs
         /// 判断程序是否运行
         /// </summary>
         /// <returns></returns>
-        public bool IsRunning()
+        public virtual bool IsRunning()
         {
             var processes = Process.GetProcessesByName(procName);
             return (processes.Length != 0);
