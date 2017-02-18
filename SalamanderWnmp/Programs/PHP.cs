@@ -16,6 +16,7 @@ namespace SalamanderWnmp.Programs
             return MainWindow.StartupPath + "/" + Settings.PHPDirName.Value + "/php.ini";
         }
 
+
         public override void Start()
         {
             if(this.IsRunning())
@@ -32,7 +33,14 @@ namespace SalamanderWnmp.Programs
                     Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, progLogSection);
                     port++;
                 }
-                Log.wnmp_log_notice("Started", progLogSection);
+                if(String.IsNullOrEmpty(errOutput))
+                {
+                    Log.wnmp_log_notice("Started", progLogSection);
+                }
+                else
+                {
+                    Log.wnmp_log_error("Start(): " + errOutput, progLogSection);
+                }
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }

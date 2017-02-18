@@ -22,8 +22,10 @@ namespace SalamanderWnmp.Programs
         public string confDir { get; set; }    // Directory where all the programs configuration files are
         public string logDir { get; set; }     // Directory where all the programs log files are
         public Ini Settings { get; set; }
-        //public ContextMenuStrip configContextMenu { get; set; } // Displays all the programs config files in |confDir|
-        //public ContextMenuStrip logContextMenu { get; set; }    // Displays all the programs log files in |logDir|
+
+        protected string errOutput = null; // Output when start the process fail
+
+
   
         public Process ps = new Process();
 
@@ -79,6 +81,7 @@ namespace SalamanderWnmp.Programs
             ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.RedirectStandardOutput = true;
             ps.StartInfo.RedirectStandardError = true;
+            ps.ErrorDataReceived += Ps_ErrorDataReceived;
             ps.StartInfo.WorkingDirectory = workingDir;
             ps.StartInfo.CreateNoWindow = true;
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -88,6 +91,18 @@ namespace SalamanderWnmp.Programs
                 ps.WaitForExit();
             }
         }
+
+        /// <summary>
+        /// 启动进程出错触发
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Ps_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            errOutput = e.Data;
+        }
+
+
         public virtual void Start()
         {
             if(IsRunning())
@@ -96,14 +111,14 @@ namespace SalamanderWnmp.Programs
             }
             try {
                 StartProcess(exeName, startArgs);
-                string err = ps.StandardError.ReadToEnd();
-                if(String.IsNullOrEmpty(err))
+                if(String.IsNullOrEmpty(errOutput))
                 {
                     Log.wnmp_log_notice("Started " + progName, progLogSection);
                 } 
                 else
                 {
-                    Log.wnmp_log_error("Failed: " + err, progLogSection);
+                    Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
+                    errOutput = null;
                 }
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
