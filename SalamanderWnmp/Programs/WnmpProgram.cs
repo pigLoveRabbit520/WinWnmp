@@ -25,8 +25,12 @@ namespace SalamanderWnmp.Programs
 
         protected string errOutput = ""; // Output when start the process fail
 
+        private bool hasOutputReadEnd = false;
 
-  
+        private bool hasErrReadEnd = false;
+
+
+
         public Process ps = new Process();
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -47,14 +51,6 @@ namespace SalamanderWnmp.Programs
                     PropertyChanged(this, new PropertyChangedEventArgs("Running"));
                 }
             }
-        }
-
-        public WnmpProgram()
-        {
-            //configContextMenu = new ContextMenuStrip();
-            //logContextMenu = new ContextMenuStrip();
-            //configContextMenu.ItemClicked += configContextMenu_ItemClicked;
-            //logContextMenu.ItemClicked += logContextMenu_ItemClicked;
         }
 
 
@@ -85,36 +81,31 @@ namespace SalamanderWnmp.Programs
             ps.StartInfo.WorkingDirectory = workingDir;
             ps.StartInfo.CreateNoWindow = true;
             ps.EnableRaisingEvents = true;
-            ps.ErrorDataReceived += Ps_ErrorDataReceived;
-            //ps.Exited += Ps_Exited;
+            ps.OutputDataReceived += (sender, e) =>
+            {
+                hasOutputReadEnd = true;
+                ps.CancelOutputRead();
+            };
+            ps.ErrorDataReceived += (sender, e) => {
+                errOutput += e.Data;
+                hasErrReadEnd = true;
+                ps.CancelErrorRead();
+            };
             ps.Start();
 
             ps.BeginOutputReadLine();
             ps.BeginErrorReadLine();
 
-            
-            
+
             if (wait) {
                 ps.WaitForExit();
                 ps.Close();
             }
         }
+        
 
-        private void Ps_Exited(object sender, EventArgs e)
-        {
-            Console.WriteLine("exit");
-        }
-
-        /// <summary>
         /// ErrorDataReceived event signals each time the process writes a line 
         /// to the redirected StandardError stream
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Ps_ErrorDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            errOutput += e.Data;
-        }
 
 
         public virtual void Start()
@@ -124,7 +115,8 @@ namespace SalamanderWnmp.Programs
                 return;
             }
             try {
-                StartProcess(exeName, startArgs, true);
+                StartProcess(exeName, startArgs);
+                while (!hasOutputReadEnd || !hasErrReadEnd) ;
                 if(String.IsNullOrEmpty(errOutput))
                 {
                     Log.wnmp_log_notice("Started " + progName, progLogSection);
@@ -132,8 +124,11 @@ namespace SalamanderWnmp.Programs
                 else
                 {
                     Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
-                    errOutput = "";
                 }
+                errOutput = "";
+                hasOutputReadEnd = false;
+                hasErrReadEnd = false;
+
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }

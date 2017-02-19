@@ -78,7 +78,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="关" HorizontalAlignment="Center"/>
-                            <ToggleButton x:Name="btnNginx" Grid.Column="1" Checked="nginxToggleButton_Checked" IsChecked="{Binding Running}"
+                            <ToggleButton x:Name="btnNginx" Grid.Column="1" Checked="nginxToggleButton_Checked" IsChecked="{Binding Running, Mode=OneWay}"
                                           Unchecked="nginxToggleButton_Unchecked" />
                             <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
@@ -97,7 +97,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="关" HorizontalAlignment="Center"/>
                             <ToggleButton x:Name="btnPHP" Grid.Column="1" Checked="phpToggleButton_Checked" Unchecked="phpToggleButton_Unchecked"
-                                          IsChecked="{Binding Running}"/>
+                                          IsChecked="{Binding Running, Mode=OneWay}"/>
                             <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
@@ -114,7 +114,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="关" HorizontalAlignment="Center"/>
                             <ToggleButton x:Name="btnMysql" Grid.Column="1" Checked="mysqlToggleButton_Checked" 
-                                          Unchecked="mysqlToggleButton_Unchecked" IsChecked="{Binding Running}"/>
+                                          Unchecked="mysqlToggleButton_Unchecked" IsChecked="{Binding Running, Mode=OneWay}"/>
                             <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                         </Grid>
                     </StackPanel>
