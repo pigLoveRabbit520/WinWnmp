@@ -42,7 +42,7 @@ namespace SalamanderWnmp.UI
         public MainWindow()
         {
             InitializeComponent();
-
+            DispatcherHelper.Initialize();
             Common.Settings.ReadSettings();
             AddWinHash();
             ini();

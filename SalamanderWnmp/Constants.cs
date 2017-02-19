@@ -11,5 +11,7 @@ namespace SalamanderWnmp
         public static readonly String APP_STARTUP_PATH = AppDomain.CurrentDomain.BaseDirectory;
 
         public static readonly string AUTHOR = "salamander";
+
+        public static readonly int mainThreadId = System.Threading.Thread.CurrentThread.ManagedThreadId;
     }
 }

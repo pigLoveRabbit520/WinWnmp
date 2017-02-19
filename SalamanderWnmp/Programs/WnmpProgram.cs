@@ -25,10 +25,6 @@ namespace SalamanderWnmp.Programs
 
         protected string errOutput = ""; // Output when start the process fail
 
-        private bool hasOutputReadEnd = false;
-
-        private bool hasErrReadEnd = false;
-
 
 
         public Process ps = new Process();
@@ -81,15 +77,15 @@ namespace SalamanderWnmp.Programs
             ps.StartInfo.WorkingDirectory = workingDir;
             ps.StartInfo.CreateNoWindow = true;
             ps.EnableRaisingEvents = true;
-            ps.OutputDataReceived += (sender, e) =>
-            {
-                hasOutputReadEnd = true;
-                ps.CancelOutputRead();
-            };
             ps.ErrorDataReceived += (sender, e) => {
                 errOutput += e.Data;
-                hasErrReadEnd = true;
-                ps.CancelErrorRead();
+            };
+            ps.Exited += (sender, e) => {
+                if(!String.IsNullOrEmpty(errOutput))
+                {
+                    Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
+                    errOutput = "";
+                }
             };
             ps.Start();
 
@@ -102,7 +98,7 @@ namespace SalamanderWnmp.Programs
                 ps.Close();
             }
         }
-        
+
 
         /// ErrorDataReceived event signals each time the process writes a line 
         /// to the redirected StandardError stream
@@ -116,7 +112,6 @@ namespace SalamanderWnmp.Programs
             }
             try {
                 StartProcess(exeName, startArgs);
-                while (!hasOutputReadEnd || !hasErrReadEnd) ;
                 if(String.IsNullOrEmpty(errOutput))
                 {
                     Log.wnmp_log_notice("Started " + progName, progLogSection);
@@ -125,10 +120,6 @@ namespace SalamanderWnmp.Programs
                 {
                     Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
                 }
-                errOutput = "";
-                hasOutputReadEnd = false;
-                hasErrReadEnd = false;
-
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }

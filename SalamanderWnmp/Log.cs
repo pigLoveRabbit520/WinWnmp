@@ -1,6 +1,7 @@
 ﻿using SalamanderWnmp.UI;
 using System;
 using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -47,8 +48,19 @@ namespace SalamanderWnmp
             Run run3 = new Run("] - " + message);
             var p = new Paragraph();
             p.Inlines.AddRange(new Run[] {run1, run2, run3});
-            rtfLog.Document.Blocks.Add(p);
-            rtfLog.ScrollToEnd();
+            if (Thread.CurrentThread.ManagedThreadId == Common.MainThreadId)
+            {
+                rtfLog.Document.Blocks.Add(p);
+                rtfLog.ScrollToEnd();
+            }
+            else
+            {
+                DispatcherHelper.UIDispatcher.Invoke(new Action(() => {
+                    rtfLog.Document.Blocks.Add(p);
+                    rtfLog.ScrollToEnd();
+                }));
+            }
+          
         }
         /// <summary>
         /// Log error
