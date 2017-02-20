@@ -46,7 +46,7 @@ namespace SalamanderWnmp.Programs
             }
         }
 
-        public override void Setup(TextBlock lbl)
+        public override void Setup()
         {
             this.exeName = Common.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value
                 + "/php-cgi.exe";
@@ -55,7 +55,6 @@ namespace SalamanderWnmp.Programs
             this.workingDir = Common.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value;
             this.progLogSection = Log.LogSection.WNMP_PHP;
             this.killStop = true;
-            this.statusLabel = lbl;
             this.confDir = "/php/";
             this.logDir = "/php/logs/";
         }

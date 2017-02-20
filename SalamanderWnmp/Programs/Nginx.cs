@@ -9,7 +9,7 @@ namespace SalamanderWnmp.Programs
     class NginxProgram : WnmpProgram
     {
 
-        public override void Setup(TextBlock lbl)
+        public override void Setup()
         {
             this.exeName = Common.APP_STARTUP_PATH + String.Format("{0}/nginx.exe", Common.Settings.NginxDirName.Value);
             this.procName = "nginx";
@@ -19,7 +19,6 @@ namespace SalamanderWnmp.Programs
             this.startArgs = "";
             this.stopArgs = "-s stop";
             this.killStop = false;
-            this.statusLabel = lbl;
             this.confDir = "/conf/";
             this.logDir = "/logs/";
         }

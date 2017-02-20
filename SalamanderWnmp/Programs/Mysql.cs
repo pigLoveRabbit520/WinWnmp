@@ -41,7 +41,6 @@ namespace SalamanderWnmp.Programs
                 return;
             try {
                 mysqlController.Start();
-                //mysqlController.WaitForStatus(ServiceControllerStatus.Running);
                 Log.wnmp_log_notice("Started " + progName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
@@ -59,7 +58,7 @@ namespace SalamanderWnmp.Programs
                 mysqlController.WaitForStatus(ServiceControllerStatus.Stopped);
                 Log.wnmp_log_notice("Stopped " + progName, progLogSection);
             } catch (Exception ex) {
-                Log.wnmp_log_notice("Stop(): " + ex.Message, progLogSection);
+                Log.wnmp_log_error("Stop(): " + ex.Message, progLogSection);
             }
         }
 
@@ -70,6 +69,7 @@ namespace SalamanderWnmp.Programs
         /// <returns></returns>
         public override bool IsRunning()
         {
+            mysqlController.Refresh();
             try
             {
                 return mysqlController.Status == ServiceControllerStatus.Running;
@@ -86,10 +86,11 @@ namespace SalamanderWnmp.Programs
         /// <returns></returns>
         private bool isStopped()
         {
+            mysqlController.Refresh();
             return mysqlController.Status == ServiceControllerStatus.Stopped;
         }
 
-        public override void Setup(TextBlock lbl)
+        public override void Setup()
         {
             this.exeName = Common.APP_STARTUP_PATH + String.Format("{0}/bin/mysqld.exe", Common.Settings.MysqlDirName.Value);
             this.procName = "mysqld";
@@ -100,7 +101,6 @@ namespace SalamanderWnmp.Programs
                 Common.APP_STARTUP_PATH + String.Format("\\{0}\\my.ini\"", Common.Settings.MysqlDirName.Value);
             this.stopArgs = "/c sc delete " + MysqlProgram.ServiceName;
             this.killStop = true;
-            this.statusLabel = lbl;
             this.confDir = "/mysql/";
             this.logDir = "/mysql/data/";
         }

@@ -12,7 +12,6 @@ namespace SalamanderWnmp.Programs
 {
     public abstract class WnmpProgram: INotifyPropertyChanged
     {
-        public TextBlock statusLabel { get; set; } // Label that shows the programs status
         public string exeName { get; set; }    // Location of the executable file
         public string procName { get; set; }   // Name of the process
         public string progName { get; set; }   // User-friendly name of the program 
@@ -154,7 +153,6 @@ namespace SalamanderWnmp.Programs
         /// <summary>
         /// 设置初始参数
         /// </summary>
-        /// <param name="lbl"></param>
-        public abstract void Setup(TextBlock lbl);
+        public abstract void Setup();
     }
 }

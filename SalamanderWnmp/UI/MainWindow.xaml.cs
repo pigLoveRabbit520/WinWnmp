@@ -59,9 +59,9 @@ namespace SalamanderWnmp.UI
         {
             // 设置主题颜色
             Application.Current.Resources["ThemeColor"] = Common.Settings.ThemeColor.Value;
-            nginx.Setup(lblNginx);
-            mysql.Setup(lblMysql);
-            php.Setup(lblPHP);
+            nginx.Setup();
+            mysql.Setup();
+            php.Setup();
             this.stackNginx.DataContext = nginx;
             this.stackPHP.DataContext = php;
             this.stackMysql.DataContext = mysql;
