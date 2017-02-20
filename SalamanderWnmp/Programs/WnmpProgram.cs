@@ -85,11 +85,7 @@ namespace SalamanderWnmp.Programs
             ps.Exited += (sender, e) => {
                 if(!String.IsNullOrEmpty(errOutput))
                 {
-                    //new Thread(() =>
-                    //{
-                    //    Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
-                    //}).Start();
-                    MessageBox.Show(errOutput);
+                    Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
                     errOutput = "";
                 }
             };

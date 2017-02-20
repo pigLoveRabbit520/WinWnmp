@@ -41,15 +41,15 @@ namespace SalamanderWnmp
 
         private static void wnmp_log(string message, SolidColorBrush brush, LogSection logSection)
         {
-            var SectionName = LogSectionToString(logSection);
-            var DateNow = DateTime.Now.ToString();
-            Run run1 = new Run(DateNow + " [");
-            Run run2 = new Run() { Text = SectionName,  Foreground = brush};
-            Run run3 = new Run("] - " + message);
-            var p = new Paragraph();
-            p.Inlines.AddRange(new Run[] {run1, run2, run3});
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            DispatcherHelper.UIDispatcher.Invoke(new Action(() =>
             {
+                var SectionName = LogSectionToString(logSection);
+                var DateNow = DateTime.Now.ToString();
+                Run run1 = new Run(DateNow + " [");
+                Run run2 = new Run() { Text = SectionName, Foreground = brush };
+                Run run3 = new Run("] - " + message);
+                var p = new Paragraph();
+                p.Inlines.AddRange(new Run[] { run1, run2, run3 });
                 rtfLog.Document.Blocks.Add(p);
                 rtfLog.ScrollToEnd();
             }));
