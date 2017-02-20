@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Threading;
 
 namespace SalamanderWnmp
@@ -14,6 +15,8 @@ namespace SalamanderWnmp
             get;
             private set;
         }
+
+        private static int MainThreadId =  Thread.CurrentThread.ManagedThreadId; 
 
        
 

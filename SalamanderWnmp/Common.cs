@@ -23,10 +23,5 @@ namespace SalamanderWnmp
             }
         }
 
-        /// <summary>
-        /// 主线程ID
-        /// </summary>
-        public static readonly int MainThreadId = System.Threading.Thread.CurrentThread.ManagedThreadId;
-
     }
 }

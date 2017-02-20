@@ -48,19 +48,11 @@ namespace SalamanderWnmp
             Run run3 = new Run("] - " + message);
             var p = new Paragraph();
             p.Inlines.AddRange(new Run[] {run1, run2, run3});
-            if (Thread.CurrentThread.ManagedThreadId == Common.MainThreadId)
+            Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 rtfLog.Document.Blocks.Add(p);
                 rtfLog.ScrollToEnd();
-            }
-            else
-            {
-                DispatcherHelper.UIDispatcher.Invoke(new Action(() => {
-                    rtfLog.Document.Blocks.Add(p);
-                    rtfLog.ScrollToEnd();
-                }));
-            }
-          
+            }));
         }
         /// <summary>
         /// Log error

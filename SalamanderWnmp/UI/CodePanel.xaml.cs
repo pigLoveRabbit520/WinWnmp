@@ -20,7 +20,6 @@ namespace SalamanderWnmp.UI
         public CodePanel()
         {
             InitializeComponent();
-            DispatcherHelper.Initialize();
         }
 
 

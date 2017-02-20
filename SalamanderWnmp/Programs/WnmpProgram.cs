@@ -5,6 +5,8 @@ using SalamanderWnmp.UI;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.ComponentModel;
+using System.Threading;
+using System.Windows;
 
 namespace SalamanderWnmp.Programs
 {
@@ -83,7 +85,11 @@ namespace SalamanderWnmp.Programs
             ps.Exited += (sender, e) => {
                 if(!String.IsNullOrEmpty(errOutput))
                 {
-                    Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
+                    //new Thread(() =>
+                    //{
+                    //    Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
+                    //}).Start();
+                    MessageBox.Show(errOutput);
                     errOutput = "";
                 }
             };
@@ -112,14 +118,7 @@ namespace SalamanderWnmp.Programs
             }
             try {
                 StartProcess(exeName, startArgs);
-                if(String.IsNullOrEmpty(errOutput))
-                {
-                    Log.wnmp_log_notice("Started " + progName, progLogSection);
-                } 
-                else
-                {
-                    Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
-                }
+                Log.wnmp_log_notice("Started " + progName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }

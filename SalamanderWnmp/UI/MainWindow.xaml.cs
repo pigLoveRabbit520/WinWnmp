@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -39,10 +40,14 @@ namespace SalamanderWnmp.UI
         // 
         Hashtable winHash = new Hashtable();
 
+        /// <summary>
+        /// 主线程ID
+        /// </summary>
+        public static readonly int MainThreadId = Thread.CurrentThread.ManagedThreadId;
+
         public MainWindow()
         {
             InitializeComponent();
-            DispatcherHelper.Initialize();
             Common.Settings.ReadSettings();
             AddWinHash();
             ini();
