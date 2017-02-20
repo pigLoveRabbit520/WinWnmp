@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceProcess;
+using System.Windows.Controls;
 
 namespace SalamanderWnmp.Programs
 {
@@ -40,7 +41,7 @@ namespace SalamanderWnmp.Programs
                 return;
             try {
                 mysqlController.Start();
-                mysqlController.WaitForStatus(ServiceControllerStatus.Running);
+                //mysqlController.WaitForStatus(ServiceControllerStatus.Running);
                 Log.wnmp_log_notice("Started " + progName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
@@ -88,5 +89,20 @@ namespace SalamanderWnmp.Programs
             return mysqlController.Status == ServiceControllerStatus.Stopped;
         }
 
+        public override void Setup(TextBlock lbl)
+        {
+            this.exeName = Common.APP_STARTUP_PATH + String.Format("{0}/bin/mysqld.exe", Common.Settings.MysqlDirName.Value);
+            this.procName = "mysqld";
+            this.progName = "mysql";
+            this.workingDir = Common.APP_STARTUP_PATH + Common.Settings.MysqlDirName.Value;
+            this.progLogSection = Log.LogSection.WNMP_MARIADB;
+            this.startArgs = "--install-manual " + MysqlProgram.ServiceName + " --defaults-file=\"" +
+                Common.APP_STARTUP_PATH + String.Format("\\{0}\\my.ini\"", Common.Settings.MysqlDirName.Value);
+            this.stopArgs = "/c sc delete " + MysqlProgram.ServiceName;
+            this.killStop = true;
+            this.statusLabel = lbl;
+            this.confDir = "/mysql/";
+            this.logDir = "/mysql/data/";
+        }
     }
 }

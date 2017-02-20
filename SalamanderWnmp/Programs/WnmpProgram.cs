@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace SalamanderWnmp.Programs
 {
-    public class WnmpProgram: INotifyPropertyChanged
+    public abstract class WnmpProgram: INotifyPropertyChanged
     {
         public TextBlock statusLabel { get; set; } // Label that shows the programs status
         public string exeName { get; set; }    // Location of the executable file
@@ -23,7 +23,6 @@ namespace SalamanderWnmp.Programs
         public bool killStop { get; set; }     // Kill process instead of stopping it gracefully
         public string confDir { get; set; }    // Directory where all the programs configuration files are
         public string logDir { get; set; }     // Directory where all the programs log files are
-        public Ini Settings { get; set; }
 
         protected string errOutput = ""; // Output when start the process fail
 
@@ -151,5 +150,11 @@ namespace SalamanderWnmp.Programs
             var processes = Process.GetProcessesByName(procName);
             return (processes.Length != 0);
         }
+
+        /// <summary>
+        /// 设置初始参数
+        /// </summary>
+        /// <param name="lbl"></param>
+        public abstract void Setup(TextBlock lbl);
     }
 }

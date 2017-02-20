@@ -30,8 +30,10 @@ namespace SalamanderWnmp.UI
     public partial class MainWindow : Window
     {
         private readonly MysqlProgram mysql = new MysqlProgram();
-        private readonly WnmpProgram nginx = new WnmpProgram();
+        private readonly WnmpProgram nginx = new NginxProgram();
         private readonly PHPProgram php = new PHPProgram();
+
+
         // 应用启动目录
         public static string StartupPath { get { return Constants.APP_STARTUP_PATH; } }
 
@@ -57,9 +59,9 @@ namespace SalamanderWnmp.UI
         {
             // 设置主题颜色
             Application.Current.Resources["ThemeColor"] = Common.Settings.ThemeColor.Value;
-            SetupNginx();
-            SetupMysql();
-            SetupPHP();
+            nginx.Setup(lblNginx);
+            mysql.Setup(lblMysql);
+            php.Setup(lblPHP);
             this.stackNginx.DataContext = nginx;
             this.stackPHP.DataContext = php;
             this.stackMysql.DataContext = mysql;
@@ -101,57 +103,6 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
-
-        private void SetupNginx()
-        {
-            nginx.Settings = Common.Settings;
-            nginx.exeName = StartupPath + String.Format("{0}/nginx.exe", Common.Settings.NginxDirName.Value);
-            nginx.procName = "nginx";
-            nginx.progName = "Nginx";
-            nginx.workingDir = StartupPath + Common.Settings.NginxDirName.Value;
-            nginx.progLogSection = Log.LogSection.WNMP_NGINX;
-            nginx.startArgs = "";
-            nginx.stopArgs = "-s stop";
-            nginx.killStop = false;
-            nginx.statusLabel = lblNginx;
-            nginx.confDir = "/conf/";
-            nginx.logDir = "/logs/";
-        }
-
-        public void SetupPHP()
-        {
-            php.Settings = Common.Settings;
-            php.exeName = StartupPath + php.Settings.PHPDirName.Value
-                + "/php-cgi.exe";
-            php.procName = "php-cgi";
-            php.progName = "PHP";
-            php.workingDir = StartupPath + Common.Settings.PHPDirName.Value;
-            php.progLogSection = Log.LogSection.WNMP_PHP;
-            php.killStop = true;
-            php.statusLabel = lblPHP;
-            php.confDir = "/php/";
-            php.logDir = "/php/logs/";
-            //SetCurlCAPath();
-        }
-
-        private void SetupMysql()
-        {
-            mysql.Settings = Common.Settings;
-            mysql.exeName = StartupPath + String.Format("{0}/bin/mysqld.exe", Common.Settings.MysqlDirName.Value);
-            mysql.procName = "mysqld";
-            mysql.progName = "mysql";
-            mysql.workingDir = StartupPath + Common.Settings.MysqlDirName.Value;
-            mysql.progLogSection = Log.LogSection.WNMP_MARIADB;
-            mysql.startArgs = "--install-manual " + MysqlProgram.ServiceName + " --defaults-file=\"" +
-                StartupPath + String.Format("\\{0}\\my.ini\"", Common.Settings.MysqlDirName.Value);
-            mysql.stopArgs = "/c sc delete " + MysqlProgram.ServiceName;
-            mysql.killStop = true;
-            mysql.statusLabel = lblMysql;
-            mysql.confDir = "/mysql/";
-            mysql.logDir = "/mysql/data/";
-        }
-
-     
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool SetDllDirectory(string path);

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Windows.Controls;
 using SalamanderWnmp.UI;
 
 namespace SalamanderWnmp.Programs
@@ -13,7 +13,7 @@ namespace SalamanderWnmp.Programs
 
         private string GetPHPIniPath()
         {
-            return MainWindow.StartupPath + "/" + Settings.PHPDirName.Value + "/php.ini";
+            return MainWindow.StartupPath + "/" + Common.Settings.PHPDirName.Value + "/php.ini";
         }
 
 
@@ -23,8 +23,8 @@ namespace SalamanderWnmp.Programs
             {
                 return;
             }
-            uint ProcessCount = Settings.PHP_Processes.Value;
-            short port = Settings.PHP_Port.Value;
+            uint ProcessCount = Common.Settings.PHP_Processes.Value;
+            short port = Common.Settings.PHP_Port.Value;
             string phpini = GetPHPIniPath();
 
             try {
@@ -46,5 +46,18 @@ namespace SalamanderWnmp.Programs
             }
         }
 
+        public override void Setup(TextBlock lbl)
+        {
+            this.exeName = Common.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value
+                + "/php-cgi.exe";
+            this.procName = "php-cgi";
+            this.progName = "PHP";
+            this.workingDir = Common.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value;
+            this.progLogSection = Log.LogSection.WNMP_PHP;
+            this.killStop = true;
+            this.statusLabel = lbl;
+            this.confDir = "/php/";
+            this.logDir = "/php/logs/";
+        }
     }
 }
