@@ -4,6 +4,9 @@ WPF制作的wnmp环境
 
 ![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/19766037/36fbe8fa-9c7e-11e6-92b1-d4537ca1cc0c.jpg)
 
+# 集成包下载
+[下载地址](http://pan.baidu.com/s/1dERoZW9)
+
 # 注意
 php 版本为7.0.1 64位版本，需要MSVC14 (Visual C++ 2015)运行库支持，下载：https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe
 
