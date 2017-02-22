@@ -5,8 +5,7 @@ WPF制作的wnmp环境
 [下载地址](http://pan.baidu.com/s/1dERoZW9)
 
 # UI界面
-
-![SalamanderWnmp](http://git.oschina.net/uploads/images/2017/0222/160646_6490b2c8_433553.png)
+![SalamanderWnmp](http://git.oschina.net/uploads/images/2017/0222/202019_652ee6f0_433553.png)
 ![编程面板](http://git.oschina.net/uploads/images/2017/0222/160849_e369b9e1_433553.png)
 
 
