@@ -1,8 +1,9 @@
 # WPF制作的wnmp环境
-[![Build Status](https://api.travis-ci.org/qieangel2013/zys.svg)](https://travis-ci.org/qieangel2013/zys)
-[![Packagist](https://img.shields.io/badge/packagist-passing-ff69b4.svg)](https://packagist.org/packages/qieangel2013/zys)
-![Supported PHP versions: >=5.5](https://img.shields.io/badge/php-%3E%3D5.5-blue.svg)
-![License](https://img.shields.io/badge/license-Apache%202-yellow.svg)
+
+[![Build Status](https://travis-ci.org/slimphp/Slim.svg?branch=develop)](https://travis-ci.org/slimphp/Slim)
+[![Coverage Status](https://coveralls.io/repos/slimphp/Slim/badge.svg)](https://coveralls.io/r/slimphp/Slim)
+[![Total Downloads](https://poser.pugx.org/slim/slim/downloads)](https://packagist.org/packages/slim/slim)
+[![License](https://poser.pugx.org/slim/slim/license)](https://packagist.org/packages/slim/slim)
 
 ## 集成包下载
 [下载地址](http://pan.baidu.com/s/1dERoZW9)
