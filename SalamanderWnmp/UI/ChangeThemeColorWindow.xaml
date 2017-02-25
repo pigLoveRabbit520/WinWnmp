@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
-        Title="ChangeThemeColor" Height="250" Width="350" Style="{StaticResource DefaultWindow}" 
+        Title="{x:Static prop:Resources.ChangeColor}" Height="250" Width="350" Style="{StaticResource DefaultWindow}" 
               WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>

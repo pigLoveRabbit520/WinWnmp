@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         xmlns:cvt="clr-namespace:SalamanderWnmp.Converter"
         mc:Ignorable="d"
-        Title="JSPanel" Height="540" Width="540" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="{x:Static prop:Resources.CodePanel}" Height="540" Width="540" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
             <Setter Property="Margin" Value="0,0,8,0" />

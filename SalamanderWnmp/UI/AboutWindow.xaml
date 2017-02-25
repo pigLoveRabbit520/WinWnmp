@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
-        Title="AboutWindow" Height="250" Width="300">
+        Title="{x:Static prop:Resources.About}" Height="250" Width="300">
     <Window.Resources>
         <Storyboard x:Key="RotateHeadStoryboard">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"   Duration="00:00:05" RepeatBehavior="Forever"  Storyboard.TargetName="imgPortrait" 

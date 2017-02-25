@@ -56,9 +56,9 @@ namespace SalamanderWnmp.UI
         // 选择的编程语言
         private ProgramLan selectedLan = ProgramLan.JavaScript;
 
-        private const string CODE_TMP_FILENAME = "code.tmp";
-        // 临时代码文件
-        string codeTmpPath = Constants.APP_STARTUP_PATH + CODE_TMP_FILENAME;
+        private const string CODE_TMP_FILENAME = "code";
+        // 临时代码文件路径
+        string codeTmpPath = "";
 
         public ProgramLan SelectedLan
         {
@@ -106,6 +106,22 @@ namespace SalamanderWnmp.UI
                 RunCodeStatus.Running);
 
             //// 创建临时文件
+            codeTmpPath = Constants.APP_STARTUP_PATH + CODE_TMP_FILENAME;
+            switch (selectedLan)
+            {
+                case ProgramLan.JavaScript:
+                    codeTmpPath += ".js";
+                    break;
+                case ProgramLan.PHP:
+                    codeTmpPath += ".php";
+                    break;
+                case ProgramLan.Go:
+                    codeTmpPath += ".go";
+                    break;
+                default:
+                    codeTmpPath += ".tmp";
+                    break;
+            }
             FileStream fs = new FileStream(codeTmpPath, FileMode.OpenOrCreate, FileAccess.ReadWrite); // 可以指定盘符
             StreamWriter sw = new StreamWriter(fs);
             // end 创建临时文件
@@ -121,6 +137,10 @@ namespace SalamanderWnmp.UI
                     runCode = RunPHP;
                     sw.WriteLine("<?php ");
                     sw.Write(code.ToString());
+                    break;
+                case ProgramLan.Go:
+                    sw.Write(code.ToString());
+                    runCode = RunGo;
                     break;
                 default:
                     sw.Write(code.ToString());
@@ -178,7 +198,7 @@ namespace SalamanderWnmp.UI
             Process scriptProc = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = "node.exe";
-            info.Arguments = CODE_TMP_FILENAME;
+            info.Arguments = codeTmpPath;
             info.RedirectStandardError = true;
             info.RedirectStandardOutput = true;
             info.UseShellExecute = false;
@@ -214,7 +234,7 @@ namespace SalamanderWnmp.UI
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = Constants.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value
                 + "/php.exe";
-            info.Arguments = "-f " + CODE_TMP_FILENAME;
+            info.Arguments = "-f " + codeTmpPath;
             info.RedirectStandardError = true;
             info.RedirectStandardOutput = true;
             info.UseShellExecute = false;
@@ -238,6 +258,40 @@ namespace SalamanderWnmp.UI
             scriptProc.Close();
             return outStr;
 
+        }
+
+        /// <summary>
+        /// 运行Go脚本
+        /// </summary>
+        /// <returns></returns>
+        public string RunGo()
+        {
+            Process scriptProc = new Process();
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "go.exe";
+            info.Arguments = "run " + codeTmpPath;
+            info.RedirectStandardError = true;
+            info.RedirectStandardOutput = true;
+            info.UseShellExecute = false;
+            info.CreateNoWindow = true;
+            scriptProc.StartInfo = info;
+            try
+            {
+                scriptProc.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Go环境未安装！");
+                return "";
+            }
+            string outStr = scriptProc.StandardOutput.ReadToEnd();
+            // 有错误，读取错误信息
+            if (String.IsNullOrEmpty(outStr))
+            {
+                outStr = scriptProc.StandardError.ReadToEnd();
+            }
+            scriptProc.Close();
+            return outStr;
         }
 
         /// <summary>

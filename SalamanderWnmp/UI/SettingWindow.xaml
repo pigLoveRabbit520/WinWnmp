@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
-        Title="SettingWindow" Height="340" Width="350" Loaded="Window_Loaded">
+        Title="{x:Static prop:Resources.Settings}" Height="340" Width="350" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="RegularTextBox">
             <Setter Property="Width" Value="80" />

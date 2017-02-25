@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         xmlns:cvt="clr-namespace:SalamanderWnmp.Converter"
         WindowStartupLocation="CenterScreen" Style="{DynamicResource DefaultWindow}"
-        Title="MainWindow" Height="350" Width="500" Loaded="Window_Loaded">
+        Title="{x:Static prop:Resources.AppName}" Height="350" Width="500" Loaded="Window_Loaded">
     <Window.Resources>
         <cvt:ProcessColorConverter x:Key="cvtColor"/>
         <cvt:ProcessTextConverter x:Key="cvtText"/>
