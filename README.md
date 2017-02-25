@@ -6,7 +6,7 @@
 [![License](https://poser.pugx.org/slim/slim/license)](https://packagist.org/packages/slim/slim)
 
 ## 集成包下载
-[下载地址](http://pan.baidu.com/s/1dERoZW9)
+[下载地址](http://pan.baidu.com/s/1jIwnmUa)
 
 ## UI界面
 ![SalamanderWnmp](http://git.oschina.net/uploads/images/2017/0222/202019_652ee6f0_433553.png)
