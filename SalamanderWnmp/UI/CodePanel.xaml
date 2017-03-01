@@ -39,7 +39,6 @@
                 <RadioButton GroupName="lan" IsChecked="{Binding SelectedLan,Converter={StaticResource LanToBoolConverter}, ConverterParameter=0}">JavaScript</RadioButton>
                 <RadioButton GroupName="lan" IsChecked="{Binding SelectedLan,Converter={StaticResource LanToBoolConverter}, ConverterParameter=1}">PHP</RadioButton>
                 <RadioButton GroupName="lan" IsChecked="{Binding SelectedLan,Converter={StaticResource LanToBoolConverter}, ConverterParameter=2}">Go</RadioButton>
-                <RadioButton GroupName="lan" IsChecked="{Binding SelectedLan,Converter={StaticResource LanToBoolConverter}, ConverterParameter=3}">C#</RadioButton>
             </WrapPanel>
         </Border>
 
