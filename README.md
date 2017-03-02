@@ -49,11 +49,10 @@ php 版本为7.0.1 64位版本，需要MSVC14 (Visual C++ 2015)运行库支持�
 
 
 ## 联系我
-我的技术堆：PHP，java，C#，Go，VC++/C
-喜欢技术的童鞋可以找我交流
-QQ：1906747819
-Blog：51nazi.com
-segmentfault：https://segmentfault.com/u/baofan_55d05d0eebd33
+* 我的技术堆：PHP，java，C#，Go，VC++/C  喜欢技术的童鞋可以找我交流
+* QQ：1906747819
+* Blog：51nazi.com
+* segmentfault：https://segmentfault.com/u/baofan_55d05d0eebd33
 
 
 
