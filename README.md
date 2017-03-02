@@ -8,13 +8,28 @@
 ## 集成包下载
 [下载地址](http://pan.baidu.com/s/1skJzyLR)
 
-## UI界面
-![SalamanderWnmp](http://git.oschina.net/uploads/images/2017/0222/202019_652ee6f0_433553.png)
+## 主界面
+![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/23488421/78163122-ff27-11e6-9240-5db785a0da50.png)
+
+## 其他功能
+### 常规设置
+![常规设置](https://cloud.githubusercontent.com/assets/16663435/23488508/00fdf128-ff28-11e6-9b2f-711b5a46b5f9.png)
+
+
+### 调色面板
+![调色面板](https://cloud.githubusercontent.com/assets/16663435/23488548/4fcc4b6a-ff28-11e6-8a1c-cf45b961340d.png)
+
+
+### 编程面板
 ![编程面板](http://git.oschina.net/uploads/images/2017/0222/160849_e369b9e1_433553.png)
+
+
 
 
 ## 注意
 php 版本为7.0.1 64位版本，需要MSVC14 (Visual C++ 2015)运行库支持，下载：https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe
+
+
 
 
 
