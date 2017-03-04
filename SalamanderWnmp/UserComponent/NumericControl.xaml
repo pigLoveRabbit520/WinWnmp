@@ -1,0 +1,65 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="SalamanderWnmp.UserComponent.NumericControl" xmlns:local="clr-namespace:SalamanderWnmp.UserComponent"
+	x:Name="UserControl"
+	Width="100" Height="23" MaxHeight="23" MinHeight="23" MinWidth="50" >
+	<UserControl.Resources>
+        <local:DoubleValueConverter x:Key="MyValueConverter"/>
+		<Style x:Key="ArrowButtonStyle" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<Rectangle Stroke="#FFA0A0A0" d:LayoutOverrides="GridBox" RadiusX="1" RadiusY="1" Width="20" Height="8">
+								<Rectangle.Fill>
+									<LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+										<GradientStop Color="#FFDCDCDC" Offset="0"/>
+										<GradientStop Color="#FFDCDCDC" Offset="0.991"/>
+										<GradientStop Color="#FFC8C8C8" Offset="0.496"/>
+										<GradientStop Color="#FFDCDCDC" Offset="0.549"/>
+									</LinearGradientBrush>
+								</Rectangle.Fill>
+							</Rectangle>
+							<Path Fill="#FF5A5A5A" Margin="7,2,7,2" Stretch="Fill" Stroke="{x:Null}" Data="M135.66667,4.6666667 L132.16599,9.4999781 139.16621,9.4999778 z" Width="5" Height="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+
+	<Grid x:Name="LayoutRoot">
+		<Border x:Name="ControlBorder" CornerRadius="2,2,2,2" BorderThickness="1,1,1,1" BorderBrush="#FFA0A0A0" Background="#FFFFFFFF">
+			<Grid x:Name="ValueGrid" Width="Auto">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="30"/>
+				</Grid.ColumnDefinitions>
+				<TextBox Grid.Column="0" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Margin="2,2,2,2" VerticalContentAlignment="Center" x:Name="ValueText" LostFocus="ValueText_LostFocus" Text="{Binding Path=Value, Converter={StaticResource MyValueConverter}, ElementName=UserControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=0}"
+                         PreviewTextInput="ValueText_PreviewTextInput"/>
+				<Button HorizontalAlignment="Right" Style="{DynamicResource ArrowButtonStyle}" Width="20" x:Name="UpButton" Grid.Column="1" Margin="0,2,3,0" Click="UpButton_Click" Height="8" VerticalAlignment="Top" />
+				<Button HorizontalAlignment="Right" Style="{DynamicResource ArrowButtonStyle}" VerticalAlignment="Bottom" Width="20" Height="8" RenderTransformOrigin="0.5,0.5" x:Name="DownButton" Grid.Column="1" Margin="0,0,3,2" Click="DownButton_Click">
+					<Button.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleX="1" ScaleY="-1"/>
+							<SkewTransform AngleX="0" AngleY="0"/>
+							<RotateTransform Angle="0"/>
+							<TranslateTransform X="0" Y="0"/>
+						</TransformGroup>
+					</Button.RenderTransform>
+				</Button>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>
