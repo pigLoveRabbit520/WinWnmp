@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SalamanderWnmp.UI"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             StartupUri="UI/MainWindow.xaml">
+             StartupUri="UI/MainWin.xaml">
     <Application.Resources>
 
         <ResourceDictionary>

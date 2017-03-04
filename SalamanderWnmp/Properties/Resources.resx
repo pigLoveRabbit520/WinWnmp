@@ -132,6 +132,9 @@
   <data name="DefaultThemeColor" xml:space="preserve">
     <value>#16a085</value>
   </data>
+  <data name="HttpRequester" xml:space="preserve">
+    <value>Http请求器</value>
+  </data>
   <data name="MainDir" xml:space="preserve">
     <value>主目录</value>
   </data>

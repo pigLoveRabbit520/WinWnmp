@@ -27,7 +27,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWin : Window
     {
         private readonly MysqlProgram mysql = new MysqlProgram();
         private readonly WnmpProgram nginx = new NginxProgram();
@@ -47,7 +47,7 @@ namespace SalamanderWnmp.UI
         /// </summary>
         public static readonly int MainThreadId = Thread.CurrentThread.ManagedThreadId;
 
-        public MainWindow()
+        public MainWin()
         {
             InitializeComponent();
             Common.Settings.ReadSettings();
@@ -74,6 +74,7 @@ namespace SalamanderWnmp.UI
             winHash.Add("MenuRedis", "RedisWindow");
             winHash.Add("MenuSettings", "SettingWindow");
             winHash.Add("MenuColor", "ChangeThemeColorWindow");
+            winHash.Add("MenuHttp", "HttpRequesterWindow");
         }
 
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
@@ -216,16 +217,19 @@ namespace SalamanderWnmp.UI
                     showWin = new AboutWindow();
                     break;
                 case "MenuJSPanel":
-                    showWin = new CodePanel();
+                    showWin = new CodePanelWin();
                     break;
                 case "MenuRedis":
-                    showWin = new RedisWindow();
+                    showWin = new RedisWin();
                     break;
                 case "MenuSettings":
-                    showWin = new SettingWindow();
+                    showWin = new SettingWin();
+                    break;
+                case "MenuHttp":
+                    showWin = new HttpRequester();
                     break;
                 case "MenuColor":
-                    showWin = new ChangeThemeColorWindow();
+                    showWin = new ChangeThemeColorWin();
                     break;
             }
             showWins.Add(showWin);

@@ -125,49 +125,56 @@
     <Compile Include="Converter\ProcessTextConverter.cs" />
     <Compile Include="DispatcherHelper.cs" />
     <Compile Include="Programs\Nginx.cs" />
-    <Compile Include="UI\AboutWindow.xaml.cs">
-      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    <Compile Include="UI\AboutWin.xaml.cs">
+      <DependentUpon>AboutWin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\ChangeThemeColorWindow.xaml.cs">
-      <DependentUpon>ChangeThemeColorWindow.xaml</DependentUpon>
+    <Compile Include="UI\ChangeThemeColorWin.xaml.cs">
+      <DependentUpon>ChangeThemeColorWin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\ColorPicker.xaml.cs">
+    <Compile Include="UserComponent\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\ImageMenu.cs" />
-    <Compile Include="UI\CodePanel.xaml.cs">
-      <DependentUpon>CodePanel.xaml</DependentUpon>
+    <Compile Include="UI\HttpRequesterWin.xaml.cs">
+      <DependentUpon>HttpRequesterWin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Loading.xaml.cs">
+    <Compile Include="UI\ImageMenu.cs" />
+    <Compile Include="UI\CodePanelWin.xaml.cs">
+      <DependentUpon>CodePanelWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserComponent\Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\RedisWindow.xaml.cs">
-      <DependentUpon>RedisWindow.xaml</DependentUpon>
+    <Compile Include="UI\RedisWin.xaml.cs">
+      <DependentUpon>RedisWin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\SettingWindow.xaml.cs">
-      <DependentUpon>SettingWindow.xaml</DependentUpon>
+    <Compile Include="UI\SettingWin.xaml.cs">
+      <DependentUpon>SettingWin.xaml</DependentUpon>
     </Compile>
-    <Page Include="UI\AboutWindow.xaml">
+    <Page Include="UI\AboutWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\ChangeThemeColorWindow.xaml">
+    <Page Include="UI\ChangeThemeColorWin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\ColorPicker.xaml">
+    <Page Include="UserComponent\ColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\CodePanel.xaml">
+    <Page Include="UI\CodePanelWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Loading.xaml">
+    <Page Include="UI\HttpRequesterWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\MainWindow.xaml">
+    <Page Include="UserComponent\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\MainWin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -183,15 +190,15 @@
     <Compile Include="Programs\Mysql.cs" />
     <Compile Include="Programs\PHP.cs" />
     <Compile Include="Programs\WnmpProgram.cs" />
-    <Compile Include="UI\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="UI\MainWin.xaml.cs">
+      <DependentUpon>MainWin.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UI\RedisWindow.xaml">
+    <Page Include="UI\RedisWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\SettingWindow.xaml">
+    <Page Include="UI\SettingWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -299,6 +306,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Menu\Redis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Menu\http.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

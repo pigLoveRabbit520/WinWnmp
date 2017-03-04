@@ -132,7 +132,7 @@ namespace SalamanderWnmp.Configuration
             options.Add(PHPDirName);
         }
 
-        private readonly string IniFile = UI.MainWindow.StartupPath + @"\Wnmp.ini";
+        private readonly string IniFile = UI.MainWin.StartupPath + @"\Wnmp.ini";
         private string IniFileStr;
         private bool LoadIniFile()
         {

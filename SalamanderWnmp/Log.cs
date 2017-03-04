@@ -75,7 +75,7 @@ namespace SalamanderWnmp
             wnmp_log_notice("Initializing Control Panel", LogSection.WNMP_MAIN);
             wnmp_log_notice("Control Panel Version: " + Constants.CPVER, LogSection.WNMP_MAIN);
             wnmp_log_notice("Wnmp Version: " + Constants.APPVER, LogSection.WNMP_MAIN);
-            wnmp_log_notice("Wnmp Directory: " + MainWindow.StartupPath, LogSection.WNMP_MAIN);
+            wnmp_log_notice("Wnmp Directory: " + MainWin.StartupPath, LogSection.WNMP_MAIN);
         }
     }
 }
