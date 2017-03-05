@@ -111,6 +111,12 @@ namespace SalamanderWnmp.UserComponent
             Regex re = new Regex("[^0-9.-]+");
             e.Handled = re.IsMatch(e.Text);
         }
+
+        private void ValueText_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            // 取消粘贴
+            e.CancelCommand();
+        }
     }
 
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +23,22 @@ namespace SalamanderWnmp.UI
         public HttpRequester()
         {
             InitializeComponent();
+            cbMethod.ItemsSource = Enum.GetValues(typeof(RequestMethod));
+            cbMethod.SelectedIndex = 0;
         }
+
+        public enum RequestMethod
+        {
+            GET,
+            POST,
+            HEAD,
+            TRACE,
+            PUT,
+            DELETE,
+            OPTIONS,
+            CONNECT
+        }
+
 
         private void btn_Click(object sender, RoutedEventArgs e)
         {
@@ -38,5 +55,32 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
+        private void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtURL.Text))
+            {
+                txtRes.Text = GetUrltoHtml(txtURL.Text);
+            }
+        }
+
+        public static string GetUrltoHtml(string Url, string type = "UTF-8")
+        {
+            try
+            {
+                WebRequest request = WebRequest.Create(Url);
+                System.Net.WebResponse wResp = request.GetResponse();
+                System.IO.Stream respStream = wResp.GetResponseStream();
+                // Dim reader As StreamReader = New StreamReader(respStream)
+                using (StreamReader reader = new StreamReader(respStream, Encoding.GetEncoding(type)))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+            return "";
+        }
     }
 }

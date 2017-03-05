@@ -6,7 +6,7 @@
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UI"  WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" Style="{StaticResource DefaultWindow}"
-        Title="HttpRequester" Height="300" Width="400">
+        Title="HttpRequester" Height="360" Width="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,8 +25,10 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
             </StackPanel>
         </Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="29" Margin="210,25.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="115"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="29" Margin="67,25.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.308,0.503" />
+        <TextBox x:Name="txtURL" HorizontalAlignment="Left" Height="29" Margin="126,25.2,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+        <ComboBox x:Name="cbMethod" HorizontalAlignment="Left" Height="29" Margin="23,25.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.308,0.503" />
+        <Button x:Name="btnSend" Content="发送" HorizontalAlignment="Left" Margin="310,25.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="96" Height="29" Click="btnSend_Click"/>
+        <TextBox x:Name="txtRes" HorizontalAlignment="Left" Height="120" Margin="23,85.2,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="383" VerticalScrollBarVisibility="Auto"/>
 
     </Grid>
 </Window>
