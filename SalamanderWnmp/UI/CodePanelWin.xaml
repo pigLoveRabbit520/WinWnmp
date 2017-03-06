@@ -54,7 +54,7 @@
                 </VisualBrush>
             </TextBox.Resources>
             <TextBox.Style>
-                <Style TargetType="TextBox">
+                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                     <Style.Triggers>
                         <Trigger Property="Text" Value="{x:Null}">
                             <Setter Property="Background" Value="{StaticResource HelpBrush}"/>

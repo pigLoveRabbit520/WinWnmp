@@ -66,6 +66,10 @@ namespace SalamanderWnmp.UI
             }
         }
 
+        private void btnAddHeader_Click(object sender, RoutedEventArgs e)
+        {
 
+            e.Handled = true;
+        }
     }
 }
