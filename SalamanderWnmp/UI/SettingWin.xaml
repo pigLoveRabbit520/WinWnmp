@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
         Title="{x:Static prop:Resources.Settings}" Height="340" Width="350" Loaded="Window_Loaded">
     <Window.Resources>
-        <Style TargetType="TextBox" x:Key="RegularTextBox">
+        <Style TargetType="TextBox" x:Key="RegularTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Width" Value="80" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Left" />
