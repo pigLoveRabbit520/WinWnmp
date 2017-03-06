@@ -182,6 +182,34 @@
                 </Setter>
             </Style>
 
+            <!--圆形Button的控件模板-->
+            <Style x:Key="RoundButton" TargetType="{x:Type Button}">
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="BorderBrush" Value="#cbcbcb" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Background" Value="{StaticResource CommomButtonBackColor}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="15">
+                                <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="Bd" Value="#c1c1c1"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" TargetName="Bd" Value="#FFC9C7C7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <!--自定义弹出菜单项的样式-->
             <Style TargetType="{x:Type local:ImageMenu}">
                 <Setter Property="Background" Value="White"/>

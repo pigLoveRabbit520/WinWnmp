@@ -49,7 +49,7 @@
                 </Grid.RowDefinitions>
                 <TabControl  Margin="10, 0">
                     <TabItem Header="Header" TabIndex="0">
-                        <Border Padding="0, 7">
+                        <Border Padding="0, 15">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -107,9 +107,10 @@
                                         </Style>
                                     </TextBox.Style>
                                 </TextBox>
-                                <Button x:Name="btnAddHeader" Content="+" Grid.Column="2" Width="30" Height="30" Margin="40,0,0,0" Click="btnAddHeader_Click"/>
+                                <Button x:Name="btnAddHeader" Content="+" FontSize="17" Style="{StaticResource RoundButton}"
+                                        Grid.Column="2" Width="30" Height="30" Margin="40,0,10,0" Click="btnAddHeader_Click"/>
 
-                                <ListBox x:Name="lbHeaders" Grid.Row="1" Height="140" Width="280" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="0,10,0,0">
+                                <ListBox x:Name="lbHeaders" Grid.Row="1" Height="140" Width="280" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="0,10,0,0">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <Grid>
@@ -134,7 +135,7 @@
                     </TabItem>
 
                     <TabItem Header="Body">
-                        <Border Padding="0, 7">
+                        <Border Padding="0, 15">
                             <TextBox Height="150"></TextBox>
                         </Border>
                     </TabItem>

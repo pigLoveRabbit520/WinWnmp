@@ -26,33 +26,9 @@ namespace SalamanderWnmp.UI
 
         class KeyValuePair
         {
-
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            public void NotifyPropertyChanged(string propertyName)
-            {
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-                }
-            }
-
             public string Key { get; set; }
 
-            private string _value = null;
-
-            public string Value
-            {
-                get
-                {
-                    return this._value;
-                }
-                set
-                {
-                    this._value = value;
-                    NotifyPropertyChanged("Value");
-                }
-            }
+            public string Value { get; set; }
         }
 
         private ObservableCollection<KeyValuePair> headers = new ObservableCollection<KeyValuePair>();
@@ -120,7 +96,8 @@ namespace SalamanderWnmp.UI
                 int index = -1;
                 if(ExistSameKey(name, out index))
                 {
-                    this.headers[index].Value = value;
+                    headers.RemoveAt(index);
+                    headers.Add(new KeyValuePair { Key = name, Value = value });
                 }
                 else
                 {
