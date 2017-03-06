@@ -10,8 +10,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition />
             <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!--标题栏-->
@@ -25,10 +25,42 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
             </StackPanel>
         </Grid>
-        <TextBox x:Name="txtURL" HorizontalAlignment="Left" Height="29" Margin="126,25.2,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-        <ComboBox x:Name="cbMethod" HorizontalAlignment="Left" Height="29" Margin="23,25.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.308,0.503" />
-        <Button x:Name="btnSend" Content="发送" HorizontalAlignment="Left" Margin="310,25.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="96" Height="29" Click="btnSend_Click"/>
-        <TextBox x:Name="txtRes" HorizontalAlignment="Left" Height="120" Margin="23,85.2,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="383" VerticalScrollBarVisibility="Auto"/>
 
+        <Border Grid.Row="1" Padding="10">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <ComboBox x:Name="cbMethod"  Height="29"  Grid.Column="0" VerticalAlignment="Top" Margin="0,0,10,0" />
+                <TextBox x:Name="txtURL" HorizontalAlignment="Stretch" Height="29"  Grid.Column="1" TextWrapping="Wrap"  />
+                <Button x:Name="btnSend" Content="发送"  Grid.Column="2" Margin="10,0,0,0" Height="29" Click="btnSend_Click"/>
+
+            </Grid>
+        </Border>
+      
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TabControl>
+                    <TabItem Header="Header">
+
+
+                    </TabItem>
+
+                    <TabItem Header="Body">
+
+
+                    </TabItem>
+                </TabControl>
+                <TextBox x:Name="txtRes" Grid.Row="1" Margin="10"  TextWrapping="Wrap"   VerticalScrollBarVisibility="Auto"/>
+
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>
