@@ -73,7 +73,7 @@ namespace SalamanderWnmp.Tool
                     return reader.ReadToEnd();
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return "";
             }

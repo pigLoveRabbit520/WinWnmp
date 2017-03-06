@@ -47,8 +47,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TabControl Style="{StaticResource TabControlStyleVertical}" Margin="10, 0">
-                    <TabItem Header="Header">
+                <TabControl  Margin="10, 0">
+                    <TabItem Header="Header" TabIndex="0">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />

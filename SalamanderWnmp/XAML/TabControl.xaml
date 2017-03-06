@@ -11,11 +11,11 @@
 
 
 
-    <!--TabControl样式-->
-    <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+    <!--TabControl垂直样式-->
+    <Style  TargetType="{x:Type TabControl}">
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="Padding" Value="4,4,4,4"/>
-        <Setter Property="BorderThickness" Value="1,0,0,0"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
         <Setter Property="Background" Value="#F9F9F9"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -25,64 +25,48 @@
                 <ControlTemplate TargetType="{x:Type TabControl}">
                     <Grid ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition x:Name="ColumnDefinition0" Width="0.192*" />
-                            <ColumnDefinition x:Name="ColumnDefinition1" Width="0.808*"/>
+                            <ColumnDefinition x:Name="ColumnDefinition0"/>
+                            <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
                         </Grid.ColumnDefinitions>
-                        <Border x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
-                                Grid.Column="1" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="0" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Grid.ColumnSpan="1" Grid.RowSpan="1" Width="Auto" Margin="0">
-                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Width="Auto" Margin="0"/>
-                        </Border>
-                        <StackPanel x:Name="HeaderPanel" Margin="0" IsItemsHost="True">
-                            <StackPanel.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#7AFFFFFF" Offset="0"/>
-                                    <GradientStop Color="#42F0FCFF" Offset="1"/>
-                                </LinearGradientBrush>
-                            </StackPanel.Background>
-                        </StackPanel>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-
-    <!--TabControl垂直样式-->
-    <Style x:Key="TabControlStyleVertical" TargetType="{x:Type TabControl}">
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="Padding" Value="4,4,4,4"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
-        <Setter Property="Background" Value="#F9F9F9"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TabControl}">
-                    <Grid ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
                         <Grid.RowDefinitions>
-                            <RowDefinition x:Name="ColumnDefinition0" Height="0.192*" />
-                            <RowDefinition x:Name="ColumnDefinition1" Height="0.808*"/>
+                            <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                            <RowDefinition x:Name="RowDefinition1" Height="*"/>
                         </Grid.RowDefinitions>
-                        <Border x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
-                                Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Grid.ColumnSpan="1" Grid.RowSpan="1" Width="Auto" Margin="0">
-                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Width="Auto" Margin="0"/>
+                        <TabPanel x:Name="HeaderPanel" Grid.Column="0" IsItemsHost="true" Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                        <Border x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </Border>
-                        <StackPanel x:Name="HeaderPanel" Margin="0" IsItemsHost="True" Orientation="Horizontal">
-                            <StackPanel.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#7AFFFFFF" Offset="0"/>
-                                    <GradientStop Color="#42F0FCFF" Offset="1"/>
-                                </LinearGradientBrush>
-                            </StackPanel.Background>
-                        </StackPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="1"/>
+                            <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="Auto"/>
+                            <Setter Property="Margin" TargetName="HeaderPanel" Value="2,0,2,2"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="0"/>
+                            <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                            <Setter Property="Grid.Column" TargetName="HeaderPanel" Value="0"/>
+                            <Setter Property="Grid.Column" TargetName="ContentPanel" Value="1"/>
+                            <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto"/>
+                            <Setter Property="Width" TargetName="ColumnDefinition1" Value="*"/>
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                            <Setter Property="Margin" TargetName="HeaderPanel" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="0"/>
+                            <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                            <Setter Property="Grid.Column" TargetName="HeaderPanel" Value="1"/>
+                            <Setter Property="Grid.Column" TargetName="ContentPanel" Value="0"/>
+                            <Setter Property="Width" TargetName="ColumnDefinition0" Value="*"/>
+                            <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto"/>
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                            <Setter Property="Margin" TargetName="HeaderPanel" Value="0,2,2,2"/>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
                         </Trigger>
