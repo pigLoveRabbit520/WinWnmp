@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="XAML/Ficon.xaml" />
                 <ResourceDictionary Source="XAML/CheckBox.xaml" />
                 <ResourceDictionary Source="XAML/Loading.xaml" />
+                <ResourceDictionary Source="XAML/ComboBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
             <!--主题色-->
