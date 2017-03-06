@@ -3,13 +3,13 @@ using System.IO;
 using System.Net;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Navigation;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using System.Globalization;
+using System.Windows.Controls;
 
 namespace SalamanderWnmp.UserComponent
 {
@@ -22,9 +22,9 @@ namespace SalamanderWnmp.UserComponent
 		}
 
    
-        public double Increment { get; set; }
-        public double MaxValue { get; set; }
-        public double MinValue { get; set; }
+        public int Increment { get; set; }
+        public int MaxValue { get; set; }
+        public int MinValue { get; set; }
 
 
 
@@ -35,21 +35,21 @@ namespace SalamanderWnmp.UserComponent
         [Description("获取或设置Value")]
 
 
-        public double Value
+        public int Value
         {
-            get { return (double)GetValue(ValueProperty); }
+            get { return (int)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(double), typeof(NumericControl));
+            DependencyProperty.Register("Value", typeof(int), typeof(NumericControl));
 
 
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
-            double newValue = (Value + Increment);
+            int newValue = (Value + Increment);
             if (newValue > MaxValue)
             {
                 Value = MaxValue;
@@ -62,7 +62,7 @@ namespace SalamanderWnmp.UserComponent
 
         private void DownButton_Click(object sender, RoutedEventArgs e)
         {
-            double newValue = (Value - Increment);
+            int newValue = (Value - Increment);
             if (newValue < MinValue)
             {
                 Value = MinValue;
@@ -77,7 +77,7 @@ namespace SalamanderWnmp.UserComponent
         {
             try
             {
-                Value = double.Parse(ValueText.Text);
+                Value = int.Parse(ValueText.Text);
             }
             catch (Exception)
             {
@@ -100,22 +100,48 @@ namespace SalamanderWnmp.UserComponent
 
         #endregion
 
-        private void ValueText_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void ValueText_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
                 e.Handled = true;
+
         }
 
-        private void ValueText_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void ValueText_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex re = new Regex("[^0-9.-]+");
-            e.Handled = re.IsMatch(e.Text);
+            int inputNum = 0;
+            try
+            {
+                inputNum = int.Parse(e.Text);
+            }
+            catch (Exception)
+            {
+                e.Handled = true;
+            }
         }
 
         private void ValueText_Pasting(object sender, DataObjectPastingEventArgs e)
         {
             // 取消粘贴
             e.CancelCommand();
+        }
+
+        private void ValueText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            TextChange[] change = new TextChange[e.Changes.Count];
+            e.Changes.CopyTo(change, 0);
+
+            int offset = change[0].Offset;
+            if (change[0].AddedLength > 0)
+            {
+                int num = int.Parse(textBox.Text);
+                if(num > MaxValue || num < MinValue)
+                {
+                    textBox.Text = textBox.Text.Remove(offset, change[0].AddedLength);
+                    textBox.Select(offset, 0);
+                }
+            }
         }
     }
 
@@ -126,10 +152,8 @@ namespace SalamanderWnmp.UserComponent
     {
         #region IValueConverter Members
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //double myValue = (double)value;
-            //return myValue.ToString();
             try
             {
                 return value.ToString();
@@ -140,13 +164,13 @@ namespace SalamanderWnmp.UserComponent
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             //string myValue = (string)value;
             //return double.Parse(myValue);
             try
             {
-                return double.Parse((string)value);
+                return int.Parse((string)value);
             }
             catch (Exception)
             {

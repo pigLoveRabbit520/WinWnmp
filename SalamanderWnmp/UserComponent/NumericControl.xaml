@@ -47,7 +47,7 @@
 					<ColumnDefinition Width="30"/>
 				</Grid.ColumnDefinitions>
 				<TextBox Grid.Column="0" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Padding="2,2,2,2" VerticalContentAlignment="Center" x:Name="ValueText" LostFocus="ValueText_LostFocus" Text="{Binding Path=Value, Converter={StaticResource MyValueConverter}, ElementName=UserControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=0}"
-                         PreviewTextInput="ValueText_PreviewTextInput" PreviewKeyDown="ValueText_PreviewKeyDown" DataObject.Pasting="ValueText_Pasting"/>
+                         PreviewTextInput="ValueText_PreviewTextInput" PreviewKeyDown="ValueText_PreviewKeyDown" DataObject.Pasting="ValueText_Pasting" TextChanged="ValueText_TextChanged" />
 				<Button HorizontalAlignment="Right" Style="{DynamicResource ArrowButtonStyle}" Width="20" x:Name="UpButton" Grid.Column="1" Margin="0,2,3,0" Click="UpButton_Click" Height="8" VerticalAlignment="Top" />
 				<Button HorizontalAlignment="Right" Style="{DynamicResource ArrowButtonStyle}" VerticalAlignment="Bottom" Width="20" Height="8" RenderTransformOrigin="0.5,0.5" x:Name="DownButton" Grid.Column="1" Margin="0,0,3,2" Click="DownButton_Click">
 					<Button.RenderTransform>
