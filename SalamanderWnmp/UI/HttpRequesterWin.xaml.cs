@@ -1,17 +1,9 @@
-﻿using System;
+﻿using SalamanderWnmp.Tool;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SalamanderWnmp.UI
 {
@@ -59,28 +51,21 @@ namespace SalamanderWnmp.UI
         {
             if (!String.IsNullOrEmpty(txtURL.Text))
             {
-                txtRes.Text = GetUrltoHtml(txtURL.Text);
-            }
-        }
-
-        public static string GetUrltoHtml(string Url, string type = "UTF-8")
-        {
-            try
-            {
-                WebRequest request = WebRequest.Create(Url);
-                System.Net.WebResponse wResp = request.GetResponse();
-                System.IO.Stream respStream = wResp.GetResponseStream();
-                // Dim reader As StreamReader = New StreamReader(respStream)
-                using (StreamReader reader = new StreamReader(respStream, Encoding.GetEncoding(type)))
+                HttpHelper helper = new HttpHelper(txtURL.Text);
+                string res = null;
+                switch((RequestMethod)cbMethod.SelectedItem)
                 {
-                    return reader.ReadToEnd();
+                    case RequestMethod.GET:
+                        res = helper.Get();
+                        break;
+                    case RequestMethod.POST:
+                        res = helper.Post();
+                        break;
                 }
+                this.txtRes.Text = res;
             }
-            catch (System.Exception ex)
-            {
-
-            }
-            return "";
         }
+
+
     }
 }
