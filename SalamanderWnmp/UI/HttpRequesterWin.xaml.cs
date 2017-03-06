@@ -1,6 +1,8 @@
 ﻿using SalamanderWnmp.Tool;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -17,7 +19,43 @@ namespace SalamanderWnmp.UI
             InitializeComponent();
             cbMethod.ItemsSource = Enum.GetValues(typeof(RequestMethod));
             cbMethod.SelectedIndex = 0;
+            this.lbHeaders.ItemsSource = this.headers;
         }
+
+       
+
+        class KeyValuePair
+        {
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            public void NotifyPropertyChanged(string propertyName)
+            {
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                }
+            }
+
+            public string Key { get; set; }
+
+            private string _value = null;
+
+            public string Value
+            {
+                get
+                {
+                    return this._value;
+                }
+                set
+                {
+                    this._value = value;
+                    NotifyPropertyChanged("Value");
+                }
+            }
+        }
+
+        private ObservableCollection<KeyValuePair> headers = new ObservableCollection<KeyValuePair>();
 
         public enum RequestMethod
         {
@@ -52,6 +90,12 @@ namespace SalamanderWnmp.UI
             if (!String.IsNullOrEmpty(txtURL.Text))
             {
                 HttpHelper helper = new HttpHelper(txtURL.Text);
+                Dictionary<string, string> maps = new Dictionary<string, string>();
+                foreach(var header in headers)
+                {
+                    maps.Add(header.Key, header.Value);
+                }
+                helper.SetHeaders(maps);
                 string res = null;
                 switch((RequestMethod)cbMethod.SelectedItem)
                 {
@@ -66,10 +110,44 @@ namespace SalamanderWnmp.UI
             }
         }
 
+
         private void btnAddHeader_Click(object sender, RoutedEventArgs e)
         {
-
+            string name = txtHeaderName.Text;
+            string value = txtHeaderValue.Text;
+            if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(value))
+            {
+                int index = -1;
+                if(ExistSameKey(name, out index))
+                {
+                    this.headers[index].Value = value;
+                }
+                else
+                {
+                    this.headers.Add(new KeyValuePair { Key = name, Value = value });
+                }
+            }
             e.Handled = true;
+        }
+
+        /// <summary>
+        /// 是否存在相同的key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        private bool ExistSameKey(string key, out int index)
+        {
+            for(int i = 0; i < headers.Count; i++)
+            {
+                if (headers[i].Key == key)
+                {
+                    index = i;
+                    return true;
+                }
+            }
+            index = -1;
+            return false;
         }
     }
 }
