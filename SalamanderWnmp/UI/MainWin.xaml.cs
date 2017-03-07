@@ -69,12 +69,12 @@ namespace SalamanderWnmp.UI
 
         private void AddWinHash()
         {
-            winHash.Add("MenuAbout", "AboutWindow");
+            winHash.Add("MenuAbout", "AboutWin");
             winHash.Add("MenuJSPanel", "CodePanel");
-            winHash.Add("MenuRedis", "RedisWindow");
-            winHash.Add("MenuSettings", "SettingWindow");
-            winHash.Add("MenuColor", "ChangeThemeColorWindow");
-            winHash.Add("MenuHttp", "HttpRequesterWindow");
+            winHash.Add("MenuRedis", "RedisWin");
+            winHash.Add("MenuSettings", "SettingWin");
+            winHash.Add("MenuColor", "ChangeThemeColorWin");
+            winHash.Add("MenuHttp", "HttpRequesterWin");
         }
 
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
