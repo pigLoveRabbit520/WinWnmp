@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -19,19 +18,14 @@ namespace SalamanderWnmp.UI
             InitializeComponent();
             cbMethod.ItemsSource = Enum.GetValues(typeof(RequestMethod));
             cbMethod.SelectedIndex = 0;
+            cbHeaderName.ItemsSource = this.frequentHeaderNames;
             this.lbHeaders.ItemsSource = this.headers;
         }
 
        
 
-        class KeyValuePair
-        {
-            public string Key { get; set; }
 
-            public string Value { get; set; }
-        }
-
-        private ObservableCollection<KeyValuePair> headers = new ObservableCollection<KeyValuePair>();
+        private ObservableCollection<KeyValuePair<string, string>> headers = new ObservableCollection<KeyValuePair<string, string>>();
 
         public enum RequestMethod
         {
@@ -44,6 +38,22 @@ namespace SalamanderWnmp.UI
             OPTIONS,
             CONNECT
         }
+
+        private string[] frequentHeaderNames = new string[]
+        {
+            "Content-Length",
+            "Content-Type",
+            "Cookie",
+            "Host",
+            "Referer",
+            "User-Agent",
+            "Accept",
+            "Accept-Charset",
+            "Accept-Encoding",
+            "Authorization",
+            "From",
+            "Upgrade"
+        };
 
 
         private void btn_Click(object sender, RoutedEventArgs e)
@@ -89,7 +99,7 @@ namespace SalamanderWnmp.UI
 
         private void btnAddHeader_Click(object sender, RoutedEventArgs e)
         {
-            string name = txtHeaderName.Text;
+            string name = cbHeaderName.Text;
             string value = txtHeaderValue.Text;
             if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(value))
             {
@@ -97,12 +107,21 @@ namespace SalamanderWnmp.UI
                 if(ExistSameKey(name, out index))
                 {
                     headers.RemoveAt(index);
-                    headers.Add(new KeyValuePair { Key = name, Value = value });
+                    headers.Add(new KeyValuePair<string, string>(name, value));
                 }
                 else
                 {
-                    this.headers.Add(new KeyValuePair { Key = name, Value = value });
+                    this.headers.Add(new KeyValuePair<string, string>(name, value));
                 }
+            }
+            e.Handled = true;
+        }
+
+        private void btnDeleteHeader_Click(object sender, RoutedEventArgs e)
+        {
+            if(lbHeaders.SelectedIndex >= 0)
+            {
+                headers.Remove((KeyValuePair<string, string>)lbHeaders.SelectedItem);
             }
             e.Handled = true;
         }
@@ -126,5 +145,6 @@ namespace SalamanderWnmp.UI
             index = -1;
             return false;
         }
+
     }
 }
