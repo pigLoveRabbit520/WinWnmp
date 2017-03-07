@@ -75,24 +75,33 @@ namespace SalamanderWnmp.UI
         {
             if (!String.IsNullOrEmpty(txtURL.Text))
             {
-                HttpHelper helper = new HttpHelper(txtURL.Text);
-                Dictionary<string, string> maps = new Dictionary<string, string>();
-                foreach(var header in headers)
+                HttpHelper helper = null;
+                try
                 {
-                    maps.Add(header.Key, header.Value);
+                    helper = new HttpHelper(txtURL.Text);
+                    Dictionary<string, string> maps = new Dictionary<string, string>();
+                    foreach (var header in headers)
+                    {
+                        maps.Add(header.Key, header.Value);
+                    }
+                    helper.SetHeaders(maps);
+                    string res = null;
+                    switch ((RequestMethod)cbMethod.SelectedItem)
+                    {
+                        case RequestMethod.GET:
+                            res = helper.Get();
+                            break;
+                        case RequestMethod.POST:
+                            res = helper.Post();
+                            break;
+                    }
+                    this.txtRes.Text = res;
                 }
-                helper.SetHeaders(maps);
-                string res = null;
-                switch((RequestMethod)cbMethod.SelectedItem)
+                catch(Exception ex)
                 {
-                    case RequestMethod.GET:
-                        res = helper.Get();
-                        break;
-                    case RequestMethod.POST:
-                        res = helper.Post();
-                        break;
+                    MessageBox.Show(ex.Message);
                 }
-                this.txtRes.Text = res;
+               
             }
         }
 
