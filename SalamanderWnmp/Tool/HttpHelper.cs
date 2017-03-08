@@ -61,6 +61,23 @@ namespace SalamanderWnmp.Tool
             return this;
         }
 
+        /// <summary>
+        /// 设置Http请求的Body
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public HttpHelper SetBody(string body)
+        {
+            if (String.IsNullOrEmpty(body))
+                return this;
+            byte[] data = encoding.GetBytes(body);
+            request.ContentLength = data.Length;
+            Stream requestStream = request.GetRequestStream();
+            requestStream.Write(data, 0, data.Length);
+            requestStream.Close();
+            return this;
+        }
+
         private string SendRequest(string method)
         {
             this.request.Method = method;
@@ -88,6 +105,7 @@ namespace SalamanderWnmp.Tool
 
         public string Post()
         {
+
             return this.SendRequest("POST");
         }
     }

@@ -190,6 +190,7 @@
                 <Setter Property="FontSize" Value="10"/>
                 <Setter Property="BorderBrush" Value="#cbcbcb" />
                 <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="Background" Value="{StaticResource CommomButtonBackColor}" />
                 <Setter Property="Template">
                     <Setter.Value>

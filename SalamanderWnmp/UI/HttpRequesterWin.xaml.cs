@@ -41,7 +41,6 @@ namespace SalamanderWnmp.UI
 
         private string[] frequentHeaderNames = new string[]
         {
-            "Content-Length",
             "Content-Type",
             "Cookie",
             "Host",
@@ -92,6 +91,7 @@ namespace SalamanderWnmp.UI
                             res = helper.Get();
                             break;
                         case RequestMethod.POST:
+                            helper.SetBody(txtBody.Text);
                             res = helper.Post();
                             break;
                     }
@@ -103,6 +103,7 @@ namespace SalamanderWnmp.UI
                 }
                
             }
+            e.Handled = true;
         }
 
 

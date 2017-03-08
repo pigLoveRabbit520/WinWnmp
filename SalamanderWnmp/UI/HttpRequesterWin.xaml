@@ -142,7 +142,7 @@
 
                     <TabItem Header="Body">
                         <Border Padding="0, 15">
-                            <TextBox Height="150"></TextBox>
+                            <TextBox Height="150" x:Name="txtBody"></TextBox>
                         </Border>
                     </TabItem>
                 </TabControl>
