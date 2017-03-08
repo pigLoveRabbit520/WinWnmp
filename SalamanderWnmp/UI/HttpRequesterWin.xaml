@@ -6,7 +6,7 @@
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UI"  WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" Style="{StaticResource DefaultWindow}"
-        Title="HttpRequester" Height="560" Width="520">
+        Title="HttpRequester" Height="560" Width="560">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
