@@ -1,5 +1,4 @@
-﻿using SalamanderWnmp.Configuration;
-using SalamanderWnmp.Programs;
+﻿using SalamanderWnmp.Programs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -226,7 +225,7 @@ namespace SalamanderWnmp.UI
                     showWin = new SettingWin();
                     break;
                 case "MenuHttp":
-                    showWin = new HttpRequester();
+                    showWin = new HttpRequesterWin();
                     break;
                 case "MenuColor":
                     showWin = new ChangeThemeColorWin();

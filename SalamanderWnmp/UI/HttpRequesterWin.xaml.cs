@@ -11,9 +11,9 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// HttpRequester.xaml 的交互逻辑
     /// </summary>
-    public partial class HttpRequester : Window
+    public partial class HttpRequesterWin : Window
     {
-        public HttpRequester()
+        public HttpRequesterWin()
         {
             InitializeComponent();
             cbMethod.ItemsSource = Enum.GetValues(typeof(RequestMethod));

@@ -1,4 +1,4 @@
-﻿<Window x:Class="SalamanderWnmp.UI.HttpRequester"
+﻿<Window x:Class="SalamanderWnmp.UI.HttpRequesterWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,6 +7,11 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UI"  WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" Style="{StaticResource DefaultWindow}"
         Title="HttpRequester" Height="560" Width="560">
+    <Window.Resources>
+        <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -142,11 +147,21 @@
 
                     <TabItem Header="Body">
                         <Border Padding="0, 15">
-                            <TextBox Height="150" x:Name="txtBody"></TextBox>
+                            <TextBox Grid.Row="1" Height="150" x:Name="txtBody" />
                         </Border>
                     </TabItem>
                 </TabControl>
-                <TextBox x:Name="txtRes" Grid.Row="1" Margin="10"  TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <WrapPanel Margin="10, 8">
+                        <RadioButton GroupName="viewMode">Text</RadioButton>
+                        <RadioButton GroupName="viewMode">WebBrowser</RadioButton>
+                    </WrapPanel>
+                    <TextBox x:Name="txtRes" Grid.Row="1"  Margin="10"  TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+                </Grid>
 
             </Grid>
         </ScrollViewer>
