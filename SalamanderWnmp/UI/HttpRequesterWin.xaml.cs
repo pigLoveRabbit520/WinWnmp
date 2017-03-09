@@ -16,6 +16,7 @@ namespace SalamanderWnmp.UI
         public HttpRequesterWin()
         {
             InitializeComponent();
+            rbtnTxt.IsChecked = true;
             cbMethod.ItemsSource = Enum.GetValues(typeof(RequestMethod));
             cbMethod.SelectedIndex = 0;
             cbHeaderName.ItemsSource = this.frequentHeaderNames;
@@ -96,6 +97,7 @@ namespace SalamanderWnmp.UI
                             break;
                     }
                     this.txtRes.Text = res;
+                    this.wbRes.NavigateToString(res);
                 }
                 catch(Exception ex)
                 {
@@ -156,5 +158,19 @@ namespace SalamanderWnmp.UI
             return false;
         }
 
+        private void WrapPanel_Checked(object sender, RoutedEventArgs e)
+        {
+            if(rbtnTxt.IsChecked == true)
+            {
+                txtRes.Visibility = Visibility.Visible;
+                wbRes.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                txtRes.Visibility = Visibility.Hidden;
+                wbRes.Visibility = Visibility.Visible;
+            }
+            e.Handled = true;
+        }
     }
 }
