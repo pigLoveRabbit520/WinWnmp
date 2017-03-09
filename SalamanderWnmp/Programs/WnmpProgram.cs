@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
+using SalamanderWnmp.Tool;
 
 namespace SalamanderWnmp.Programs
 {

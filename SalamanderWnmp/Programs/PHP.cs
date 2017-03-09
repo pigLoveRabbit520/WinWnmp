@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using SalamanderWnmp.UI;
+using SalamanderWnmp.Tool;
 
 namespace SalamanderWnmp.Programs
 {

@@ -133,6 +133,9 @@
     <Compile Include="UI\ChangeThemeColorWin.xaml.cs">
       <DependentUpon>ChangeThemeColorWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\LoadingWin.xaml.cs">
+      <DependentUpon>LoadingWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserComponent\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UI\LoadingWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserComponent\ColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -191,7 +198,7 @@
     <Compile Include="Configuration\Option.cs" />
     <Compile Include="Configuration\PHPConfigurationManager.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Log.cs" />
+    <Compile Include="Tool\Log.cs" />
     <Compile Include="Programs\Mysql.cs" />
     <Compile Include="Programs\PHP.cs" />
     <Compile Include="Programs\WnmpProgram.cs" />

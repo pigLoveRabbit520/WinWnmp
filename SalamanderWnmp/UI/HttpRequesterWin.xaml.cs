@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 
@@ -23,9 +24,9 @@ namespace SalamanderWnmp.UI
             this.lbHeaders.ItemsSource = this.headers;
         }
 
-       
 
-
+        private LoadingWin winLoding = null;
+        private HttpHelper helper = null;
         private ObservableCollection<KeyValuePair<string, string>> headers = new ObservableCollection<KeyValuePair<string, string>>();
 
         public enum RequestMethod
@@ -75,37 +76,58 @@ namespace SalamanderWnmp.UI
         {
             if (!String.IsNullOrEmpty(txtURL.Text))
             {
-                HttpHelper helper = null;
+                
                 try
                 {
+                    btnSend.IsEnabled = false;
                     helper = new HttpHelper(txtURL.Text);
-                    Dictionary<string, string> maps = new Dictionary<string, string>();
-                    foreach (var header in headers)
-                    {
-                        maps.Add(header.Key, header.Value);
-                    }
-                    helper.SetHeaders(maps);
-                    string res = null;
-                    switch ((RequestMethod)cbMethod.SelectedItem)
-                    {
-                        case RequestMethod.GET:
-                            res = helper.Get();
-                            break;
-                        case RequestMethod.POST:
-                            helper.SetBody(txtBody.Text);
-                            res = helper.Post();
-                            break;
-                    }
-                    this.txtRes.Text = res;
-                    this.wbRes.NavigateToString(res);
+                    winLoding = new LoadingWin();
+                    new Thread(new ParameterizedThreadStart(SendRequest))
+                        .Start(cbMethod.SelectedItem);
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    btnSend.IsEnabled = true;
                 }
                
             }
             e.Handled = true;
+        }
+
+        /// <summary>
+        /// 发送HTTP请求
+        /// </summary>
+        /// <param name="method"></param>
+        private void SendRequest(object method)
+        {
+            DispatcherHelper.UIDispatcher.Invoke(new Action(() => 
+            {
+                winLoding.Show();
+            }));
+            Dictionary<string, string> maps = new Dictionary<string, string>();
+            foreach (var header in headers)
+            {
+                maps.Add(header.Key, header.Value);
+            }
+            helper.SetHeaders(maps);
+            string res = null;
+            switch ((RequestMethod)method)
+            {
+                case RequestMethod.GET:
+                    res = helper.Get();
+                    break;
+                case RequestMethod.POST:
+                    helper.SetBody(txtBody.Text);
+                    res = helper.Post();
+                    break;
+            }
+            DispatcherHelper.UIDispatcher.Invoke(new Action(() => { txtRes.Text = res; }));
+            DispatcherHelper.UIDispatcher.Invoke(new Action(() => 
+            {
+                winLoding.Close();
+                btnSend.IsEnabled = true;
+            }));
         }
 
 
@@ -160,16 +182,6 @@ namespace SalamanderWnmp.UI
 
         private void WrapPanel_Checked(object sender, RoutedEventArgs e)
         {
-            if(rbtnTxt.IsChecked == true)
-            {
-                txtRes.Visibility = Visibility.Visible;
-                wbRes.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                txtRes.Visibility = Visibility.Hidden;
-                wbRes.Visibility = Visibility.Visible;
-            }
             e.Handled = true;
         }
     }
