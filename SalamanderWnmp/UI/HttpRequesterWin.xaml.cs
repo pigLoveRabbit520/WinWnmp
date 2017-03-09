@@ -82,6 +82,7 @@ namespace SalamanderWnmp.UI
                     btnSend.IsEnabled = false;
                     helper = new HttpHelper(txtURL.Text);
                     winLoding = new LoadingWin();
+                    winLoding.Owner = this;
                     new Thread(new ParameterizedThreadStart(SendRequest))
                         .Start(cbMethod.SelectedItem);
                 }
@@ -105,6 +106,7 @@ namespace SalamanderWnmp.UI
             {
                 winLoding.Show();
             }));
+            Thread.Sleep(1000);
             Dictionary<string, string> maps = new Dictionary<string, string>();
             foreach (var header in headers)
             {
