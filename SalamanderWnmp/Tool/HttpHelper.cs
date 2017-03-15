@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -83,8 +84,20 @@ namespace SalamanderWnmp.Tool
             this.request.Method = method;
             try
             {
-                WebResponse response = request.GetResponse();
-                Stream respStream = response.GetResponseStream();
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream respStream = null;
+                if(response.ContentEncoding.ToLower().Contains("gzip"))
+                {
+                    respStream = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                }
+                else if(response.ContentEncoding.ToLower().Contains("deflate"))
+                {
+                    respStream = new DeflateStream(response.GetResponseStream(), CompressionMode.Decompress);
+                }
+                else
+                {
+                    respStream = response.GetResponseStream();
+                }
                 using (StreamReader reader = new StreamReader(respStream, this.encoding))
                 {
                     return reader.ReadToEnd();
