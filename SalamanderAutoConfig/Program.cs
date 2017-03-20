@@ -34,7 +34,7 @@ namespace SalamanderAutoConfig
             {
                 string txt = File.ReadAllText(nginxConfFile);
                 Regex reg = new Regex(@"root D:/\*+;");
-                File.WriteAllText(nginxConfFile, reg.Replace(txt, APP_STARTUP_PATH.Replace("\\", "/") + "html;", 1));
+                File.WriteAllText(nginxConfFile, reg.Replace(txt, "root " + APP_STARTUP_PATH.Replace("\\", "/") + "nginx/html;", 1));
                 Console.WriteLine("-----------------Nginx配置完成-----------------");
             }
             else
