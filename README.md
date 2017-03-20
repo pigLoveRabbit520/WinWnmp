@@ -30,10 +30,11 @@
 php 版本为7.0.1 64位版本，需要MSVC14 (Visual C++ 2015)运行库支持，下载：https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe
 
 
+## 自动配置
+集成包下有SalamanderAutoConfig.exe文件，运行后各项配置即完成
 
 
-
-## 配置
+## 手动配置
 
 集成包下有文件：配置.txt
 #### php
