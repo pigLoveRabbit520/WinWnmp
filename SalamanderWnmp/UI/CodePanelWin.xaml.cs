@@ -39,6 +39,7 @@ namespace SalamanderWnmp.UI
         {
             JavaScript,
             PHP,
+            Python,
             Go,
             CSharp
         }
@@ -115,6 +116,9 @@ namespace SalamanderWnmp.UI
                 case ProgramLan.PHP:
                     codeTmpPath += ".php";
                     break;
+                case ProgramLan.Python:
+                    codeTmpPath += ".py";
+                    break;
                 case ProgramLan.Go:
                     codeTmpPath += ".go";
                     break;
@@ -122,7 +126,7 @@ namespace SalamanderWnmp.UI
                     codeTmpPath += ".tmp";
                     break;
             }
-            FileStream fs = new FileStream(codeTmpPath, FileMode.OpenOrCreate, FileAccess.ReadWrite); // 可以指定盘符
+            FileStream fs = new FileStream(codeTmpPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamWriter sw = new StreamWriter(fs);
             // end 创建临时文件
 
@@ -136,6 +140,10 @@ namespace SalamanderWnmp.UI
                 case ProgramLan.PHP:
                     runCode = RunPHP;
                     sw.WriteLine("<?php ");
+                    sw.Write(code.ToString());
+                    break;
+                case ProgramLan.Python:
+                    runCode = RunPython;
                     sw.Write(code.ToString());
                     break;
                 case ProgramLan.Go:
@@ -247,6 +255,41 @@ namespace SalamanderWnmp.UI
             catch (Exception ex)
             {
                 MessageBox.Show("PHP目录不存在！");
+                return "";
+            }
+            string outStr = scriptProc.StandardOutput.ReadToEnd();
+            // 有错误，读取错误信息
+            if (String.IsNullOrEmpty(outStr))
+            {
+                outStr = scriptProc.StandardError.ReadToEnd();
+            }
+            scriptProc.Close();
+            return outStr;
+
+        }
+
+        /// <summary>
+        /// 运行Python脚本
+        /// </summary>
+        /// <returns></returns>
+        private string RunPython()
+        {
+            Process scriptProc = new Process();
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "python.exe";
+            info.Arguments = codeTmpPath;
+            info.RedirectStandardError = true;
+            info.RedirectStandardOutput = true;
+            info.UseShellExecute = false;
+            info.CreateNoWindow = true;
+            scriptProc.StartInfo = info;
+            try
+            {
+                scriptProc.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Python环境未安装或未添加到环境变量！");
                 return "";
             }
             string outStr = scriptProc.StandardOutput.ReadToEnd();

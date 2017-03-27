@@ -126,6 +126,7 @@
     <Compile Include="Converter\ProcessTextConverter.cs" />
     <Compile Include="DispatcherHelper.cs" />
     <Compile Include="Programs\Nginx.cs" />
+    <Compile Include="Tool\CodeHelper.cs" />
     <Compile Include="Tool\HttpHelper.cs" />
     <Compile Include="UI\AboutWin.xaml.cs">
       <DependentUpon>AboutWin.xaml</DependentUpon>
