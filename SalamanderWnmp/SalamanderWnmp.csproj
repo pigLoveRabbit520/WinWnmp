@@ -131,6 +131,9 @@
     <Compile Include="UI\AboutWin.xaml.cs">
       <DependentUpon>AboutWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\AddRedisConnWin.xaml.cs">
+      <DependentUpon>AddRedisConnWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ChangeThemeColorWin.xaml.cs">
       <DependentUpon>ChangeThemeColorWin.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
       <DependentUpon>NumericControl.xaml</DependentUpon>
     </Compile>
     <Page Include="UI\AboutWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\AddRedisConnWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

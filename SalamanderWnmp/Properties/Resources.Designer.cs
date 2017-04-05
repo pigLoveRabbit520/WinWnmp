@@ -70,6 +70,15 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 添加连接 的本地化字符串。
+        /// </summary>
+        public static string AddConn {
+            get {
+                return ResourceManager.GetString("AddConn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Wnmp 的本地化字符串。
         /// </summary>
         public static string AppName {
