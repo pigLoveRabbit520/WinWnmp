@@ -38,21 +38,8 @@ namespace SalamanderWnmp.UI
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    if (redisConn == null)
-            //    {
-            //        redisConn = ConnectionMultiplexer.Connect("localhost");
-            //    }
-            //    server = redisConn.GetServer("localhost", 6379);
-            //    IEnumerable<RedisKey> keys = server.Keys(pattern: "*");
-            //    //lbKeys.ItemsSource = keys;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
             AddRedisConnWin win = new AddRedisConnWin();
+            win.Owner = this;
             win.Show();
         }
 

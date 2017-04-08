@@ -5,8 +5,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	x:Class="SalamanderWnmp.UserComponent.NumericControl" xmlns:local="clr-namespace:SalamanderWnmp.UserComponent"
-	x:Name="UserControl"
-	Width="100" Height="23" MaxHeight="23" MinHeight="23" MinWidth="50" >
+	x:Name="UserControl" d:DesignWidth="100"
+	 Height="23" MaxHeight="23" MinHeight="23" MinWidth="50" >
 	<UserControl.Resources>
         <local:DoubleValueConverter x:Key="MyValueConverter"/>
 		<Style x:Key="ArrowButtonStyle" BasedOn="{x:Null}" TargetType="{x:Type Button}">

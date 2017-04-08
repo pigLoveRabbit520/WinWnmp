@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
          xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:UserComponent="clr-namespace:SalamanderWnmp.UserComponent" x:Class="SalamanderWnmp.UI.AddRedisConnWin"
-        mc:Ignorable="d" Style="{StaticResource DefaultWindow}"
-        Title="AddRedisConnWin" Height="400" Width="400">
+        mc:Ignorable="d" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterOwner"
+        Title="AddRedisConnWin" Height="300" Width="330">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="MyTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Height" Value="26" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,7 +33,7 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1" Margin="40, 0">
+        <Grid x:Name="gridConn" Grid.Row="1" Margin="40, 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -37,17 +44,17 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Text="连接名" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBox Grid.Column="1"  VerticalAlignment="Center" />
+            <TextBlock Text="连接名" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox Grid.Column="1"  Style="{StaticResource MyTextBox}" Text="{Binding ConnName}"/>
 
-            <TextBlock Grid.Row="1" Text="主机" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" />
+            <TextBlock Grid.Row="1" Text="主机" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1" Grid.Column="1"  Style="{StaticResource MyTextBox}" Text="{Binding Host}"/>
 
-            <TextBlock Grid.Row="2" Text="端口" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <UserComponent:NumericControl Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="129"/>
+            <TextBlock Grid.Row="2" Text="端口" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <UserComponent:NumericControl Grid.Row="2" Grid.Column="2" Height="26" VerticalAlignment="Center" Increment="1" MaxValue="50000" Value="{Binding Port, Mode=TwoWay}"/>
 
-            <TextBlock Grid.Row="3" Text="Auth" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBox Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" />
+            <TextBlock Grid.Row="3" Text="Auth" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="3" Grid.Column="1"  Style="{StaticResource MyTextBox}" Text="{Binding Auth}"/>
 
         </Grid>
 
@@ -56,9 +63,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="测试连接" HorizontalAlignment="Center" Width="60"/>
+            <Button x:Name="btnTestConn" Content="测试连接" Click="btnTestConn_Click" HorizontalAlignment="Center" Width="60"/>
 
-            <Button Grid.Column="1" Content="OK" HorizontalAlignment="Center" Width="60"/>
+            <Button x:Name="btnAdd" Grid.Column="1" Content="OK" HorizontalAlignment="Center" Click="btnAdd_Click" Width="60"/>
         </Grid>
 
     </Grid>
