@@ -44,7 +44,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <local:ImageMenu x:Name="MenuSettings" Grid.Row="0" MyText="{x:Static prop:Resources.Settings}" MySource="/Images/Menu/settings.png"/>
-                        <local:ImageMenu x:Name="MenuJSPanel" Grid.Row="1" MyText="{x:Static prop:Resources.CodePanel}" MySource="/Images/Menu/code.png"/>
+                        <local:ImageMenu x:Name="MenuCodePanel" Grid.Row="1" MyText="{x:Static prop:Resources.CodePanel}" MySource="/Images/Menu/code.png"/>
                         <local:ImageMenu x:Name="MenuRedis" Grid.Row="2" MyText="{x:Static prop:Resources.RedisPanel}" MySource="/Images/Menu/redis.png"/>
                         <local:ImageMenu x:Name="MenuHttp" Grid.Row="3" MyText="{x:Static prop:Resources.HttpRequester}" MySource="/Images/Menu/http.png"/>
                         <local:ImageMenu x:Name="MenuDir" Grid.Row="4" MyText="{x:Static prop:Resources.MainDir}" MySource="/Images/Menu/dir.png"/>
@@ -60,68 +60,144 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
+            
+            <Button Panel.ZIndex="2" x:Name="btnSlideBack" HorizontalAlignment="Right" Width="20" Height="20" Content=">" Click="btnSlide_Click"/>
+            <Button Panel.ZIndex="2" x:Name="btnSlideForward" HorizontalAlignment="Left" Width="20" Height="20" Content="&lt;" Click="btnSlide_Click"/>
 
-            <Border Padding="0, 10">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackNginx">
-                        <Image Source="/Images/nginx.png" Width="80"  Height="60"/>
-                        <TextBlock x:Name="lblNginx" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
-                                   HorizontalAlignment="Center"/>
+            <ListBox x:Name="lbSliderContainer" Style="{StaticResource MainWinListBox}" BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBoxItem x:Name="areaFirst" Style="{StaticResource MainWinSliderListBoxItem}">
+                    <Border Padding="0, 10">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="关" HorizontalAlignment="Center"/>
-                            <ToggleButton x:Name="btnNginx" Grid.Column="1" Checked="nginxToggleButton_Checked" IsChecked="{Binding Running, Mode=OneWay}"
+
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackNginx">
+                                <Image Source="/Images/nginx.png" Width="80"  Height="60"/>
+                                <TextBlock x:Name="lblNginx" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                   HorizontalAlignment="Center"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="关" HorizontalAlignment="Center"/>
+                                    <ToggleButton x:Name="btnNginx" Grid.Column="1" Checked="nginxToggleButton_Checked" IsChecked="{Binding Running, Mode=OneWay}"
                                           Unchecked="nginxToggleButton_Unchecked" />
-                            <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
-                        </Grid>
-                    </StackPanel>
+                                    <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
 
 
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackPHP">
-                        <Image Source="/Images/php.png" Height="60" />
-                        <TextBlock x:Name="lblPHP" Margin="0, 5"  Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackPHP">
+                                <Image Source="/Images/php.png" Height="60" />
+                                <TextBlock x:Name="lblPHP" Margin="0, 5"  Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
                                    HorizontalAlignment="Center"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="关" HorizontalAlignment="Center"/>
-                            <ToggleButton x:Name="btnPHP" Grid.Column="1" Checked="phpToggleButton_Checked" Unchecked="phpToggleButton_Unchecked"
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="关" HorizontalAlignment="Center"/>
+                                    <ToggleButton x:Name="btnPHP" Grid.Column="1" Checked="phpToggleButton_Checked" Unchecked="phpToggleButton_Unchecked"
                                           IsChecked="{Binding Running, Mode=OneWay}"/>
-                            <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
-                        </Grid>
-                    </StackPanel>
+                                    <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
 
-                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="stackMysql">
-                        <Image Source="/Images/mysql.png" Height="60"/>
-                        <TextBlock x:Name="lblMysql" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="stackMysql">
+                                <Image Source="/Images/mysql.png" Height="60"/>
+                                <TextBlock x:Name="lblMysql" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
                                    HorizontalAlignment="Center"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="关" HorizontalAlignment="Center"/>
+                                    <ToggleButton x:Name="btnMysql" Grid.Column="1" Checked="mysqlToggleButton_Checked" 
+                                          Unchecked="mysqlToggleButton_Unchecked" IsChecked="{Binding Running, Mode=OneWay}"/>
+                                    <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </ListBoxItem>
+
+                <ListBoxItem x:Name="areaTwo" Style="{StaticResource MainWinSliderListBoxItem}">
+                    <Border Padding="0, 10">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="关" HorizontalAlignment="Center"/>
-                            <ToggleButton x:Name="btnMysql" Grid.Column="1" Checked="mysqlToggleButton_Checked" 
-                                          Unchecked="mysqlToggleButton_Unchecked" IsChecked="{Binding Running, Mode=OneWay}"/>
-                            <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
+
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackCodePanel">
+                                <Image Source="/Images/code.png" Width="80"  Height="60"/>
+                                <TextBlock x:Name="lblCodePanel" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                   HorizontalAlignment="Center"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="关" HorizontalAlignment="Center"/>
+                                    <ToggleButton x:Name="btnCodePaenl" Grid.Column="1" Checked="codePanelToggleButton_Checked" IsChecked="{Binding Running, Mode=OneWay}"
+                                          Unchecked="codePanelToggleButton_Unchecked" />
+                                    <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+
+
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackRedisPanel">
+                                <Image Source="/Images/redis.png" Width="80"  Height="60" />
+                                <TextBlock x:Name="lblRedisPanel" Margin="0, 5"  Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                   HorizontalAlignment="Center"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="关" HorizontalAlignment="Center"/>
+                                    <ToggleButton x:Name="btnRedisPanel" Grid.Column="1" Checked="redisPanelToggleButton_Checked" Unchecked="redisPanelToggleButton_Unchecked"
+                                          IsChecked="{Binding Running, Mode=OneWay}"/>
+                                    <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="stackHttpRequester">
+                                <Image Source="/Images/http.png" Width="80"  Height="60"/>
+                                <TextBlock x:Name="lblHttpRequester" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                   HorizontalAlignment="Center"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="关" HorizontalAlignment="Center"/>
+                                    <ToggleButton x:Name="btnHttpRequester" Grid.Column="1" Checked="httpRequesterToggleButton_Checked" 
+                                          Unchecked="httpRequesterToggleButton_Unchecked" IsChecked="{Binding Running, Mode=OneWay}"/>
+                                    <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
                         </Grid>
-                    </StackPanel>
-                </Grid>
-            </Border>
+                    </Border>
+                </ListBoxItem>
+            </ListBox>
 
             <RichTextBox x:Name="txtLog" Grid.Row="1" Padding="5" BorderThickness="1" BorderBrush="Gray" FocusVisualStyle="{x:Null}"
                          Margin="5" FontSize="12" IsReadOnly="True" VerticalScrollBarVisibility="Auto">

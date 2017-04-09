@@ -342,6 +342,15 @@
   <ItemGroup>
     <Resource Include="Images\Menu\http.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\code.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\redis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\http.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

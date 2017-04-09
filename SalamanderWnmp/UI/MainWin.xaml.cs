@@ -3,6 +3,7 @@ using SalamanderWnmp.Tool;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -42,10 +43,6 @@ namespace SalamanderWnmp.UI
         // 
         Hashtable winHash = new Hashtable();
 
-        /// <summary>
-        /// 主线程ID
-        /// </summary>
-        public static readonly int MainThreadId = Thread.CurrentThread.ManagedThreadId;
 
         public MainWin()
         {
@@ -70,7 +67,7 @@ namespace SalamanderWnmp.UI
         private void AddWinHash()
         {
             winHash.Add("MenuAbout", "AboutWin");
-            winHash.Add("MenuJSPanel", "CodePanel");
+            winHash.Add("MenuCodePanel", "CodePanelWin");
             winHash.Add("MenuRedis", "RedisWin");
             winHash.Add("MenuSettings", "SettingWin");
             winHash.Add("MenuColor", "ChangeThemeColorWin");
@@ -207,16 +204,16 @@ namespace SalamanderWnmp.UI
         /// <summary>
         /// 打开window
         /// </summary>
-        /// <param name="btnName"></param>
-        private void OpenWindow(string btnName)
+        /// <param name="menuName"></param>
+        private void OpenWindow(string menuName)
         {
             Window showWin = null;
-            switch (btnName)
+            switch (menuName)
             {
                 case "MenuAbout":
                     showWin = new AboutWindow();
                     break;
-                case "MenuJSPanel":
+                case "MenuCodePanel":
                     showWin = new CodePanelWin();
                     break;
                 case "MenuRedis":
@@ -237,7 +234,7 @@ namespace SalamanderWnmp.UI
             showWin.Show();
         }
 
-        private void ChildWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ChildWindow_Closing(object sender, CancelEventArgs e)
         {
             Window win = (Window)sender;
             showWins.Remove(win);
@@ -306,5 +303,74 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
+        private void btnSlide_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            switch(btn.Name)
+            {
+                case "btnSlideBack":
+                    lbSliderContainer.ScrollIntoView(areaTwo);
+                    break;
+                case "btnSlideForward":
+                    lbSliderContainer.ScrollIntoView(areaFirst);
+                    break;
+            }
+
+            e.Handled = true;
+        }
+
+        private void codePanelToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Window jwin = null;
+            if(!HasWindowOpened("MenuCodePanel", ref jwin))
+            {
+                CodePanelWin win = new CodePanelWin();
+                showWins.Add(win);
+                win.Closing += ChildWindow_Closing;
+                win.Show();
+            }
+            e.Handled = true;
+        }
+
+        private void codePanelToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void redisPanelToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void redisPanelToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Window jwin = null;
+            if (!HasWindowOpened("MenuRedis", ref jwin))
+            {
+                RedisWin win = new RedisWin();
+                showWins.Add(win);
+                win.Closing += ChildWindow_Closing;
+                win.Show();
+            }
+            e.Handled = true;
+        }
+
+        private void httpRequesterToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void httpRequesterToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Window jwin = null;
+            if (!HasWindowOpened("MenuHttp", ref jwin))
+            {
+                HttpRequesterWin win = new HttpRequesterWin();
+                showWins.Add(win);
+                win.Closing += ChildWindow_Closing;
+                win.Show();
+            }
+            e.Handled = true;
+        }
     }
 }
