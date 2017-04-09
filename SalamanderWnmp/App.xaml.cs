@@ -25,7 +25,7 @@ namespace SalamanderWnmp
         private void App_Startup(object sender, StartupEventArgs e)
         {
             bool ret;
-            mutex = new Mutex(true, "ElectronicNeedleTherapySystem", out ret);
+            mutex = new Mutex(true, "SalamanderWNMP", out ret);
 
             if (!ret)
             {
