@@ -9,7 +9,8 @@
 [下载地址](http://ongd1spyv.bkt.clouddn.com/SalamanderWnmp.7z)
 
 ## Main Window(主界面)
-![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/23488421/78163122-ff27-11e6-9240-5db785a0da50.png)
+![SalamanderWnmp](![image](https://cloud.githubusercontent.com/assets/16663435/24835427/cd6b5500-1d34-11e7-9fb1-430a46a47529.png)
+)
 
 ## Other Functions(其他功能)
 #### Regulaer Settings(常规设置)
