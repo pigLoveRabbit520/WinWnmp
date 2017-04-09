@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
          xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:UserComponent="clr-namespace:SalamanderWnmp.UserComponent" x:Class="SalamanderWnmp.UI.AddRedisConnWin"
-        mc:Ignorable="d" Style="{StaticResource DefaultWindow}" WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d" Style="{StaticResource DefaultWindow}" ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
         Title="AddRedisConnWin" Height="300" Width="330">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="MyTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
