@@ -58,11 +58,10 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            
-            <Button Panel.ZIndex="2" x:Name="btnSlideBack" HorizontalAlignment="Right" Width="20" Height="20" Content=">" Click="btnSlide_Click"/>
-            <Button Panel.ZIndex="2" x:Name="btnSlideForward" HorizontalAlignment="Left" Width="20" Height="20" Content="&lt;" Click="btnSlide_Click"/>
+
 
             <ListBox x:Name="lbSliderContainer" Style="{StaticResource MainWinListBox}" BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True">
                 <ListBox.ItemsPanel>
@@ -199,7 +198,12 @@
                 </ListBoxItem>
             </ListBox>
 
-            <RichTextBox x:Name="txtLog" Grid.Row="1" Padding="5" BorderThickness="1" BorderBrush="Gray" FocusVisualStyle="{x:Null}"
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton x:Name="btnSlideForward" Style="{StaticResource IndicatorRadio}" Margin="0,0,5,0"  IsChecked="True"  Click="btnSlide_Click"/>
+                <RadioButton x:Name="btnSlideBack" Style="{StaticResource IndicatorRadio}"  Click="btnSlide_Click"/>
+            </StackPanel>
+            
+            <RichTextBox x:Name="txtLog" Grid.Row="2" Padding="5" BorderThickness="1" BorderBrush="Gray" FocusVisualStyle="{x:Null}"
                          Margin="5" FontSize="12" IsReadOnly="True" VerticalScrollBarVisibility="Auto">
                 <RichTextBox.Document>
                     <FlowDocument Focusable="True" LineHeight="1" />

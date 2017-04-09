@@ -16,7 +16,7 @@
                 <ResourceDictionary Source="XAML/ToggleButton.xaml" />
                 <ResourceDictionary Source="XAML/ScrollViewer.xaml" />
                 <ResourceDictionary Source="XAML/Ficon.xaml" />
-                <ResourceDictionary Source="XAML/CheckBox.xaml" />
+                <ResourceDictionary Source="XAML/RadioButton.xaml" />
                 <ResourceDictionary Source="XAML/Loading.xaml" />
                 <ResourceDictionary Source="XAML/ComboBox.xaml" />
                 <ResourceDictionary Source="XAML/TextBox.xaml" />
@@ -182,6 +182,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
 
             <!--圆形Button的控件模板-->
             <Style x:Key="RoundButton" TargetType="{x:Type Button}">

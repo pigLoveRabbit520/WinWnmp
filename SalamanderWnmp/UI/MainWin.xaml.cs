@@ -347,7 +347,7 @@ namespace SalamanderWnmp.UI
 
         private void btnSlide_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
+            RadioButton btn = sender as RadioButton;
             switch(btn.Name)
             {
                 case "btnSlideBack":
