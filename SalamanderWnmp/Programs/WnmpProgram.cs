@@ -56,7 +56,7 @@ namespace SalamanderWnmp.Programs
         /// </summary>
         public void SetStatus()
         {
-            if (this.IsRunning() == true)
+            if (IsRunning())
             {
                 this.Running = true;
             }

@@ -145,7 +145,7 @@
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackCodePanel">
                                 <Image Source="/Images/code.png" Width="80"  Height="60"/>
-                                <TextBlock x:Name="lblCodePanel" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                <TextBlock x:Name="lblCodePanel" Margin="0, 5" Text="{Binding CodePanelOpened, Converter={StaticResource cvtText}}"  Foreground="{Binding CodePanelOpened, Converter={StaticResource cvtColor}}"
                                    HorizontalAlignment="Center"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -154,7 +154,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="关" HorizontalAlignment="Center"/>
-                                    <ToggleButton x:Name="btnCodePaenl" Grid.Column="1" Checked="codePanelToggleButton_Checked" IsChecked="{Binding Running, Mode=OneWay}"
+                                    <ToggleButton x:Name="btnCodePaenl" Grid.Column="1" Checked="codePanelToggleButton_Checked" IsChecked="{Binding CodePanelOpened, Mode=OneWay}"
                                           Unchecked="codePanelToggleButton_Unchecked" />
                                     <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                                 </Grid>
@@ -163,7 +163,7 @@
 
                             <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="stackRedisPanel">
                                 <Image Source="/Images/redis.png" Width="80"  Height="60" />
-                                <TextBlock x:Name="lblRedisPanel" Margin="0, 5"  Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                <TextBlock x:Name="lblRedisPanel" Margin="0, 5"  Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding RedisPanelOpened, Converter={StaticResource cvtColor}}"
                                    HorizontalAlignment="Center"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -173,14 +173,14 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="关" HorizontalAlignment="Center"/>
                                     <ToggleButton x:Name="btnRedisPanel" Grid.Column="1" Checked="redisPanelToggleButton_Checked" Unchecked="redisPanelToggleButton_Unchecked"
-                                          IsChecked="{Binding Running, Mode=OneWay}"/>
+                                          IsChecked="{Binding RedisPanelOpened, Mode=OneWay}"/>
                                     <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                                 </Grid>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="stackHttpRequester">
                                 <Image Source="/Images/http.png" Width="80"  Height="60"/>
-                                <TextBlock x:Name="lblHttpRequester" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
+                                <TextBlock x:Name="lblHttpRequester" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding HttpRequesterPanelOpened, Converter={StaticResource cvtColor}}"
                                    HorizontalAlignment="Center"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -190,7 +190,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="关" HorizontalAlignment="Center"/>
                                     <ToggleButton x:Name="btnHttpRequester" Grid.Column="1" Checked="httpRequesterToggleButton_Checked" 
-                                          Unchecked="httpRequesterToggleButton_Unchecked" IsChecked="{Binding Running, Mode=OneWay}"/>
+                                          Unchecked="httpRequesterToggleButton_Unchecked" IsChecked="{Binding HttpRequesterPanelOpened, Mode=OneWay}"/>
                                     <TextBlock Text="开" Grid.Column="2" HorizontalAlignment="Center"/>
                                 </Grid>
                             </StackPanel>

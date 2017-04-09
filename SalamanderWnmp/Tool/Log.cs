@@ -1,5 +1,7 @@
-﻿using SalamanderWnmp.UI;
+﻿using SalamanderWnmp.Programs;
+using SalamanderWnmp.UI;
 using System;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -72,7 +74,23 @@ namespace SalamanderWnmp.Tool
             wnmp_log_notice("Initializing Control Panel", LogSection.WNMP_MAIN);
             wnmp_log_notice("Control Panel Version: " + Constants.CPVER, LogSection.WNMP_MAIN);
             wnmp_log_notice("Wnmp Version: " + Constants.APPVER, LogSection.WNMP_MAIN);
-            wnmp_log_notice("Wnmp Directory: " + MainWin.StartupPath, LogSection.WNMP_MAIN);
+            wnmp_log_notice("Wnmp Directory: " + Constants.APP_STARTUP_PATH, LogSection.WNMP_MAIN);
+        }
+
+        /// <summary>
+        /// 判断PHP，mysql，nginx是否在wnmp目录中
+        /// </summary>
+        public static void CheckForApps(WnmpProgram nginx, WnmpProgram mysql, WnmpProgram php)
+        {
+            Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
+            if (!File.Exists(nginx.exeName))
+                Log.wnmp_log_error("Error: Nginx Not Found", Log.LogSection.WNMP_NGINX);
+
+            if (!Directory.Exists(mysql.workingDir))
+                Log.wnmp_log_error("Error: Mysql Not Found", Log.LogSection.WNMP_MARIADB);
+
+            if (!File.Exists(php.exeName))
+                Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
         }
     }
 }

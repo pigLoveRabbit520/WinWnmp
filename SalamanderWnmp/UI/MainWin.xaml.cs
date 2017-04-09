@@ -6,16 +6,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -28,21 +24,71 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWin : Window
+    public partial class MainWin : Window, INotifyPropertyChanged
     {
+        #region 属性
+        public event PropertyChangedEventHandler PropertyChanged;
         private readonly MysqlProgram mysql = new MysqlProgram();
         private readonly WnmpProgram nginx = new NginxProgram();
         private readonly PHPProgram php = new PHPProgram();
-
-
-        // 应用启动目录
-        public static string StartupPath { get { return Constants.APP_STARTUP_PATH; } }
-
         // 显示的界面集合
         private List<Window> showWins = new List<Window>();
         // 
         Hashtable winHash = new Hashtable();
+        private bool codePanelOpened = false;
+        public bool CodePanelOpened
+        {
+            get
+            {
+                return this.codePanelOpened;
+            }
+            set
+            {
+                this.codePanelOpened = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("CodePanelOpened"));
+                }
+            }
 
+        }
+        private bool redisPanelOpened = false;
+        public bool RedisPanelOpened
+        {
+            get
+            {
+                return this.redisPanelOpened;
+            }
+            set
+            {
+                this.redisPanelOpened = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("RedisPanelOpened"));
+                }
+            }
+
+        }
+        private bool httpRequesterPanelOpened = false;
+        public bool HttpRequesterPanelOpened
+        {
+            get
+            {
+                return this.httpRequesterPanelOpened;
+            }
+            set
+            {
+                this.httpRequesterPanelOpened = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("HttpRequesterPanelOpened"));
+                }
+            }
+
+        }
+
+
+        #endregion
 
         public MainWin()
         {
@@ -62,6 +108,9 @@ namespace SalamanderWnmp.UI
             this.stackNginx.DataContext = nginx;
             this.stackPHP.DataContext = php;
             this.stackMysql.DataContext = mysql;
+            this.stackCodePanel.DataContext = this;
+            this.stackRedisPanel.DataContext = this;
+            this.stackHttpRequester.DataContext = this;
         }
 
         private void AddWinHash()
@@ -102,37 +151,13 @@ namespace SalamanderWnmp.UI
         }
 
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern bool SetDllDirectory(string path);
-
-        private void SetCurlCAPath()
-        {
-            var phpini = StartupPath + "/php5.6/php.ini";
-
-            string[] file = File.ReadAllLines(phpini);
-            for (int i = 0; i < file.Length; i++)
-            {
-                if (file[i].Contains("curl.cainfo") == false)
-                    continue;
-
-                Regex reg = new Regex("\".*?\"");
-                string replace = "\"" + StartupPath + @"\contrib\cacert.pem" + "\"";
-                file[i] = file[i].Replace(reg.Match(file[i]).ToString(), replace);
-            }
-            using (var sw = new StreamWriter(phpini))
-            {
-                foreach (var line in file)
-                    sw.WriteLine(line);
-            }
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Log.setLogComponent(this.txtLog);
             DoCheckIfAppsAreRunningTimer();
-            CheckForApps();
+            Log.CheckForApps(nginx, mysql, php);
             // 安装mysql服务
-            if (Directory.Exists(StartupPath + Common.Settings.MysqlDirName.Value))
+            if (Directory.Exists(Constants.APP_STARTUP_PATH + Common.Settings.MysqlDirName.Value))
             {
                 if (!mysql.ServiceExists())
                     mysql.InstallService();
@@ -157,40 +182,57 @@ namespace SalamanderWnmp.UI
                 nginx.SetStatus();
                 mysql.SetStatus();
                 php.SetStatus();
+                CheckWindowOpenStatus();
             };
             timer.Start();
         }
 
         /// <summary>
-        /// 判断PHP，mysql，nginx是否在wnmp目录中
+        /// 检查Window开启情况
         /// </summary>
-        private void CheckForApps()
+        private void CheckWindowOpenStatus()
         {
-            Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
-            if (!File.Exists(StartupPath + "/nginx/nginx.exe"))
-                Log.wnmp_log_error("Error: Nginx Not Found", Log.LogSection.WNMP_NGINX);
-
-            if (!Directory.Exists(StartupPath + "/mysql"))
-                Log.wnmp_log_error("Error: Mysql Not Found", Log.LogSection.WNMP_MARIADB);
-
-            if (!Directory.Exists(StartupPath + "/php"))
-                Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
+            Window win = null;
+            if(HasWindowOpened("MenuCodePanel", ref win))
+            {
+                this.CodePanelOpened = true;
+            }
+            else
+            {
+                this.CodePanelOpened = false;
+            }
+            if (HasWindowOpened("MenuRedis", ref win))
+            {
+                this.RedisPanelOpened = true;
+            }
+            else
+            {
+                this.RedisPanelOpened = false;
+            }
+            if (HasWindowOpened("MenuHttp", ref win))
+            {
+                this.HttpRequesterPanelOpened = true;
+            }
+            else
+            {
+                this.HttpRequesterPanelOpened = false;
+            }
         }
 
 
         /// <summary>
         /// window是否已经打开
         /// </summary>
-        /// <param name="btnName"></param>
+        /// <param name="menuName"></param>
         /// <param name="openWin">打开的window</param>
         /// <returns></returns>
-        private bool HasWindowOpened(string btnName, ref Window openWin)
+        private bool HasWindowOpened(string menuName, ref Window openWin)
         {
             if (showWins.Count > 0)
             {
                 foreach(Window win in showWins)
                 {
-                    if (win.GetType().Name == winHash[btnName].ToString())
+                    if (win.GetType().Name == winHash[menuName].ToString())
                     {
                         openWin = win;
                         return true;
@@ -249,7 +291,7 @@ namespace SalamanderWnmp.UI
 
             if(btn.Name == "MenuDir")
             {
-                Process.Start("explorer.exe", StartupPath);
+                Process.Start("explorer.exe", Constants.APP_STARTUP_PATH);
             }
             else
             {
@@ -334,18 +376,20 @@ namespace SalamanderWnmp.UI
 
         private void codePanelToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
+            Window winOpened = null;
+            if (HasWindowOpened("MenuCodePanel", ref winOpened))
+            {
+                winOpened.Close();
+                showWins.Remove(winOpened);
+            }
             e.Handled = true;
         }
 
-        private void redisPanelToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            e.Handled = true;
-        }
 
         private void redisPanelToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            Window jwin = null;
-            if (!HasWindowOpened("MenuRedis", ref jwin))
+            Window winOpened = null;
+            if (!HasWindowOpened("MenuRedis", ref winOpened))
             {
                 RedisWin win = new RedisWin();
                 showWins.Add(win);
@@ -355,15 +399,22 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
-        private void httpRequesterToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void redisPanelToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
+            Window winOpened = null;
+            if (HasWindowOpened("MenuRedis", ref winOpened))
+            {
+                winOpened.Close();
+                showWins.Remove(winOpened);
+            }
             e.Handled = true;
         }
 
+
         private void httpRequesterToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            Window jwin = null;
-            if (!HasWindowOpened("MenuHttp", ref jwin))
+            Window winOpened = null;
+            if (!HasWindowOpened("MenuHttp", ref winOpened))
             {
                 HttpRequesterWin win = new HttpRequesterWin();
                 showWins.Add(win);
@@ -372,5 +423,17 @@ namespace SalamanderWnmp.UI
             }
             e.Handled = true;
         }
+
+        private void httpRequesterToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Window winOpened = null;
+            if (HasWindowOpened("MenuHttp", ref winOpened))
+            {
+                winOpened.Close();
+                showWins.Remove(winOpened);
+            }
+            e.Handled = true;
+        }
+
     }
 }
