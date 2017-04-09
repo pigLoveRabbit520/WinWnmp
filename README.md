@@ -11,6 +11,8 @@
 ## Main Window(主界面)
 ![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/24835427/cd6b5500-1d34-11e7-9fb1-430a46a47529.png)
 
+![SalamanderWnmp](https://cloud.githubusercontent.com/assets/26649875/24835531/297c2584-1d37-11e7-9ca6-a0f1bd1648b4.png)
+
 
 ## Other Functions(其他功能)
 #### Regulaer Settings(常规设置)
@@ -24,7 +26,7 @@
 #### (Coding Panel)编程面板
 ![编程面板](http://git.oschina.net/uploads/images/2017/0222/160849_e369b9e1_433553.png)
 
-## Using(使用)
+## Usage(使用)
 下载集成包后，运行SalamanderAutoConfig.exe进行自动配置，然后运行SalamanderWnmp.exe，开启nginx和php，然后在浏览器中输入http://localhost/  即可看到Hello Salamander！字样，说明配置成功。（使用数据库功能，则打开mysql）
 
 ## Notice(注意)
