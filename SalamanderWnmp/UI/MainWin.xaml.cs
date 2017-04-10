@@ -94,7 +94,12 @@ namespace SalamanderWnmp.UI
         {
             InitializeComponent();
             Common.Settings.ReadSettings();
-            AddWinHash();
+            if(Common.Settings.FirstRun.Value)
+            {
+                AutoConfig.Run();
+                Common.Settings.FirstRun.Value = false;
+                Common.Settings.UpdateSettings();
+            }
             ini();
         }
 
@@ -105,6 +110,7 @@ namespace SalamanderWnmp.UI
             nginx.Setup();
             mysql.Setup();
             php.Setup();
+            AddWinHash();
             this.stackNginx.DataContext = nginx;
             this.stackPHP.DataContext = php;
             this.stackMysql.DataContext = mysql;
