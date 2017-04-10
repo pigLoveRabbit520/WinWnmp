@@ -12,3 +12,6 @@ net start mh-mysql
 所有在程序中添加环境变量PHP_FCGI_MAX_REQUESTS
 
 4. 命令启动nginx时，workingDirectory一定要设置为nginx的目录
+
+5. 修改conf目录下nginx.conf中的localhost虚拟主机的root（网站根目录），改为某个目录（譬如D:/web_root）的绝对路径（使用/，使用\会出错）
+
