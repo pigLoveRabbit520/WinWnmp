@@ -27,20 +27,19 @@
         </Grid>
 
         <Grid Grid.Row="1">
+           
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TreeView  BorderThickness="1" Margin="5" x:Name="tvDBs">
-
-            </TreeView>
+            <TreeView  BorderThickness="1" Margin="5" x:Name="tvDBs" />
 
             <TextBox Grid.Column="1" Margin="5" />
         </Grid>
 
 
-        <Button x:Name="btnAddConn" Grid.Row="2" Padding="0, 5"  Content="添加连接" HorizontalAlignment="Center"  Margin="0, 10" Width="75" Click="btnConnect_Click"/>
+        <Button x:Name="btnAddConn" Grid.Row="2" Padding="0, 5"  Content="添加连接" HorizontalAlignment="Center"  Margin="0, 10" Width="75" Click="btnAddConnect_Click"/>
 
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using StackExchange.Redis;
+﻿using SalamanderWnmp.Configuration;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,38 +13,25 @@ namespace SalamanderWnmp.UI
     /// </summary>
     public partial class AddRedisConnWin : Window
     {
-
-        public class RedisConn
-        {
-            /// <summary>
-            /// 连接名称
-            /// </summary>
-            public string ConnName { get; set; }
-
-            /// <summary>
-            /// 主机名
-            /// </summary>
-            public string Host { get; set; }
-
-            /// <summary>
-            /// 端口号
-            /// </summary>
-            public int Port { get; set; }
-
-            /// <summary>
-            /// 验证
-            /// </summary>
-            public string Auth { get; set; }
-        }
-
-        private RedisConn connData = new RedisConn();
+        /// <summary>
+        /// 展示类型，0为添加Window，1为编辑Window
+        /// </summary>
+        public int ShowType { get; set; }
+        private RedisConnConfig connData = new RedisConnConfig();
         private static ConnectionMultiplexer redisConn = null;
 
         public AddRedisConnWin()
         {
             InitializeComponent();
-            this.connData.Port = 6379; // 默认端口
-            this.gridConn.DataContext = connData;
+            if(ShowType == 1)
+            {
+                this.gridConn.DataContext = this.Tag as RedisConnConfig;
+            } 
+            else
+            {
+                this.connData.Port = 6379; // 默认端口
+                this.gridConn.DataContext = connData;
+            }
         }
 
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
@@ -61,7 +49,10 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
-
+        /// <summary>
+        /// 连接选项是否完整
+        /// </summary>
+        /// <returns></returns>
         private bool isComplete()
         {
             if(String.IsNullOrEmpty(this.connData.ConnName))

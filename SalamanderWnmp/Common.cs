@@ -27,5 +27,9 @@ namespace SalamanderWnmp
         // 应用启动目录
         public static readonly String APP_STARTUP_PATH = AppDomain.CurrentDomain.BaseDirectory;
 
+
+        // Redis连接配置列表
+        public static Dictionary<string, RedisConnConfig> ConnConfigList = null;
+
     }
 }

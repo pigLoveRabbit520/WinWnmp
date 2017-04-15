@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Threading;
 
-namespace SalamanderWnmp
+namespace SalamanderWnmp.Tool
 {
 
     public static class DispatcherHelper

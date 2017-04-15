@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>D:\software\wnmp-MH\</OutputPath>
+    <OutputPath>D:\software\SalamanderWnmp\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -121,14 +121,16 @@
     </ApplicationDefinition>
     <Compile Include="AttachProperty\ControlAttachProperty.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="Configuration\RedisConnConfig.cs" />
     <Compile Include="Converter\LanToBoolConverter .cs" />
     <Compile Include="Converter\ProcessColorConverter.cs" />
     <Compile Include="Converter\ProcessTextConverter.cs" />
-    <Compile Include="DispatcherHelper.cs" />
+    <Compile Include="Tool\DispatcherHelper.cs" />
     <Compile Include="Programs\Nginx.cs" />
-    <Compile Include="Tool\AutoConfig.cs" />
+    <Compile Include="Tool\EnvironmentAutoConfig.cs" />
     <Compile Include="Tool\CodeHelper.cs" />
     <Compile Include="Tool\HttpHelper.cs" />
+    <Compile Include="Tool\RedisConnHelper.cs" />
     <Compile Include="UI\AboutWin.xaml.cs">
       <DependentUpon>AboutWin.xaml</DependentUpon>
     </Compile>

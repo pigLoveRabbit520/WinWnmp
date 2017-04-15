@@ -96,7 +96,7 @@ namespace SalamanderWnmp.UI
             Common.Settings.ReadSettings();
             if(Common.Settings.FirstRun.Value)
             {
-                AutoConfig.Run();
+                EnvironmentAutoConfig.Run();
                 Common.Settings.FirstRun.Value = false;
                 Common.Settings.UpdateSettings();
             }

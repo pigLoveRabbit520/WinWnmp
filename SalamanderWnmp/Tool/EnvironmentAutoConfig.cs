@@ -6,7 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace SalamanderWnmp.Tool
 {
-    class AutoConfig
+    /// <summary>
+    /// 开发环境自动配置类
+    /// </summary>
+    class EnvironmentAutoConfig
     {
         private readonly static string nginxConfFile = Constants.APP_STARTUP_PATH + "nginx/conf/nginx.conf";
 
