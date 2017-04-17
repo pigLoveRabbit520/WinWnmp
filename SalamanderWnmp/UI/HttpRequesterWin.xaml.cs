@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace SalamanderWnmp.UI
 {
@@ -23,7 +26,6 @@ namespace SalamanderWnmp.UI
             cbHeaderName.ItemsSource = this.frequentHeaderNames;
             this.lbHeaders.ItemsSource = this.headers;
         }
-
 
         private LoadingWin winLoding = null;
         private HttpHelper helper = null;
@@ -124,7 +126,10 @@ namespace SalamanderWnmp.UI
                     res = helper.Post();
                     break;
             }
-            DispatcherHelper.UIDispatcher.Invoke(new Action(() => { txtRes.Text = res; }));
+            DispatcherHelper.UIDispatcher.Invoke(new Action(() => {
+                txtRes.Text = res;
+                wbRes.NavigateToString(res);
+            }));
             DispatcherHelper.UIDispatcher.Invoke(new Action(() => 
             {
                 winLoding.Close();
@@ -184,6 +189,17 @@ namespace SalamanderWnmp.UI
 
         private void WrapPanel_Checked(object sender, RoutedEventArgs e)
         {
+            RadioButton btn = e.OriginalSource as RadioButton;
+            if (btn.Name == "rbtnBroswer")
+            {
+                wbRes.Visibility = Visibility.Visible;
+                txtRes.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                wbRes.Visibility = Visibility.Hidden;
+                txtRes.Visibility = Visibility.Visible;
+            }
             e.Handled = true;
         }
     }

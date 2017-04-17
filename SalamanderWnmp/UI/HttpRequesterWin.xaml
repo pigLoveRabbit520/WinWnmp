@@ -160,7 +160,10 @@
                         <RadioButton x:Name="rbtnTxt" GroupName="viewMode">Text</RadioButton>
                         <RadioButton x:Name="rbtnBroswer"  GroupName="viewMode">WebBrowser</RadioButton>
                     </WrapPanel>
+                    
                     <TextBox x:Name="txtRes" Grid.Row="1"  Margin="10,5"  TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+
+                    <WebBrowser x:Name="wbRes" Grid.Row="1" Margin="10,5"   Visibility="Hidden"/>
                 </Grid>
 
             </Grid>
