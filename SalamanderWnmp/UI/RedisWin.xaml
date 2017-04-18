@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
          WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
-        Title="AboutWindow" Height="500" Width="550">
+        Title="AboutWindow" Height="500" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -33,7 +33,13 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TreeView  BorderThickness="1" Margin="5" x:Name="tvDBs" />
+            <TreeView  BorderThickness="1" Margin="5" x:Name="tvConn">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Nodes}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
 
             <TextBox Grid.Column="1" Margin="5" />
         </Grid>

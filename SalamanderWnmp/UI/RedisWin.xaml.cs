@@ -1,12 +1,10 @@
-﻿using SalamanderWnmp.Configuration;
-using SalamanderWnmp.Tool;
+﻿using SalamanderWnmp.Tool;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using static SalamanderWnmp.Tool.RedisHelper;
 
 namespace SalamanderWnmp.UI
 {
@@ -17,12 +15,18 @@ namespace SalamanderWnmp.UI
     {
 
         private static ConnectionMultiplexer redisConn = null;
+        private ObservableCollection<Node> nodes = null;
         private IServer server = null;
 
         public RedisWin()
         {
             InitializeComponent();
-            Common.ConnConfigList = RedisConnHelper.GetConnList();
+            if(Common.ConnConfigList == null)
+            {
+                Common.ConnConfigList = RedisHelper.GetConnList();
+            }
+            this.nodes = RedisHelper.BuildNodes(Common.ConnConfigList);
+            this.tvConn.ItemsSource = this.nodes;
         }
 
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
@@ -45,8 +49,8 @@ namespace SalamanderWnmp.UI
             AddRedisConnWin win = new AddRedisConnWin();
             win.Owner = this;
             win.ShowType = 0;
-            win.Show();
             win.Closing += AddRedisConnWin_Closing;
+            win.ShowDialog();
             e.Handled = true;
         }
 
@@ -59,14 +63,15 @@ namespace SalamanderWnmp.UI
                 if(win.ShowType == 0)
                 {
                     Common.ConnConfigList.Add(config.ConnName, config);
+                    nodes.Add(new Node { Name = config.ConnName, NodeType = NodeType.Connnection });
                 }
                 else
                 {
                     Common.ConnConfigList[config.ConnName] = config;
+                    (tvConn.SelectedItem as Node).Name = config.ConnName;
                 }
-                RedisConnHelper.WriteConnList(Common.ConnConfigList);
+                RedisHelper.WriteConnList(Common.ConnConfigList);
             }
-            this.tvDBs.ItemsSource = Common.ConnConfigList;
         }
 
         private void ListBoxItem_MouseDoubleClick(object sender, RoutedEventArgs e)
@@ -75,4 +80,6 @@ namespace SalamanderWnmp.UI
             //IDatabase db = redisConn.GetDatabase();
         }
     }
+
+    
 }

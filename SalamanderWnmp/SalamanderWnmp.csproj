@@ -125,7 +125,6 @@
     </ApplicationDefinition>
     <Compile Include="AttachProperty\ControlAttachProperty.cs" />
     <Compile Include="Common.cs" />
-    <Compile Include="Configuration\RedisConnConfig.cs" />
     <Compile Include="Converter\LanToBoolConverter .cs" />
     <Compile Include="Converter\ProcessColorConverter.cs" />
     <Compile Include="Converter\ProcessTextConverter.cs" />
@@ -134,7 +133,7 @@
     <Compile Include="Tool\EnvironmentAutoConfig.cs" />
     <Compile Include="Tool\CodeHelper.cs" />
     <Compile Include="Tool\HttpHelper.cs" />
-    <Compile Include="Tool\RedisConnHelper.cs" />
+    <Compile Include="Tool\RedisHelper.cs" />
     <Compile Include="UI\AboutWin.xaml.cs">
       <DependentUpon>AboutWin.xaml</DependentUpon>
     </Compile>
