@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SalamanderWnmp.UI
+namespace SalamanderWnmp.UserClass
 {
 
     public class ImageMenu : ButtonBase
