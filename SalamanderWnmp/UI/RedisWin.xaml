@@ -39,6 +39,11 @@
                         <TextBlock Text="{Binding Name}"/>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_MouseDoubleClick" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
             </TreeView>
 
             <TextBox Grid.Column="1" Margin="5" />

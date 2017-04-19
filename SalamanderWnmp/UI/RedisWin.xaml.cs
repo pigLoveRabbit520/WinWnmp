@@ -74,10 +74,11 @@ namespace SalamanderWnmp.UI
             }
         }
 
-        private void ListBoxItem_MouseDoubleClick(object sender, RoutedEventArgs e)
+        private void TreeViewItem_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            //RedisKey key = (RedisKey)lbKeys.SelectedItem;
-            //IDatabase db = redisConn.GetDatabase();
+            Node node = tvConn.SelectedItem as Node;
+
+            e.Handled = true;
         }
     }
 
