@@ -149,6 +149,16 @@ namespace SalamanderWnmp.Tool
         }
 
         /// <summary>
+        /// 转化字符串编码
+        /// </summary>
+        /// <returns></returns>
+        private string GetCorrectString(string errStr)
+        {
+            return Encoding.UTF8.GetString(Encoding.Default.GetBytes(errStr));
+        }
+
+
+        /// <summary>
         /// 运行js脚本
         /// </summary>
         /// <returns></returns>
@@ -168,11 +178,11 @@ namespace SalamanderWnmp.Tool
                 MessageBox.Show("node未安装或者未设置node环境变量！");
                 return "";
             }
-            string outStr = scriptProc.StandardOutput.ReadToEnd();
+            string outStr = GetCorrectString(scriptProc.StandardOutput.ReadToEnd());
             // 有错误，读取错误信息
             if (String.IsNullOrEmpty(outStr))
             {
-                outStr = scriptProc.StandardError.ReadToEnd();
+                outStr = GetCorrectString(scriptProc.StandardError.ReadToEnd());
             }
             scriptProc.Close();
             return outStr;
@@ -200,11 +210,11 @@ namespace SalamanderWnmp.Tool
                 MessageBox.Show("PHP目录不存在！");
                 return "";
             }
-            string outStr = scriptProc.StandardOutput.ReadToEnd();
+            string outStr = GetCorrectString(scriptProc.StandardOutput.ReadToEnd());
             // 有错误，读取错误信息
             if (String.IsNullOrEmpty(outStr))
             {
-                outStr = scriptProc.StandardError.ReadToEnd();
+                outStr = GetCorrectString(scriptProc.StandardError.ReadToEnd());
             }
             scriptProc.Close();
             return outStr;
@@ -231,11 +241,11 @@ namespace SalamanderWnmp.Tool
                 MessageBox.Show("Python环境未安装或未添加到环境变量！");
                 return "";
             }
-            string outStr = scriptProc.StandardOutput.ReadToEnd();
+            string outStr = GetCorrectString(scriptProc.StandardOutput.ReadToEnd());
             // 有错误，读取错误信息
             if (String.IsNullOrEmpty(outStr))
             {
-                outStr = scriptProc.StandardError.ReadToEnd();
+                outStr = GetCorrectString(scriptProc.StandardError.ReadToEnd());
             }
             scriptProc.Close();
             return outStr;
@@ -262,11 +272,11 @@ namespace SalamanderWnmp.Tool
                 MessageBox.Show("Go环境未安装！");
                 return "";
             }
-            string outStr = scriptProc.StandardOutput.ReadToEnd();
+            string outStr = GetCorrectString(scriptProc.StandardOutput.ReadToEnd());
             // 有错误，读取错误信息
             if (String.IsNullOrEmpty(outStr))
             {
-                outStr = scriptProc.StandardError.ReadToEnd();
+                outStr = GetCorrectString(scriptProc.StandardError.ReadToEnd());
             }
             scriptProc.Close();
             return outStr;
