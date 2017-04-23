@@ -97,20 +97,20 @@ namespace SalamanderWnmp.Tool
             Func<string> runCode = null;
             switch (selectedLan)
             {
-                case CodeHelper.ProgramLan.JavaScript:
+                case ProgramLan.JavaScript:
                     sw.Write(code);
                     runCode = RunNode;
                     break;
-                case CodeHelper.ProgramLan.PHP:
+                case ProgramLan.PHP:
                     runCode = RunPHP;
                     sw.WriteLine("<?php ");
                     sw.Write(code);
                     break;
-                case CodeHelper.ProgramLan.Python:
+                case ProgramLan.Python:
                     runCode = RunPython;
                     sw.Write(code);
                     break;
-                case CodeHelper.ProgramLan.Go:
+                case ProgramLan.Go:
                     sw.Write(code);
                     runCode = RunGo;
                     break;
@@ -135,19 +135,29 @@ namespace SalamanderWnmp.Tool
         }
 
         /// <summary>
+        /// 公共ProcessInfo
+        /// </summary>
+        /// <returns></returns>
+        private ProcessStartInfo GetCommonProcessInfo()
+        {
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.RedirectStandardError = true;
+            info.RedirectStandardOutput = true;
+            info.UseShellExecute = false;
+            info.CreateNoWindow = true;
+            return info;
+        }
+
+        /// <summary>
         /// 运行js脚本
         /// </summary>
         /// <returns></returns>
         private string RunNode()
         {
             Process scriptProc = new Process();
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = "node.exe";
+            ProcessStartInfo info = GetCommonProcessInfo();
             info.Arguments = codeTmpPath;
-            info.RedirectStandardError = true;
-            info.RedirectStandardOutput = true;
-            info.UseShellExecute = false;
-            info.CreateNoWindow = true;
+            info.FileName = "node.exe";
             scriptProc.StartInfo = info;
             try
             {
@@ -176,14 +186,10 @@ namespace SalamanderWnmp.Tool
         private string RunPHP()
         {
             Process scriptProc = new Process();
-            ProcessStartInfo info = new ProcessStartInfo();
+            ProcessStartInfo info = GetCommonProcessInfo();
             info.FileName = Constants.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value
                 + "/php.exe";
             info.Arguments = "-f " + codeTmpPath;
-            info.RedirectStandardError = true;
-            info.RedirectStandardOutput = true;
-            info.UseShellExecute = false;
-            info.CreateNoWindow = true;
             scriptProc.StartInfo = info;
             try
             {
@@ -212,13 +218,9 @@ namespace SalamanderWnmp.Tool
         private string RunPython()
         {
             Process scriptProc = new Process();
-            ProcessStartInfo info = new ProcessStartInfo();
+            ProcessStartInfo info = GetCommonProcessInfo();
             info.FileName = "python.exe";
             info.Arguments = codeTmpPath;
-            info.RedirectStandardError = true;
-            info.RedirectStandardOutput = true;
-            info.UseShellExecute = false;
-            info.CreateNoWindow = true;
             scriptProc.StartInfo = info;
             try
             {
@@ -247,13 +249,9 @@ namespace SalamanderWnmp.Tool
         public string RunGo()
         {
             Process scriptProc = new Process();
-            ProcessStartInfo info = new ProcessStartInfo();
+            ProcessStartInfo info = GetCommonProcessInfo();
             info.FileName = "go.exe";
             info.Arguments = "run " + codeTmpPath;
-            info.RedirectStandardError = true;
-            info.RedirectStandardOutput = true;
-            info.UseShellExecute = false;
-            info.CreateNoWindow = true;
             scriptProc.StartInfo = info;
             try
             {
