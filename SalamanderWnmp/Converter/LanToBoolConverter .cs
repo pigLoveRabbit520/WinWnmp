@@ -10,8 +10,8 @@ namespace SalamanderWnmp.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            CodePanelWin.ProgramLan lan = (CodePanelWin.ProgramLan)value;
-            return lan == (CodePanelWin.ProgramLan)int.Parse(parameter.ToString());
+            Tool.CodeHelper.ProgramLan lan = (Tool.CodeHelper.ProgramLan)value;
+            return lan == (Tool.CodeHelper.ProgramLan)int.Parse(parameter.ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -21,7 +21,7 @@ namespace SalamanderWnmp.Converter
             {
                 return null;
             }
-            return (CodePanelWin.ProgramLan)int.Parse(parameter.ToString());
+            return (Tool.CodeHelper.ProgramLan)int.Parse(parameter.ToString());
         }
     }
 }
