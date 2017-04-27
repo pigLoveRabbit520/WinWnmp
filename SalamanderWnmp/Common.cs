@@ -1,4 +1,5 @@
 ﻿using SalamanderWnmp.Configuration;
+using SalamanderWnmp.Programs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,12 @@ namespace SalamanderWnmp
 
         // Redis连接配置列表
         public static Dictionary<string, RedisConnConfig> ConnConfigList = null;
+
+
+
+        public static readonly MysqlProgram Mysql = new MysqlProgram();
+        public static readonly WnmpProgram Nginx = new NginxProgram();
+        public static readonly PHPProgram PHP = new PHPProgram();
 
     }
 }

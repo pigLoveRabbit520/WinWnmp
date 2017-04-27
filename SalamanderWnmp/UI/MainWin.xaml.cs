@@ -25,9 +25,7 @@ namespace SalamanderWnmp.UI
     {
         #region 属性
         public event PropertyChangedEventHandler PropertyChanged;
-        private readonly MysqlProgram mysql = new MysqlProgram();
-        private readonly WnmpProgram nginx = new NginxProgram();
-        private readonly PHPProgram php = new PHPProgram();
+       
         // 显示的界面集合
         private List<Window> showWins = new List<Window>();
         // 
@@ -104,13 +102,13 @@ namespace SalamanderWnmp.UI
         {
             // 设置主题颜色
             Application.Current.Resources["ThemeColor"] = Common.Settings.ThemeColor.Value;
-            nginx.Setup();
-            mysql.Setup();
-            php.Setup();
+            Common.Nginx.Setup();
+            Common.Mysql.Setup();
+            Common.PHP.Setup();
             AddWinHash();
-            this.stackNginx.DataContext = nginx;
-            this.stackPHP.DataContext = php;
-            this.stackMysql.DataContext = mysql;
+            this.stackNginx.DataContext = Common.Nginx;
+            this.stackPHP.DataContext = Common.PHP;
+            this.stackMysql.DataContext = Common.Mysql;
             this.stackCodePanel.DataContext = this;
             this.stackRedisPanel.DataContext = this;
             this.stackHttpRequester.DataContext = this;
@@ -158,22 +156,22 @@ namespace SalamanderWnmp.UI
         {
             Log.setLogComponent(this.txtLog);
             DoCheckIfAppsAreRunningTimer();
-            Log.CheckForApps(nginx, mysql, php);
+            Log.CheckForApps(Common.Nginx, Common.Mysql, Common.PHP);
             // 安装mysql服务
             if (Directory.Exists(Constants.APP_STARTUP_PATH + Common.Settings.MysqlDirName.Value))
             {
-                if (!mysql.ServiceExists())
-                    mysql.InstallService();
+                if (!Common.Mysql.ServiceExists())
+                    Common.Mysql.InstallService();
             }
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
             // 自动启动
             if (Common.Settings.StartNginxOnLaunch.Value)
-                nginx.Start();
+                Common.Nginx.Start();
             if (Common.Settings.StartMysqlOnLaunch.Value)
-                mysql.Start();
+                Common.Mysql.Start();
             if (Common.Settings.StartPHPOnLaunch.Value)
-                php.Start();
+                Common.PHP.Start();
         }
 
         private void DoCheckIfAppsAreRunningTimer()
@@ -182,9 +180,9 @@ namespace SalamanderWnmp.UI
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += (s, e) =>
             {
-                nginx.SetStatus();
-                mysql.SetStatus();
-                php.SetStatus();
+                Common.Nginx.SetStatus();
+                Common.Mysql.SetStatus();
+                Common.PHP.SetStatus();
                 CheckWindowOpenStatus();
             };
             timer.Start();
@@ -314,37 +312,37 @@ namespace SalamanderWnmp.UI
 
         private void nginxToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            nginx.Start();
+            Common.Nginx.Start();
             e.Handled = true;
         }
 
         private void nginxToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            nginx.Stop();
+            Common.Nginx.Stop();
             e.Handled = true;
         }
 
         private void phpToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            php.Start();
+            Common.PHP.Start();
             e.Handled = true;
         }
 
         private void phpToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            php.Stop();
+            Common.PHP.Stop();
             e.Handled = true;
         }
 
         private void mysqlToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            mysql.Start();
+            Common.Mysql.Start();
             e.Handled = true;
         }
 
         private void mysqlToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            mysql.Stop();
+            Common.Mysql.Stop();
             e.Handled = true;
         }
 

@@ -53,6 +53,9 @@ namespace SalamanderWnmp.UI
         private void btnSaveRegular_Click(object sender, RoutedEventArgs e)
         {
             Common.Settings.UpdateSettings();
+            Common.Nginx.Setup();
+            Common.Mysql.Setup();
+            Common.PHP.Setup();
             this.Close();
             e.Handled = true;
         }
