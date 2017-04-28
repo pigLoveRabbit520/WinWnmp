@@ -6,7 +6,7 @@
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UI"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
-        Title="QuestionWin" Height="600" Width="700">
+        Title="QuestionWin" Height="600" Width="710">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -27,7 +27,13 @@
         </Grid>
 
         <TabControl TabStripPlacement="Left" Grid.Row="1">
-            <TabItem Header="Nginx配置">
+            <TabItem Header="Nginx">
+                <TabItem.Resources>
+                    <Style  TargetType="{x:Type ListItem}">
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="Paragraph.FontSize" Value="16" />
+                    </Style>
+                </TabItem.Resources>
                 <FlowDocument>
                     <List>
                         <ListItem>
@@ -36,29 +42,33 @@
                         <ListItem>
                             <Paragraph>
                                 Nginx配置PATHINFO：
-                                <LineBreak/>
-                                location ~ \.php {
-                                <LineBreak/>
+                            </Paragraph>
+                            <Paragraph>location ~ \.php {</Paragraph>
+                            <Paragraph Padding="20, 0">
                                 fastcgi_pass   127.0.0.1:9000;
                                 <LineBreak/>
                                 fastcgi_index  index.php;
                                 <LineBreak/>
-                                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                                fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
                                 <LineBreak/>
                                 fastcgi_split_path_info ^(.+\.php)(.*)$;
                                 <LineBreak/>
                                 fastcgi_param PATH_INFO $fastcgi_path_info;
                                 <LineBreak/>
                                 include        fastcgi_params;
-                                <LineBreak/>
-                                }
                             </Paragraph>
+                            <Paragraph>}</Paragraph>
                         </ListItem>
                     </List>
                 </FlowDocument>
             </TabItem>
             <TabItem Header="PHP">
-                   
+                <FlowDocument>
+                    <Paragraph>
+                        PHP7.0 x64需要MSVC14 (Visual C++ 2015)运行库支持，
+                        <Hyperlink NavigateUri="https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe" RequestNavigate="Hyperlink_RequestNavigate">下载链接</Hyperlink>
+                    </Paragraph>
+                </FlowDocument>
             </TabItem>
         </TabControl>
     </Grid>
