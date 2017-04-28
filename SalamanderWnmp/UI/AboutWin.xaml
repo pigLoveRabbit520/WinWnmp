@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
-        Title="{x:Static prop:Resources.About}" Height="250" Width="300">
+        Title="{x:Static prop:Resources.About}" Height="280" Width="320">
     <Window.Resources>
         <Storyboard x:Key="RotateHeadStoryboard">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"   Duration="00:00:05" RepeatBehavior="Forever"  Storyboard.TargetName="imgPortrait" 
@@ -37,8 +37,8 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
             </StackPanel>
         </Grid>
-        <Image x:Name="imgPortrait" Grid.Row="1" Source="/Images/author.png" 
-               HorizontalAlignment="Center" Margin="8" RenderTransformOrigin="0.5, 0.5" >
+        <Image x:Name="imgPortrait" Grid.Row="1" Source="/Images/author.png"  Cursor="Hand" ToolTip="Masayume Chasing"
+               HorizontalAlignment="Center" Margin="8" RenderTransformOrigin="0.5, 0.5" MouseDown="imgPortrait_MouseDown">
             <Image.RenderTransform>
                 <TransformGroup>
                     <RotateTransform  Angle="0" />

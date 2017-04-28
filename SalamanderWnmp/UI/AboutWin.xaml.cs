@@ -44,5 +44,11 @@ namespace SalamanderWnmp.UI
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
+
+        private void imgPortrait_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("http://ongd1spyv.bkt.clouddn.com/"));
+            e.Handled = true;
+        }
     }
 }
