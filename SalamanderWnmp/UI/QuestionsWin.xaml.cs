@@ -17,9 +17,9 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// QuestionWin.xaml 的交互逻辑
     /// </summary>
-    public partial class QuestionWin : Window
+    public partial class QuestionsWin : Window
     {
-        public QuestionWin()
+        public QuestionsWin()
         {
             InitializeComponent();
         }

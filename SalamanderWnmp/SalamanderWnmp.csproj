@@ -146,8 +146,8 @@
     <Compile Include="UI\LoadingWin.xaml.cs">
       <DependentUpon>LoadingWin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\QuestionWin.xaml.cs">
-      <DependentUpon>QuestionWin.xaml</DependentUpon>
+    <Compile Include="UI\QuestionsWin.xaml.cs">
+      <DependentUpon>QuestionsWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserComponent\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
@@ -187,7 +187,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\QuestionWin.xaml">
+    <Page Include="UI\QuestionsWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

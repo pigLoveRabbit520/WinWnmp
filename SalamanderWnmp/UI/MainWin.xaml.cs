@@ -276,7 +276,7 @@ namespace SalamanderWnmp.UI
                     showWin = new ChangeThemeColorWin();
                     break;
                 case "MenuQuestions":
-                    showWin = new QuestionWin();
+                    showWin = new QuestionsWin();
                     break;
             }
             showWins.Add(showWin);
