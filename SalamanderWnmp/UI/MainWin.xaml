@@ -42,6 +42,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <local:ImageMenu x:Name="MenuSettings" Grid.Row="0" MyText="{x:Static prop:Resources.Settings}" MySource="/Images/Menu/settings.png"/>
                         <local:ImageMenu x:Name="MenuCodePanel" Grid.Row="1" MyText="{x:Static prop:Resources.CodePanel}" MySource="/Images/Menu/code.png"/>
@@ -49,7 +50,8 @@
                         <local:ImageMenu x:Name="MenuHttp" Grid.Row="3" MyText="{x:Static prop:Resources.HttpRequester}" MySource="/Images/Menu/http.png"/>
                         <local:ImageMenu x:Name="MenuDir" Grid.Row="4" MyText="{x:Static prop:Resources.MainDir}" MySource="/Images/Menu/dir.png"/>
                         <local:ImageMenu x:Name="MenuColor" Grid.Row="5" MyText="{x:Static prop:Resources.ChangeColor}" MySource="/Images/Menu/skin.png"/>
-                        <local:ImageMenu x:Name="MenuAbout" Grid.Row="6" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/about.png"/>
+                        <local:ImageMenu x:Name="MenuQuestions" Grid.Row="6" MyText="{x:Static prop:Resources.CommonQuestions}" MySource="/Images/Menu/about.png"/>
+                        <local:ImageMenu x:Name="MenuAbout" Grid.Row="7" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/about.png"/>
                     </Grid>
                 </Border>
             </Popup>

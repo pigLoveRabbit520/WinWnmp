@@ -61,7 +61,7 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
-        ///   查找类似 关于 的本地化字符串。
+        ///   查找类似 关于作者 的本地化字符串。
         /// </summary>
         public static string About {
             get {
@@ -102,6 +102,15 @@ namespace SalamanderWnmp.Properties {
         public static string CodePanel {
             get {
                 return ResourceManager.GetString("CodePanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 常见问题 的本地化字符串。
+        /// </summary>
+        public static string CommonQuestions {
+            get {
+                return ResourceManager.GetString("CommonQuestions", resourceCulture);
             }
         }
         

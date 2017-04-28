@@ -1,0 +1,65 @@
+﻿<Window x:Class="SalamanderWnmp.UI.QuestionWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
+        xmlns:local="clr-namespace:SalamanderWnmp.UI"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
+        Title="QuestionWin" Height="600" Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <!--标题栏-->
+        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="title_MouseDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static prop:Resources.CommonQuestions}" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <TabControl TabStripPlacement="Left" Grid.Row="1">
+            <TabItem Header="Nginx配置">
+                <FlowDocument>
+                    <List>
+                        <ListItem>
+                            <Paragraph>配置root时，用/，不要用\</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                Nginx配置PATHINFO：
+                                <LineBreak/>
+                                location ~ \.php {
+                                <LineBreak/>
+                                fastcgi_pass   127.0.0.1:9000;
+                                <LineBreak/>
+                                fastcgi_index  index.php;
+                                <LineBreak/>
+                                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                                <LineBreak/>
+                                fastcgi_split_path_info ^(.+\.php)(.*)$;
+                                <LineBreak/>
+                                fastcgi_param PATH_INFO $fastcgi_path_info;
+                                <LineBreak/>
+                                include        fastcgi_params;
+                                <LineBreak/>
+                                }
+                            </Paragraph>
+                        </ListItem>
+                    </List>
+                </FlowDocument>
+            </TabItem>
+            <TabItem Header="PHP">
+                   
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

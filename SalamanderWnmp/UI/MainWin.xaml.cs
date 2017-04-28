@@ -114,14 +114,18 @@ namespace SalamanderWnmp.UI
             this.stackHttpRequester.DataContext = this;
         }
 
+        /// <summary>
+        /// 添加Hash对应
+        /// </summary>
         private void AddWinHash()
         {
-            winHash.Add("MenuAbout", "AboutWin");
             winHash.Add("MenuCodePanel", "CodePanelWin");
             winHash.Add("MenuRedis", "RedisWin");
             winHash.Add("MenuSettings", "SettingWin");
             winHash.Add("MenuColor", "ChangeThemeColorWin");
             winHash.Add("MenuHttp", "HttpRequesterWin");
+            winHash.Add("MenuAbout", "AboutWin");
+            winHash.Add("MenuQuestions", "QuestionsWin");
         }
 
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
@@ -271,6 +275,9 @@ namespace SalamanderWnmp.UI
                 case "MenuColor":
                     showWin = new ChangeThemeColorWin();
                     break;
+                case "MenuQuestions":
+                    showWin = new QuestionWin();
+                    break;
             }
             showWins.Add(showWin);
             showWin.Closing += ChildWindow_Closing;
@@ -282,7 +289,6 @@ namespace SalamanderWnmp.UI
             Window win = (Window)sender;
             showWins.Remove(win);
         }
-
 
 
 

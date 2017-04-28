@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>关于</value>
+    <value>关于作者</value>
   </data>
   <data name="AddConn" xml:space="preserve">
     <value>添加连接</value>
@@ -131,6 +131,9 @@
   </data>
   <data name="CodePanel" xml:space="preserve">
     <value>编程面板</value>
+  </data>
+  <data name="CommonQuestions" xml:space="preserve">
+    <value>常见问题</value>
   </data>
   <data name="DefaultThemeColor" xml:space="preserve">
     <value>#16a085</value>
