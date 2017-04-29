@@ -59,6 +59,20 @@
                             </Paragraph>
                             <Paragraph>}</Paragraph>
                         </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                实现URL REWRITE：
+                            </Paragraph>
+                            <Paragraph>
+                                location / {
+                            </Paragraph>
+                            <Paragraph Padding="20, 0">
+                                try_files $uri $uri/ /index.php$is_args$args;
+                            </Paragraph>
+                            <Paragraph>
+                                }
+                            </Paragraph>
+                        </ListItem>
                     </List>
                 </FlowDocument>
             </TabItem>
