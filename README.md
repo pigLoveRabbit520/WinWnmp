@@ -9,9 +9,9 @@
 [下载地址](http://ongd1spyv.bkt.clouddn.com/SalamanderWnmp.7z)
 
 ## Main Window(主界面)
-![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/24835427/cd6b5500-1d34-11e7-9fb1-430a46a47529.png)
+![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/25646342/079fc59a-2fea-11e7-9e54-836da73ec8d6.png)
 
-![SalamanderWnmp](https://cloud.githubusercontent.com/assets/26649875/24835531/297c2584-1d37-11e7-9ca6-a0f1bd1648b4.png)
+![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/25646415/acd9bf20-2fea-11e7-9ed2-f878ff66b2e5.png)
 
 
 ## Other Functions(其他功能)
