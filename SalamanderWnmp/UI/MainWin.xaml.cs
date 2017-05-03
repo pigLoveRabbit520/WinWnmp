@@ -151,6 +151,12 @@ namespace SalamanderWnmp.UI
                 case "btnShowMenu":
                     popupMenu.IsOpen = true;
                     break;
+                case "btnChangeThemeColor":
+                    Window showWin = new ChangeThemeColorWin();
+                    showWins.Add(showWin);
+                    showWin.Closing += ChildWindow_Closing;
+                    showWin.Show();
+                    break;
             }
             e.Handled = true;
         }
@@ -271,9 +277,6 @@ namespace SalamanderWnmp.UI
                     break;
                 case "MenuHttp":
                     showWin = new HttpRequesterWin();
-                    break;
-                case "MenuColor":
-                    showWin = new ChangeThemeColorWin();
                     break;
                 case "MenuQuestions":
                     showWin = new QuestionsWin();

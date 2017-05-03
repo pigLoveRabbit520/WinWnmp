@@ -24,8 +24,15 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static prop:Resources.AppName}" FontSize="15" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
-                <Button x:Name="btnShowMenu" Width="20" Height="20" Style="{StaticResource ShowMenuButton}"/>
-                <Button x:Name="btnMinimize" Width="20" Height="20" Style="{StaticResource MinimizeButton}"/>
+                <Button x:Name="btnChangeThemeColor" Width="20" Height="20" Style="{StaticResource ImageButton}" >
+                    <Image Source="/Images/skin.png"  />
+                </Button>
+                <Button x:Name="btnShowMenu" Width="20" Height="20" Style="{StaticResource ImageButton}" ToolTip="菜单">
+                    <Image Source="/Images/menu.png"  />
+                </Button>
+                <Button x:Name="btnMinimize" Width="20" Height="20" Style="{StaticResource ImageButton}" ToolTip="最小化">
+                    <Image Source="/Images/minimize.png" />
+                </Button>
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" />
             </StackPanel>
 
@@ -49,7 +56,6 @@
                         <local:ImageMenu x:Name="MenuRedis" Grid.Row="2" MyText="{x:Static prop:Resources.RedisPanel}" MySource="/Images/Menu/redis.png"/>
                         <local:ImageMenu x:Name="MenuHttp" Grid.Row="3" MyText="{x:Static prop:Resources.HttpRequester}" MySource="/Images/Menu/http.png"/>
                         <local:ImageMenu x:Name="MenuDir" Grid.Row="4" MyText="{x:Static prop:Resources.MainDir}" MySource="/Images/Menu/dir.png"/>
-                        <local:ImageMenu x:Name="MenuColor" Grid.Row="5" MyText="{x:Static prop:Resources.ChangeColor}" MySource="/Images/Menu/skin.png"/>
                         <local:ImageMenu x:Name="MenuQuestions" Grid.Row="6" MyText="{x:Static prop:Resources.CommonQuestions}" MySource="/Images/Menu/about.png"/>
                         <local:ImageMenu x:Name="MenuAbout" Grid.Row="7" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/author.png"/>
                     </Grid>

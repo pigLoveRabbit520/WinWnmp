@@ -69,9 +69,6 @@
             <Style TargetType="Button" x:Key="ExitButton">
                 <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="ToolTip" Value="关闭"/>
-                <Setter Property="Width" Value="21"/>
-                <Setter Property="Height" Value="21"/>
-                <Setter Property="Margin" Value="0,5,3,5"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <!--退出Button的控件模板-->
@@ -96,48 +93,23 @@
                 </Setter>
             </Style>
 
-            <!--最小化按钮的样式-->
-            <Style TargetType="Button" x:Key="MinimizeButton">
-                <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="ToolTip" Value="最小化"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <!--退出Button的控件模板-->
-                        <ControlTemplate TargetType="Button">
-                            <Grid x:Name="gridBack"   Background="Transparent">
-                                <Grid x:Name="gridFore">
-                                    <Grid.Background>
-                                        <ImageBrush ImageSource="Images/minimize.png"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" TargetName="gridBack" Value="#33FFFFFF"/>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="gridBack" Property="Background" Value="#0CFFFFFF"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
 
-            <!--菜单按钮的样式-->
-            <Style TargetType="Button" x:Key="ShowMenuButton">
+            <!--普通菜单按钮的样式-->
+            <Style TargetType="Button" x:Key="ImageButton">
                 <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="ToolTip" Value="菜单"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <!--退出Button的控件模板-->
                         <ControlTemplate TargetType="Button">
                             <Grid x:Name="gridBack"   Background="Transparent">
-                                <Grid x:Name="gridFore">
-                                    <Grid.Background>
-                                        <ImageBrush ImageSource="Images/menu.png"/>
-                                    </Grid.Background>
-                                </Grid>
+                                <ContentPresenter x:Name="content" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" 
+                                              RecognizesAccessKey="True" 
+                                              Content="{TemplateBinding  Content}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
