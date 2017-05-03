@@ -30,7 +30,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <local:ColorPicker Grid.Row="0" x:Name="colorPicker" Margin="0, 15" ColorChanged="colorPicker_ColorChanged"  Color="{StaticResource ThemeColor}"/>
-            <Grid Grid.Row="1" Height="35">
+            <Grid Grid.Row="1" Height="35" Margin="0, 10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -38,7 +38,7 @@
                 <Button Grid.Column="0" Width="90" HorizontalAlignment="Center" x:Name="btnSaveThemeColor" Click="btnSave_Click" Content="保存设置"/>
                 <Button Grid.Column="1" Click="cmdSet_Click" Width="90" HorizontalAlignment="Center" Content="恢复默认颜色"/>
             </Grid>
-            <TextBlock Grid.Row="2" Name="lblColor" Margin="0,5,0,0"></TextBlock>
+            <TextBox IsReadOnly="True" Grid.Row="2" Name="lblColor" Margin="0,5,0,0" BorderThickness="0"></TextBox>
         </Grid>
     </Grid>
 
