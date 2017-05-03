@@ -1,15 +1,15 @@
-﻿<Window x:Class="SalamanderWnmp.UI.MainWin"
+﻿<local:SalamanderWindow x:Class="SalamanderWnmp.UI.MainWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         xmlns:cvt="clr-namespace:SalamanderWnmp.Converter"
-        WindowStartupLocation="CenterScreen" Style="{DynamicResource DefaultWindow}"
+        WindowStartupLocation="CenterScreen"
         Title="{x:Static prop:Resources.AppName}" Height="350" Width="500" Loaded="Window_Loaded">
-    <Window.Resources>
+    <local:SalamanderWindow.Resources>
         <cvt:ProcessColorConverter x:Key="cvtColor"/>
         <cvt:ProcessTextConverter x:Key="cvtText"/>
-    </Window.Resources>
+    </local:SalamanderWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -221,4 +221,4 @@
 
 
     </Grid>
-</Window>
+</local:SalamanderWindow>

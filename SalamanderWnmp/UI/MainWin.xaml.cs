@@ -21,7 +21,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWin : Window, INotifyPropertyChanged
+    public partial class MainWin : SalamanderWindow, INotifyPropertyChanged
     {
         #region 属性
         public event PropertyChangedEventHandler PropertyChanged;
@@ -152,10 +152,18 @@ namespace SalamanderWnmp.UI
                     popupMenu.IsOpen = true;
                     break;
                 case "btnChangeThemeColor":
-                    Window showWin = new ChangeThemeColorWin();
-                    showWins.Add(showWin);
-                    showWin.Closing += ChildWindow_Closing;
-                    showWin.Show();
+                    Window showWin = null;
+                    if (!HasWindowOpened("MenuColor", ref showWin))
+                    {
+                        showWin = new ChangeThemeColorWin();
+                        showWins.Add(showWin);
+                        showWin.Closing += ChildWindow_Closing;
+                        showWin.Show();
+                    }
+                    else
+                    {
+                        showWin.Activate();
+                    }
                     break;
             }
             e.Handled = true;

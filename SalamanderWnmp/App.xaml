@@ -65,6 +65,37 @@
                 </Setter>
             </Style>
 
+
+            <!--窗体的默认样式-->
+            <Style x:Key="BaseWindow" TargetType="{x:Type local:SalamanderWindow}">
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="ResizeMode" Value="CanMinimize"/>
+                <Setter Property="Icon" Value="Icons/logo.ico" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Window}">
+                            <Grid Margin="10">
+                                <Rectangle Fill="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"  
+                               RadiusX="5" RadiusY="5">
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
+                                    </Rectangle.Effect>
+                                </Rectangle>
+                                <Border Background="{TemplateBinding Background}"  
+                            BorderBrush="{TemplateBinding BorderBrush}"  
+                            BorderThickness="{TemplateBinding BorderThickness}"  
+                            Padding="{TemplateBinding Margin}"  
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  
+                            CornerRadius="5">
+                                    <ContentPresenter />
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <!--退出按钮的样式-->
             <Style TargetType="Button" x:Key="ExitButton">
                 <Setter Property="Cursor" Value="Hand"/>
