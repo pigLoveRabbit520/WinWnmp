@@ -49,7 +49,7 @@
         <TextBlock Grid.Row="2" TextAlignment="Center" LineHeight="2" Padding="0,10">
             Author: Salamander<LineBreak />
             QQ: 1906747819<LineBreak />
-            <Hyperlink NavigateUri="https://segmentfault.com/u/baofan_55d05d0eebd33" RequestNavigate="Hyperlink_RequestNavigate">我的主页</Hyperlink><LineBreak />
+            <Hyperlink NavigateUri="http://51nazi.com" RequestNavigate="Hyperlink_RequestNavigate">我的主页</Hyperlink><LineBreak />
             <Hyperlink NavigateUri="https://github.com/salamander-mh" RequestNavigate="Hyperlink_RequestNavigate">GitHub</Hyperlink>
         </TextBlock>
     </Grid>
