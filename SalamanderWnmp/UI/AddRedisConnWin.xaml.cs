@@ -1,4 +1,5 @@
 ﻿using SalamanderWnmp.Configuration;
+using SalamanderWnmp.UserClass;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// AddRedisConnWin.xaml 的交互逻辑
     /// </summary>
-    public partial class AddRedisConnWin : Window
+    public partial class AddRedisConnWin : SalamanderWindow
     {
         /// <summary>
         /// 展示类型，0为添加Window，1为编辑Window
@@ -32,21 +33,6 @@ namespace SalamanderWnmp.UI
                 this.connData.Port = 6379; // 默认端口
                 this.gridConn.DataContext = connData;
             }
-        }
-
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-            e.Handled = true;
-        }
-
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            e.Handled = true;
         }
 
         /// <summary>

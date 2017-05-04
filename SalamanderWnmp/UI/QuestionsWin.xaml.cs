@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalamanderWnmp.UserClass;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// QuestionWin.xaml 的交互逻辑
     /// </summary>
-    public partial class QuestionsWin : Window
+    public partial class QuestionsWin : SalamanderWindow
     {
         public QuestionsWin()
         {
@@ -25,21 +26,6 @@ namespace SalamanderWnmp.UI
         }
 
 
-
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            e.Handled = true;
-        }
-
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-            e.Handled = true;
-        }
 
         private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {

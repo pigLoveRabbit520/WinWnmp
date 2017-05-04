@@ -1,4 +1,5 @@
 ﻿using SalamanderWnmp.Configuration;
+using SalamanderWnmp.UserClass;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// SettingWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SettingWin : Window
+    public partial class SettingWin : SalamanderWindow
     {
         private PHPConfigurationManager PHPConfigurationMgr = new PHPConfigurationManager();
 
@@ -26,20 +27,6 @@ namespace SalamanderWnmp.UI
             InitializeComponent();
         }
 
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            e.Handled = true;
-        }
-
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-            e.Handled = true;
-        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

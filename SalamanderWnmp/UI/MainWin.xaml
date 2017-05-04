@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <!--标题栏-->
-        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="title_MouseDown" Button.Click="gridTitle_Click">
+        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="TitleBar_MouseMove" Button.Click="gridTitle_Click">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

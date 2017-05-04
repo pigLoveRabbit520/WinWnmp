@@ -1,4 +1,5 @@
 ﻿using SalamanderWnmp.Tool;
+using SalamanderWnmp.UserClass;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -9,7 +10,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// CodePanel.xaml 的交互逻辑
     /// </summary>
-    public partial class CodePanelWin : Window
+    public partial class CodePanelWin : SalamanderWindow
     {
 
 
@@ -25,16 +26,6 @@ namespace SalamanderWnmp.UI
         public CodePanelWin()
         {
             InitializeComponent();
-        }
-
-
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-            e.Handled = true;
         }
 
 
@@ -57,12 +48,6 @@ namespace SalamanderWnmp.UI
                     PropertyChanged(this, new PropertyChangedEventArgs("SelectedLan"));
                 }
             }
-        }
-
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            e.Handled = true;
         }
 
         private void btnRun_Click(object sender, RoutedEventArgs e)

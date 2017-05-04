@@ -1,4 +1,5 @@
 ﻿using SalamanderWnmp.Tool;
+using SalamanderWnmp.UserClass;
 using StackExchange.Redis;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// RedisWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class RedisWin : Window
+    public partial class RedisWin : SalamanderWindow
     {
 
         private static ConnectionMultiplexer redisConn = null;
@@ -29,20 +30,6 @@ namespace SalamanderWnmp.UI
             this.tvConn.ItemsSource = this.nodes;
         }
 
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-            e.Handled = true;
-        }
-
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            e.Handled = true;
-        }
 
         private void btnAddConnect_Click(object sender, RoutedEventArgs e)
         {

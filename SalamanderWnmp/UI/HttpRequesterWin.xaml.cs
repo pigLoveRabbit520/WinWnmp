@@ -1,4 +1,5 @@
 ﻿using SalamanderWnmp.Tool;
+using SalamanderWnmp.UserClass;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// HttpRequester.xaml 的交互逻辑
     /// </summary>
-    public partial class HttpRequesterWin : Window
+    public partial class HttpRequesterWin : SalamanderWindow
     {
         public HttpRequesterWin()
         {
@@ -58,21 +59,6 @@ namespace SalamanderWnmp.UI
             "Upgrade"
         };
 
-
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            e.Handled = true;
-        }
-
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-            e.Handled = true;
-        }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {

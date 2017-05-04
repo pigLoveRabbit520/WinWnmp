@@ -1,11 +1,12 @@
-﻿<Window x:Class="SalamanderWnmp.UI.SettingWin"
+﻿<local:SalamanderWindow x:Class="SalamanderWnmp.UI.SettingWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:component="clr-namespace:SalamanderWnmp.UserComponent"
+        xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen" Style="{StaticResource DefaultWindow}"
         Title="{x:Static prop:Resources.Settings}" Height="340" Width="350" Loaded="Window_Loaded">
-    <Window.Resources>
+    <local:SalamanderWindow.Resources>
         <Style TargetType="TextBox" x:Key="RegularTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Width" Value="80" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -19,7 +20,7 @@
             <Setter Property="Margin" Value="0,10,0,0" />
             <Setter Property="Content" Value="保存设置" />
         </Style>
-    </Window.Resources>
+    </local:SalamanderWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -27,14 +28,14 @@
         </Grid.RowDefinitions>
 
         <!--标题栏-->
-        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="title_MouseDown">
+        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="TitleBar_MouseMove">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static prop:Resources.Settings}" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
-                <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
+                <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btnClose_Click"/>
             </StackPanel>
         </Grid>
         <TabControl Grid.Row="1" TabStripPlacement="Left">
@@ -112,4 +113,4 @@
             </TabItem>
         </TabControl>
     </Grid>
-</Window>
+</local:SalamanderWindow>

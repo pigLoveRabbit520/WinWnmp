@@ -1,12 +1,12 @@
-﻿<Window
+﻿<local:SalamanderWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SalamanderWnmp.UI"
+        xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
          xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:UserComponent="clr-namespace:SalamanderWnmp.UserComponent" x:Class="SalamanderWnmp.UI.AddRedisConnWin"
-        mc:Ignorable="d" Style="{StaticResource DefaultWindow}" ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d"  ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
         Title="AddRedisConnWin" Height="300" Width="330">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="MyTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
@@ -23,14 +23,14 @@
         </Grid.RowDefinitions>
 
         <!--标题栏-->
-        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="title_MouseDown">
+        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="TitleBar_MouseMove">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static prop:Resources.AddConn}" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
-                <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btn_Click"/>
+                <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btnClose_Click"/>
             </StackPanel>
         </Grid>
         <Grid x:Name="gridConn" Grid.Row="1" Margin="40, 0">
@@ -69,4 +69,4 @@
         </Grid>
 
     </Grid>
-</Window>
+</local:SalamanderWindow>
