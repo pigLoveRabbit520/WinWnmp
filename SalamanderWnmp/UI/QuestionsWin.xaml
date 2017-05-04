@@ -6,7 +6,7 @@
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="QuestionWin" Height="600" Width="710">
+        Title="{x:Static prop:Resources.CommonQuestions}" Height="600" Width="710">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

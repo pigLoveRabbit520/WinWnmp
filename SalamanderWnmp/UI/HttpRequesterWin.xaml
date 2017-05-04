@@ -6,7 +6,7 @@
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"  WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" 
-        Title="HttpRequester" Height="560" Width="560">
+        Title="{x:Static prop:Resources.HttpRequester}" Height="560" Width="560">
     <Window.Resources>
         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
             <Setter Property="Margin" Value="0,0,8,0" />
