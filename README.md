@@ -19,14 +19,14 @@
 ![常规设置](https://cloud.githubusercontent.com/assets/16663435/23488508/00fdf128-ff28-11e6-9b2f-711b5a46b5f9.png)
 
 
-#### (Theme Color Panel)调色面板
+#### Theme Color Panel(调色面板)
 ![调色面板](https://cloud.githubusercontent.com/assets/16663435/23488548/4fcc4b6a-ff28-11e6-8a1c-cf45b961340d.png)
 
 
-#### (Coding Panel)编程面板
+#### Coding Panel(编程面板)
 ![编程面板](http://git.oschina.net/uploads/images/2017/0222/160849_e369b9e1_433553.png)
 
-#### 常见问题面板
+#### Questions Panel(常见问题面板)
 ![常见问题面板](https://cloud.githubusercontent.com/assets/16663435/25732424/fc42c0f0-3181-11e7-9ebf-c9cd1eba747e.png)
 
 
