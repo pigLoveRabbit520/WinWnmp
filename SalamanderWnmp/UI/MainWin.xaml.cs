@@ -89,9 +89,17 @@ namespace SalamanderWnmp.UI
         {
             InitializeComponent();
             Common.Settings.ReadSettings();
-            if(Common.Settings.FirstRun.Value)
+            Common.Nginx.Setup();
+            Common.Mysql.Setup();
+            Common.PHP.Setup();
+            if (Common.Settings.FirstRun.Value)
             {
                 EnvironmentAutoConfig.Run();
+                // 判断mysql服务是否安装过
+                if(Common.Mysql.ServiceExists())
+                {
+                    Common.Mysql.RemoveService();
+                }
                 Common.Settings.FirstRun.Value = false;
                 Common.Settings.UpdateSettings();
             }
@@ -102,9 +110,6 @@ namespace SalamanderWnmp.UI
         {
             // 设置主题颜色
             Application.Current.Resources["ThemeColor"] = Common.Settings.ThemeColor.Value;
-            Common.Nginx.Setup();
-            Common.Mysql.Setup();
-            Common.PHP.Setup();
             AddWinHash();
             this.stackNginx.DataContext = Common.Nginx;
             this.stackPHP.DataContext = Common.PHP;

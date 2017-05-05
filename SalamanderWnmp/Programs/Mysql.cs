@@ -16,16 +16,27 @@ namespace SalamanderWnmp.Programs
             mysqlController.ServiceName = ServiceName;
         }
 
+        /// <summary>
+        /// 移除服务
+        /// </summary>
         public void RemoveService()
         {
             StartProcess("cmd.exe", stopArgs, true);
         }
 
+        /// <summary>
+        /// 安装服务
+        /// </summary>
         public void InstallService()
         {
             StartProcess(exeName, startArgs, true);
         }
 
+
+        /// <summary>
+        /// 服务是否存在
+        /// </summary>
+        /// <returns></returns>
         public bool ServiceExists()
         {
             ServiceController[] services = ServiceController.GetServices();
