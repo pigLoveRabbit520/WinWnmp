@@ -125,6 +125,17 @@
                     </List>
                 </FlowDocument>
             </TabItem>
+            <TabItem Header="Redis">
+                <FlowDocument>
+                    <Paragraph>
+                        Redis持久化有两种方式：RDB快照和AOF日志
+                    </Paragraph>
+                    <Paragraph>
+                        Redis和memcache的区别：
+                        <Hyperlink NavigateUri="http://ongd1spyv.bkt.clouddn.com/Redis%20and%20Memcache.docx" RequestNavigate="Hyperlink_RequestNavigate">文档下载</Hyperlink>
+                    </Paragraph>
+                </FlowDocument>
+            </TabItem>
         </TabControl>
     </Grid>
 </local:SalamanderWindow>
