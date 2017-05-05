@@ -26,6 +26,10 @@
 #### (Coding Panel)编程面板
 ![编程面板](http://git.oschina.net/uploads/images/2017/0222/160849_e369b9e1_433553.png)
 
+#### 常见问题面板
+![常见问题面板](https://cloud.githubusercontent.com/assets/16663435/25732424/fc42c0f0-3181-11e7-9ebf-c9cd1eba747e.png)
+
+
 ## Usage(使用)
 下载集成包后，运行SalamanderWnmp.exe（首次运行会自动配置），开启nginx和php，然后在浏览器中输入http://localhost/  即可看到Hello Salamander！字样，说明配置成功。（使用数据库功能，则打开mysql）
 
@@ -36,7 +40,6 @@ php 版本为7.0.1 64位版本，需要MSVC14 (Visual C++ 2015)运行库支持�
 
 ## Contact Me(联系我)
 * 我的技术栈：PHP，java，node，C#，Go，VC++/C  喜欢技术的童鞋可以找我交流
-* QQ：1906747819
 * Blog：http://51nazi.com
 * segmentfault：https://segmentfault.com/u/baofan_55d05d0eebd33
 
