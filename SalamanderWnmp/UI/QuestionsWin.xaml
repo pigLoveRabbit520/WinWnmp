@@ -27,13 +27,14 @@
         </Grid>
 
         <TabControl TabStripPlacement="Left" Grid.Row="1">
+            <TabControl.Resources>
+                <Style  TargetType="{x:Type ListItem}">
+                    <Setter Property="Padding" Value="0, 8" />
+                    <Setter Property="Paragraph.FontSize" Value="16" />
+                </Style>
+                <SolidColorBrush x:Key="RedTxt" Color="#c7254e"></SolidColorBrush>
+            </TabControl.Resources>
             <TabItem Header="Nginx">
-                <TabItem.Resources>
-                    <Style  TargetType="{x:Type ListItem}">
-                        <Setter Property="Padding" Value="10" />
-                        <Setter Property="Paragraph.FontSize" Value="16" />
-                    </Style>
-                </TabItem.Resources>
                 <FlowDocument>
                     <List>
                         <ListItem>
@@ -86,6 +87,42 @@
                         PHP session原理：
                         <Hyperlink NavigateUri="http://ongd1spyv.bkt.clouddn.com/session.docx" RequestNavigate="Hyperlink_RequestNavigate">文档下载</Hyperlink>
                     </Paragraph>
+                </FlowDocument>
+            </TabItem>
+            <TabItem Header="Composer">
+                <FlowDocument>
+                    <Paragraph>
+                        Composer只是一段PHP脚本，所以可以手动配置而不借助于Composer-Setup.exe
+                    </Paragraph>
+                    <Paragraph>
+                        手动安装Composer步骤：
+                    </Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>
+                                PHP目录添加进系统环境变量PATH里
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                下载
+                                <Hyperlink NavigateUri="https://getcomposer.org/composer.phar" RequestNavigate="Hyperlink_RequestNavigate">composer.phar</Hyperlink> （就是php脚本），将文件放进PHP目录下，并且新建文本文件
+                                <Bold>composer.cmd</Bold> 内容： <Bold Foreground="{StaticResource RedTxt}">@php "%~dp0composer.phar" %*</Bold>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                打开命令提示符输入 composer --version 查看 composer 版本，输出Composer版本表示配置正确
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                鉴于中国的网络环境，建议改写Packagist 镜像至国内镜像以加快下载速度<LineBreak/>
+                                在命令提示符执行
+                                <Bold Foreground="{StaticResource RedTxt}">composer config -g repo.packagist composer https://packagist.phpcomposer.com</Bold>
+                            </Paragraph>
+                        </ListItem>
+                    </List>
                 </FlowDocument>
             </TabItem>
         </TabControl>
