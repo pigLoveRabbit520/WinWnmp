@@ -61,7 +61,7 @@ namespace SalamanderWnmp.Programs
 
         public override void Stop()
         {
-            if(isStopped())
+            if(!IsRunning())
             {
                 return;
             }
@@ -90,16 +90,6 @@ namespace SalamanderWnmp.Programs
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// 通过ServiceController判断服务是否停止
-        /// </summary>
-        /// <returns></returns>
-        private bool isStopped()
-        {
-            mysqlController.Refresh();
-            return mysqlController.Status == ServiceControllerStatus.Stopped;
         }
 
         public override void Setup()
