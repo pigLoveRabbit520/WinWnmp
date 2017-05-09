@@ -149,6 +149,7 @@
     <Compile Include="UI\QuestionsWin.xaml.cs">
       <DependentUpon>QuestionsWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserClass\NotificationAreaIcon.cs" />
     <Compile Include="UserClass\SalamanderWindow.cs" />
     <Compile Include="UserComponent\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>

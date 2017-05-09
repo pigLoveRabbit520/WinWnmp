@@ -148,7 +148,7 @@ namespace SalamanderWnmp.UI
             switch (btn.Name)
             {
                 case "btnExit":
-                    Application.Current.Shutdown();
+                    this.Hide();
                     break;
                 case "btnMinimize":
                     this.WindowState = WindowState.Minimized;
@@ -458,5 +458,29 @@ namespace SalamanderWnmp.UI
             e.Handled = true;
         }
 
+        private void NotificationAreaIcon_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.ShowWindow();
+        }
+
+        /// <summary>
+        /// 展示Window
+        /// </summary>
+        private void ShowWindow()
+        {
+            this.WindowState = WindowState.Normal;
+            this.Show();
+            this.Activate();
+        }
+
+        private void MenuItem_Show_Click(object sender, EventArgs e)
+        {
+            this.ShowWindow();
+        }
+
+        private void MenuItem_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

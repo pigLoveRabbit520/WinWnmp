@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
-        xmlns:cvt="clr-namespace:SalamanderWnmp.Converter"
+        xmlns:cvt="clr-namespace:SalamanderWnmp.Converter" xmlns:form="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         WindowStartupLocation="CenterScreen"
         Title="{x:Static prop:Resources.AppName}" Height="350" Width="500" Loaded="Window_Loaded">
     <local:SalamanderWindow.Resources>
@@ -15,6 +15,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
+        <local:NotificationAreaIcon Text="SalamanderWnmp" Icon="/logo.ico" MouseDoubleClick="NotificationAreaIcon_MouseDoubleClick">
+            <local:NotificationAreaIcon.MenuItems>
+                <form:MenuItem Text="显示" Click="MenuItem_Show_Click"/>
+                <form:MenuItem Text="退出" Click="MenuItem_Exit_Click"/>
+            </local:NotificationAreaIcon.MenuItems>
+        </local:NotificationAreaIcon>
 
         <!--标题栏-->
         <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="TitleBar_MouseMove" Button.Click="gridTitle_Click">
