@@ -1,9 +1,10 @@
-﻿<Window x:Class="SalamanderWnmp.UI.ChangeThemeColorWin"
+﻿<local:SalamanderWindow x:Class="SalamanderWnmp.UI.ChangeThemeColorWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:SalamanderWnmp.UserComponent"
+        xmlns:compo="clr-namespace:SalamanderWnmp.UserComponent"
+        xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
-        Title="{x:Static prop:Resources.ChangeColor}" Height="250" Width="350" Style="{StaticResource DefaultWindow}" 
+        Title="{x:Static prop:Resources.ChangeColor}" Height="250" Width="350"
               WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
@@ -29,7 +30,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <local:ColorPicker Grid.Row="0" x:Name="colorPicker" Margin="0, 15" ColorChanged="colorPicker_ColorChanged"  Color="{StaticResource ThemeColor}"/>
+            <compo:ColorPicker Grid.Row="0" x:Name="colorPicker" Margin="0, 15" ColorChanged="colorPicker_ColorChanged"  Color="{StaticResource ThemeColor}"/>
             <Grid Grid.Row="1" Height="35" Margin="0, 10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -42,4 +43,4 @@
         </Grid>
     </Grid>
 
-</Window>
+</local:SalamanderWindow>

@@ -1,4 +1,4 @@
-﻿using SalamanderWnmp.Configuration;
+﻿using SalamanderWnmp.UserClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// ChangeThemeColor.xaml 的交互逻辑
     /// </summary>
-    public partial class ChangeThemeColorWin : Window
+    public partial class ChangeThemeColorWin : SalamanderWindow
     {
         public ChangeThemeColorWin()
         {
