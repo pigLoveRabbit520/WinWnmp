@@ -24,7 +24,7 @@
 
 
 #### Coding Panel(编程面板)
-![编程面板](http://git.oschina.net/uploads/images/2017/0222/160849_e369b9e1_433553.png)
+![编程面板](https://cloud.githubusercontent.com/assets/16663435/25839993/8f29d640-34cc-11e7-940c-38a8120d96f6.png)
 
 #### Questions Panel(常见问题面板)
 ![常见问题面板](https://cloud.githubusercontent.com/assets/16663435/25732424/fc42c0f0-3181-11e7-9ebf-c9cd1eba747e.png)
