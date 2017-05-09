@@ -19,6 +19,7 @@
             <local:NotificationAreaIcon.MenuItems>
                 <form:MenuItem Text="显示" Click="MenuItem_Show_Click"/>
                 <form:MenuItem Text="退出" Click="MenuItem_Exit_Click"/>
+                <form:MenuItem Text="关于" Click="MenuItem_About_Click"/>
             </local:NotificationAreaIcon.MenuItems>
         </local:NotificationAreaIcon>
 

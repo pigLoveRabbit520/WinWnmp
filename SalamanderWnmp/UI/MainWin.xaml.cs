@@ -482,5 +482,17 @@ namespace SalamanderWnmp.UI
         {
             Application.Current.Shutdown();
         }
+
+        private void MenuItem_About_Click(object sender, EventArgs e)
+        {
+            Window winOpened = null;
+            if (!HasWindowOpened("MenuAbout", ref winOpened))
+            {
+                AboutWindow win = new AboutWindow();
+                showWins.Add(win);
+                win.Closing += ChildWindow_Closing;
+                win.Show();
+            }
+        }
     }
 }
