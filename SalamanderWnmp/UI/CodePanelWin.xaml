@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         xmlns:cvt="clr-namespace:SalamanderWnmp.Converter"
         mc:Ignorable="d" Title="{x:Static prop:Resources.CodePanel}" 
-        Height="540" Width="540"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Height="540" Width="570"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
             <Setter Property="Margin" Value="0,0,8,0" />
@@ -78,5 +78,25 @@
         </Grid>
 
         <TextBox x:Name="txtOutput" Grid.Row="4" Margin="10" IsReadOnly="True" Padding="5" BorderThickness="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+
+        <Border Name="ResizeBottomRight" MouseMove="ResizePressed" Grid.Row="4" Cursor="SizeNWSE"
+                    MouseDown="ResizePressed" Height="10" Width="10" 
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,2,2" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="88.182"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Border.Background>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
+                        <GeometryDrawing Geometry="M96,128 L896,928 96,128 z M352,384 L128,160 172.19048,160 352,160 352,384 z M608,640 L384,416 608,416 608,640 z M608,384 L384,384 384,160 608,160 608,384 z M864,896 L640,672 864,672 864,896 z M864,640 L640,640 640,416 864,416 864,640 z M864,384 L640,384 640,160 864,160 864,384 z" Brush="#888888"></GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Border.Background>
+        </Border>
     </Grid>
 </local:SalamanderWindow>

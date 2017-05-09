@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace SalamanderWnmp.UserClass
 {
@@ -13,12 +15,18 @@ namespace SalamanderWnmp.UserClass
         public SalamanderWindow()
         {
             this.Style = Application.Current.Resources["BaseWindow"] as Style;
+            this.SourceInitialized += delegate (object sender, EventArgs e)
+            {
+                this._HwndSource = PresentationSource.FromVisual((Visual)sender) as HwndSource;
+            };
         }
 
+        protected const int WM_SYSCOMMAND = 0x112;
+
         /// <summary>
-        /// 窗口句柄
+        /// 窗口句柄源
         /// </summary>
-        private IntPtr _hWnd;
+        protected HwndSource _HwndSource;
 
 
         #region 窗口事件函数
@@ -78,6 +86,9 @@ namespace SalamanderWnmp.UserClass
             public int Right;
             public int Bottom;
         }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
     }
 }

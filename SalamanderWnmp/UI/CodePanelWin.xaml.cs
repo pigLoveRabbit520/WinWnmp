@@ -1,6 +1,7 @@
 ﻿using SalamanderWnmp.Tool;
 using SalamanderWnmp.UserClass;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -23,9 +24,48 @@ namespace SalamanderWnmp.UI
             Stop
         }
 
+        private enum ResizeDirection
+        {
+            BottomRight = 8,
+        }
+
+        private Dictionary<ResizeDirection, Cursor> cursors = new Dictionary<ResizeDirection, Cursor>
+        {
+            {ResizeDirection.BottomRight, Cursors.SizeNWSE},
+        };
+       
+
         public CodePanelWin()
         {
             InitializeComponent();
+            this.MouseMove += CodePanelWin_MouseMove;
+        }
+
+        private void CodePanelWin_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Mouse.LeftButton != MouseButtonState.Pressed)
+            {
+                FrameworkElement element = e.OriginalSource as FrameworkElement;
+                if (element != null && !element.Name.Contains("Resize"))
+                    this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void ResizePressed(object sender, MouseEventArgs e)
+        {
+            FrameworkElement element = sender as FrameworkElement;
+            ResizeDirection direction = (ResizeDirection)Enum.Parse(typeof(ResizeDirection), element.Name.Replace("Resize", ""));
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.Cursor = Cursors.SizeNWSE;
+                ResizeWindow(direction);
+            }
+            e.Handled = true;
+        }
+
+        private void ResizeWindow(ResizeDirection direction)
+        {
+            SendMessage(_HwndSource.Handle, WM_SYSCOMMAND, (IntPtr)(61440 + direction), IntPtr.Zero);
         }
 
 
@@ -120,5 +160,6 @@ namespace SalamanderWnmp.UI
         {
             this.txtOutput.Text = "";            
         }
+
     }
 }
