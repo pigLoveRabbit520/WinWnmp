@@ -8,11 +8,11 @@ using System.Windows;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SalamanderWnmp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("火蜥蜴制作，windows下用WPF制作的nginx，php，mysql集成环境")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("51nazi.com")]
 [assembly: AssemblyProduct("SalamanderWnmp")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
+[assembly: AssemblyCopyright("Salamander")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
