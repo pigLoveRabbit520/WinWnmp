@@ -18,9 +18,9 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// AboutWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class AboutWindow : SalamanderWindow
+    public partial class AboutWin : SalamanderWindow
     {
-        public AboutWindow()
+        public AboutWin()
         {
             InitializeComponent();
         }

@@ -83,13 +83,13 @@ namespace SalamanderWnmp.Tool
         public static void CheckForApps(WnmpProgram nginx, WnmpProgram mysql, WnmpProgram php)
         {
             Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
-            if (!File.Exists(nginx.exeName))
+            if (!Directory.Exists(nginx.workingDir))
                 Log.wnmp_log_error("Error: Nginx Not Found", Log.LogSection.WNMP_NGINX);
 
             if (!Directory.Exists(mysql.workingDir))
                 Log.wnmp_log_error("Error: Mysql Not Found", Log.LogSection.WNMP_MARIADB);
 
-            if (!File.Exists(php.exeName))
+            if (!Directory.Exists(Common.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value))
                 Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
         }
     }

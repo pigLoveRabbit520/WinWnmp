@@ -91,12 +91,15 @@ namespace SalamanderWnmp.Configuration
             Value = 9000,
         };
 
+        /// <summary>
+        /// php-cgi开启的个数
+        /// </summary>
         public Option<uint> PHP_Processes { get { return this.php_Processes; } set { this.php_Processes = value; } }
         private Option<uint> php_Processes = new Option<uint>
         {
             Name = "phpProcesses",
-            Description = "Amount of PHP processes",
-            Value = 2,
+            Description = "Amount of php-cgi processes",
+            Value = 4,
         };
 
 

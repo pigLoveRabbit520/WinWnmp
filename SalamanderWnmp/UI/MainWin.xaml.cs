@@ -277,7 +277,7 @@ namespace SalamanderWnmp.UI
             switch (menuName)
             {
                 case "MenuAbout":
-                    showWin = new AboutWindow();
+                    showWin = new AboutWin();
                     break;
                 case "MenuCodePanel":
                     showWin = new CodePanelWin();
@@ -488,10 +488,14 @@ namespace SalamanderWnmp.UI
             Window winOpened = null;
             if (!HasWindowOpened("MenuAbout", ref winOpened))
             {
-                AboutWindow win = new AboutWindow();
+                AboutWin win = new AboutWin();
                 showWins.Add(win);
                 win.Closing += ChildWindow_Closing;
                 win.Show();
+            } 
+            else
+            {
+                winOpened.Activate();
             }
         }
     }

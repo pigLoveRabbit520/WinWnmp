@@ -67,6 +67,12 @@ namespace SalamanderWnmp.Programs
                
         }
 
+        /// <summary>
+        /// 启动进程
+        /// </summary>
+        /// <param name="exe"></param>
+        /// <param name="args"></param>
+        /// <param name="wait"></param>
         public void StartProcess(string exe, string args, bool wait = false)
         {
             ps = new Process();
@@ -133,6 +139,21 @@ namespace SalamanderWnmp.Programs
             }
             Log.wnmp_log_notice("Stopped " + progName, progLogSection);
         }
+
+        /// <summary>
+        /// 杀死进程
+        /// </summary>
+        /// <param name="procName"></param>
+        protected void KillProcess(string procName)
+        {
+            var processes = Process.GetProcessesByName(procName);
+            foreach (var process in processes)
+            {
+                process.Kill();
+            }
+        }
+
+
 
         public void Restart()
         {
