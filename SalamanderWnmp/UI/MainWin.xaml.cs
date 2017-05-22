@@ -294,6 +294,9 @@ namespace SalamanderWnmp.UI
                 case "MenuQuestions":
                     showWin = new QuestionsWin();
                     break;
+                case "MenuPortScaner":
+                    showWin = new PortScanWin();
+                    break;
             }
             showWins.Add(showWin);
             showWin.Closing += ChildWindow_Closing;

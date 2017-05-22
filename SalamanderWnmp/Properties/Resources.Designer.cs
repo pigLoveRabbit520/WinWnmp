@@ -142,6 +142,15 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 端口扫描器 的本地化字符串。
+        /// </summary>
+        public static string PortScaner {
+            get {
+                return ResourceManager.GetString("PortScaner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Redis面板 的本地化字符串。
         /// </summary>
         public static string RedisPanel {

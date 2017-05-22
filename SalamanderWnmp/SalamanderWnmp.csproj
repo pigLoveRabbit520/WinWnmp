@@ -133,6 +133,7 @@
     <Compile Include="Tool\EnvironmentAutoConfig.cs" />
     <Compile Include="Tool\CodeHelper.cs" />
     <Compile Include="Tool\HttpHelper.cs" />
+    <Compile Include="Tool\PortScanHelper.cs" />
     <Compile Include="Tool\RedisHelper.cs" />
     <Compile Include="UI\AboutWin.xaml.cs">
       <DependentUpon>AboutWin.xaml</DependentUpon>
@@ -145,6 +146,9 @@
     </Compile>
     <Compile Include="UI\LoadingWin.xaml.cs">
       <DependentUpon>LoadingWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PortScanWin.xaml.cs">
+      <DependentUpon>PortScanWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\QuestionsWin.xaml.cs">
       <DependentUpon>QuestionsWin.xaml</DependentUpon>
@@ -186,6 +190,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\LoadingWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\PortScanWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -371,6 +379,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\skin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Menu\scan.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

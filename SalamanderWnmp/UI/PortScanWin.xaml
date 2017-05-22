@@ -1,0 +1,31 @@
+﻿<local:SalamanderWindow x:Class="SalamanderWnmp.UI.PortScanWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
+        xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="PortScan" Height="450" Width="540">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--标题栏-->
+        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="TitleBar_MouseMove">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static prop:Resources.PortScaner}" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btnClose_Click"/>
+            </StackPanel>
+        </Grid>
+        
+        <Button x:Name="btnScan" Grid.Row="1" Width="100" Height="30" Click="btnScan_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Content="端口扫描"/>
+    </Grid>
+</local:SalamanderWindow>
