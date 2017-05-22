@@ -49,7 +49,17 @@ namespace SalamanderWnmp.Tool
             ps.Start();
             string result = ps.StandardOutput.ReadToEnd();
             string[] rows = Regex.Split(result, "\r\n", RegexOptions.IgnoreCase);
-
+            foreach (var row in rows)
+            {
+                if(!string.IsNullOrEmpty(row))
+                {
+                    string newRow = row.Trim();
+                    if(newRow.StartsWith("TCP") || newRow.StartsWith("UDP"))
+                    {
+                        Console.WriteLine("one match");
+                    }
+                }
+            }
 
             return portInfoList;
         }
