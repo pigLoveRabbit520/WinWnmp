@@ -25,7 +25,18 @@
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btnClose_Click"/>
             </StackPanel>
         </Grid>
-        
-        <Button x:Name="btnScan" Grid.Row="1" Width="100" Height="30" Click="btnScan_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Content="端口扫描"/>
+
+        <ListView x:Name="lvConditions" Margin="5" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="进程名" DisplayMemberBinding="{Binding ProcName}"></GridViewColumn>
+                    <GridViewColumn Header="端口" DisplayMemberBinding="{Binding Port}"></GridViewColumn>
+                    <GridViewColumn Header="协议类型" DisplayMemberBinding="{Binding ProtocolType}"></GridViewColumn>
+                    <GridViewColumn Header="PID" DisplayMemberBinding="{Binding PID}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button x:Name="btnScan" Grid.Row="2" Width="100" Height="30" Margin="0, 10" Click="btnScan_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Content="端口扫描"/>
     </Grid>
 </local:SalamanderWindow>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -9,7 +8,7 @@ namespace SalamanderWnmp.Tool
 {
     class PortScanHelper
     {
-        private static List<PortInfo> portInfoList = null;
+        private static List<PortInfo> portInfoList = new List<PortInfo>();
 
         public class PortInfo
         {
@@ -56,7 +55,20 @@ namespace SalamanderWnmp.Tool
                     string newRow = row.Trim();
                     if(newRow.StartsWith("TCP") || newRow.StartsWith("UDP"))
                     {
-                        Console.WriteLine("one match");
+                        string[] cols = Regex.Split(newRow, "\\s+");
+                        if (cols.Length >= 5)
+                        {
+                            int pid = Int32.Parse(cols[4]);
+                            string[] portStr = cols[1].Split(':');
+                            PortInfo info = new PortInfo
+                            {
+                                ProtocolType = cols[0],
+                                Port = Int32.Parse(portStr[portStr.Length - 1]),
+                                PID = pid,
+                                ProcName = Process.GetProcessById(pid).ProcessName
+                            };
+                            portInfoList.Add(info);
+                        }
                     }
                 }
             }

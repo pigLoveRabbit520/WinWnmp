@@ -28,7 +28,7 @@ namespace SalamanderWnmp.UI
 
         private void btnScan_Click(object sender, RoutedEventArgs e)
         {
-            PortScanHelper.GetPortInfoList();
+            lvConditions.ItemsSource = PortScanHelper.GetPortInfoList();
         }
     }
 }
