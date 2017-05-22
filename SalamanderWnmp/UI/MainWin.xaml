@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static prop:Resources.AppName}" FontSize="15" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
-                <Button x:Name="btnChangeThemeColor" Width="20" Height="20" Style="{StaticResource ImageButton}" >
+                <Button x:Name="btnChangeThemeColor" Width="20" Height="20" Style="{StaticResource ImageButton}" ToolTip="{x:Static prop:Resources.ChangeColor}">
                     <Image Source="/Images/skin.png"  />
                 </Button>
                 <Button x:Name="btnShowMenu" Width="20" Height="20" Style="{StaticResource ImageButton}" ToolTip="菜单">
