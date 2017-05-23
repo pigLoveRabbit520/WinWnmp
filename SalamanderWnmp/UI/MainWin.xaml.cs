@@ -188,6 +188,9 @@ namespace SalamanderWnmp.UI
                 case "btnChangeThemeColor":
                     OpenWindow("MenuColor");
                     break;
+                case "btnOpenMainDir":
+                    Process.Start("explorer.exe", Constants.APP_STARTUP_PATH);
+                    break;
             }
             e.Handled = true;
         }
