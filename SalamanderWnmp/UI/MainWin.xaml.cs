@@ -131,49 +131,8 @@ namespace SalamanderWnmp.UI
             winHash.Add("MenuHttp", "HttpRequesterWin");
             winHash.Add("MenuAbout", "AboutWin");
             winHash.Add("MenuQuestions", "QuestionsWin");
+            winHash.Add("MenuPortScaner", "PortScanWin");
         }
-
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-            e.Handled = true;
-        }
-
-        private void gridTitle_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)e.Source;
-            switch (btn.Name)
-            {
-                case "btnExit":
-                    this.Hide();
-                    break;
-                case "btnMinimize":
-                    this.WindowState = WindowState.Minimized;
-                    break;
-                case "btnShowMenu":
-                    popupMenu.IsOpen = true;
-                    break;
-                case "btnChangeThemeColor":
-                    Window showWin = null;
-                    if (!HasWindowOpened("MenuColor", ref showWin))
-                    {
-                        showWin = new ChangeThemeColorWin();
-                        showWins.Add(showWin);
-                        showWin.Closing += ChildWindow_Closing;
-                        showWin.Show();
-                    }
-                    else
-                    {
-                        showWin.Activate();
-                    }
-                    break;
-            }
-            e.Handled = true;
-        }
-
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -210,6 +169,30 @@ namespace SalamanderWnmp.UI
             };
             timer.Start();
         }
+
+
+        private void gridTitle_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)e.Source;
+            switch (btn.Name)
+            {
+                case "btnExit":
+                    this.Hide();
+                    break;
+                case "btnMinimize":
+                    this.WindowState = WindowState.Minimized;
+                    break;
+                case "btnShowMenu":
+                    popupMenu.IsOpen = true;
+                    break;
+                case "btnChangeThemeColor":
+                    OpenWindow("MenuColor");
+                    break;
+            }
+            e.Handled = true;
+        }
+
+
 
         /// <summary>
         /// 检查Window开启情况
@@ -274,33 +257,44 @@ namespace SalamanderWnmp.UI
         private void OpenWindow(string menuName)
         {
             Window showWin = null;
-            switch (menuName)
+            if (!HasWindowOpened(menuName, ref showWin))
             {
-                case "MenuAbout":
-                    showWin = new AboutWin();
-                    break;
-                case "MenuCodePanel":
-                    showWin = new CodePanelWin();
-                    break;
-                case "MenuRedis":
-                    showWin = new RedisWin();
-                    break;
-                case "MenuSettings":
-                    showWin = new SettingWin();
-                    break;
-                case "MenuHttp":
-                    showWin = new HttpRequesterWin();
-                    break;
-                case "MenuQuestions":
-                    showWin = new QuestionsWin();
-                    break;
-                case "MenuPortScaner":
-                    showWin = new PortScanWin();
-                    break;
+                switch (menuName)
+                {
+                    case "MenuAbout":
+                        showWin = new AboutWin();
+                        break;
+                    case "MenuCodePanel":
+                        showWin = new CodePanelWin();
+                        break;
+                    case "MenuRedis":
+                        showWin = new RedisWin();
+                        break;
+                    case "MenuSettings":
+                        showWin = new SettingWin();
+                        break;
+                    case "MenuHttp":
+                        showWin = new HttpRequesterWin();
+                        break;
+                    case "MenuQuestions":
+                        showWin = new QuestionsWin();
+                        break;
+                    case "MenuColor":
+                        showWin = new ChangeThemeColorWin();
+                        break;
+                    case "MenuPortScaner":
+                        showWin = new PortScanWin();
+                        break;
+                }
+                showWins.Add(showWin);
+                showWin.Closing += ChildWindow_Closing;
+                showWin.Show();
             }
-            showWins.Add(showWin);
-            showWin.Closing += ChildWindow_Closing;
-            showWin.Show();
+            else
+            {
+                showWin.Activate();
+            }
+
         }
 
         private void ChildWindow_Closing(object sender, CancelEventArgs e)
@@ -389,14 +383,7 @@ namespace SalamanderWnmp.UI
 
         private void codePanelToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            Window jwin = null;
-            if(!HasWindowOpened("MenuCodePanel", ref jwin))
-            {
-                CodePanelWin win = new CodePanelWin();
-                showWins.Add(win);
-                win.Closing += ChildWindow_Closing;
-                win.Show();
-            }
+            OpenWindow("MenuCodePanel");
             e.Handled = true;
         }
 
@@ -414,14 +401,7 @@ namespace SalamanderWnmp.UI
 
         private void redisPanelToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            Window winOpened = null;
-            if (!HasWindowOpened("MenuRedis", ref winOpened))
-            {
-                RedisWin win = new RedisWin();
-                showWins.Add(win);
-                win.Closing += ChildWindow_Closing;
-                win.Show();
-            }
+            OpenWindow("MenuRedis");
             e.Handled = true;
         }
 
@@ -439,14 +419,7 @@ namespace SalamanderWnmp.UI
 
         private void httpRequesterToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            Window winOpened = null;
-            if (!HasWindowOpened("MenuHttp", ref winOpened))
-            {
-                HttpRequesterWin win = new HttpRequesterWin();
-                showWins.Add(win);
-                win.Closing += ChildWindow_Closing;
-                win.Show();
-            }
+            OpenWindow("MenuHttp");
             e.Handled = true;
         }
 
