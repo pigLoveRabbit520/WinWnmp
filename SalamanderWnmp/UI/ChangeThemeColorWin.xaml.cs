@@ -16,9 +16,15 @@ namespace SalamanderWnmp.UI
     /// </summary>
     public partial class ChangeThemeColorWin : SalamanderWindow
     {
+        /// <summary>
+        /// 修改前的主题颜色
+        /// </summary>
+        private Brush originBrush = null;
+
         public ChangeThemeColorWin()
         {
             InitializeComponent();
+            originBrush = Common.Settings.ThemeColor.Value;
         }
 
         private void cmdSet_Click(object sender, RoutedEventArgs e)
@@ -26,6 +32,7 @@ namespace SalamanderWnmp.UI
             var defaultColor = (SolidColorBrush)new BrushConverter().ConvertFromString(Properties.Resources.DefaultThemeColor);
             Application.Current.Resources["ThemeColor"] = defaultColor;
             colorPicker.Color = defaultColor;
+            e.Handled = true;
         }
 
         private void colorPicker_ColorChanged(object sender, RoutedPropertyChangedEventArgs<SolidColorBrush> e)
@@ -39,27 +46,16 @@ namespace SalamanderWnmp.UI
         {
             Common.Settings.ThemeColor.Value = colorPicker.Color;
             Common.Settings.UpdateSettings();
+            originBrush = colorPicker.Color;
             this.Close();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Resources["ThemeColor"] = originBrush;
             this.Close();
         }
 
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-            e.Handled = true;
-        }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            Common.Settings.ReadSettings();
-            e.Handled = true;
-        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         Title="{x:Static prop:Resources.ChangeColor}" Height="250" Width="350"
-              WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+              WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <!--标题栏-->
-        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="title_MouseDown">
+        <Grid x:Name="gridTitle" Background="{DynamicResource ThemeColor}" MouseDown="TitleBar_MouseMove">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
