@@ -51,6 +51,25 @@ namespace SalamanderWnmp.Tool
             /// 验证
             /// </summary>
             public string Auth { get; set; }
+
+
+            /// <summary>
+            /// 获取连接字符串
+            /// </summary>
+            /// <returns></returns>
+            public string GetConnectionStr()
+            {
+                return Host + ":" + Port + ",allowAdmin=true";
+            }
+
+            /// <summary>
+            /// 主机加端口字符串
+            /// </summary>
+            /// <returns></returns>
+            public string GetHostAndPortStr()
+            {
+                return Host + ":" + Port;
+            }
         }
 
         /// <summary>
@@ -167,7 +186,11 @@ namespace SalamanderWnmp.Tool
             ObservableCollection<Node> nodes = new ObservableCollection<Node>(); 
             foreach (var item in ConnConfigList)
             {
-                nodes.Add(new Node { Name = item.Key, NodeType = NodeType.Connnection });
+                nodes.Add(new Node {
+                    Name = item.Key,
+                    NodeType = NodeType.Connnection,
+                    Nodes = new ObservableCollection<Node>()
+                });
             }
             return nodes;
         }

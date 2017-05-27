@@ -1,6 +1,7 @@
 ﻿using SalamanderWnmp.Tool;
 using SalamanderWnmp.UserClass;
 using StackExchange.Redis;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -64,7 +65,21 @@ namespace SalamanderWnmp.UI
         private void TreeViewItem_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
             Node node = tvConn.SelectedItem as Node;
-
+            if(node.NodeType == NodeType.Connnection)
+            {
+                redisConn = ConnectionMultiplexer.Connect(Common.ConnConfigList[node.Name].GetConnectionStr());
+                IServer server = redisConn.GetServer(Common.ConnConfigList[node.Name].GetHostAndPortStr());
+                KeyValuePair<string, string>[] kvs = server.ConfigGet("databases");
+                int databasesNum = int.Parse(kvs[0].Value);
+                for (int i = 0; i < databasesNum; i++)
+                {
+                    node.Nodes.Add(new Node
+                    {
+                        Name = "db" + i,
+                        NodeType = NodeType.Database,
+                    });
+                }
+            }
             e.Handled = true;
         }
     }
