@@ -29,12 +29,17 @@ namespace SalamanderWnmp
             DispatcherHelper.Initialize();
         }
 
-        private const int SW_SHOWNOMAL = 1;
+        //API 常數定義
+        private const int SW_HIDE = 0;
+        private const int SW_SHOWNORMAL = 1;
+        private const int SW_MAXIMIZE = 3;
+        private const int SW_SHOWNOACTIVATE = 4;
+        private const int SW_SHOW = 5;
 
 
         private static void HandleRunningInstance(Process instance)
         {
-            ShowWindowAsync(instance.MainWindowHandle, SW_SHOWNOMAL);// 显示
+            ShowWindowAsync(instance.MainWindowHandle, SW_SHOWNORMAL);// 显示
             SetForegroundWindow(instance.MainWindowHandle);// 当到最前端
         }
 
