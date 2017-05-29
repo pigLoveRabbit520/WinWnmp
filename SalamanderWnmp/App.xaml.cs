@@ -1,4 +1,5 @@
-﻿using SalamanderWnmp.Tool;
+﻿using SalamanderWnmp.Properties;
+using SalamanderWnmp.Tool;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,18 +24,27 @@ namespace SalamanderWnmp
             Process process = GetRuningInstance();
             if (process != null)
             {
-                HandleRunningInstance(process);
+                Settings s = new Settings();
+                ShowWindowAsync((IntPtr)s.hMainWnd, SW_SHOWNORMAL);
                 Environment.Exit(0);
             }
             DispatcherHelper.Initialize();
         }
 
-        //API 常數定義
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Settings s = new Settings();
+            s.Reset();
+            base.OnExit(e);
+        }
+
+        // API 常數定義
         private const int SW_HIDE = 0;
         private const int SW_SHOWNORMAL = 1;
         private const int SW_MAXIMIZE = 3;
         private const int SW_SHOWNOACTIVATE = 4;
         private const int SW_SHOW = 5;
+        private const int SW_RESTORE = 9;
 
 
         private static void HandleRunningInstance(Process instance)

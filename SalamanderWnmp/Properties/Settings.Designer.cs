@@ -22,5 +22,17 @@ namespace SalamanderWnmp.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long hMainWnd {
+            get {
+                return ((long)(this["hMainWnd"]));
+            }
+            set {
+                this["hMainWnd"] = value;
+            }
+        }
     }
 }

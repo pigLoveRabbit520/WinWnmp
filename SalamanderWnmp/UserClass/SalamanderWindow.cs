@@ -90,5 +90,23 @@ namespace SalamanderWnmp.UserClass
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
+
+        // API 常熟定义
+        protected const int SW_HIDE = 0;
+        protected const int SW_SHOWNORMAL = 1;
+        protected const int SW_MAXIMIZE = 3;
+        protected const int SW_SHOWNOACTIVATE = 4;
+        protected const int SW_SHOW = 5;
+        protected const int SW_RESTORE = 9;
+
+        /// <summary>
+        /// 该函数设置由不同线程产生的窗口的显示状态
+        /// </summary>
+        /// <param name="hWnd">窗口句柄</param>
+        /// <param name="cmdShow">指定窗口如何显示。查看允许值列表，请查阅ShowWlndow函数的说明部分</param>
+        /// <returns>如果函数原来可见，返回值为非零；如果函数原来被隐藏，返回值为零</returns>
+        [DllImport("User32.dll")]
+        protected static extern bool ShowWindowAsync(IntPtr hWnd, int cmdShow);
+
     }
 }

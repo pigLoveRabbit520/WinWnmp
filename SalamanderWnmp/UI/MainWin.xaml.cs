@@ -1,4 +1,5 @@
 ﻿using SalamanderWnmp.Programs;
+using SalamanderWnmp.Properties;
 using SalamanderWnmp.Tool;
 using SalamanderWnmp.UserClass;
 using System;
@@ -14,6 +15,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Threading;
 
 namespace SalamanderWnmp.UI
@@ -136,6 +138,9 @@ namespace SalamanderWnmp.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Settings s = new Settings();
+            s.hMainWnd = (Int64)this._HwndSource.Handle;
+            s.Save();
             Log.setLogComponent(this.txtLog);
             DoCheckIfAppsAreRunningTimer();
             Log.CheckForApps(Common.Nginx, Common.Mysql, Common.PHP);
@@ -177,7 +182,7 @@ namespace SalamanderWnmp.UI
             switch (btn.Name)
             {
                 case "btnExit":
-                    this.Hide();
+                    ShowWindowAsync(_HwndSource.Handle, SW_HIDE);
                     break;
                 case "btnMinimize":
                     this.WindowState = WindowState.Minimized;
@@ -439,22 +444,12 @@ namespace SalamanderWnmp.UI
 
         private void NotificationAreaIcon_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this.ShowWindow();
-        }
-
-        /// <summary>
-        /// 展示Window
-        /// </summary>
-        private void ShowWindow()
-        {
-            this.WindowState = WindowState.Normal;
-            this.Show();
-            this.Activate();
+            ShowWindowAsync(_HwndSource.Handle, SW_SHOWNORMAL);
         }
 
         private void MenuItem_Show_Click(object sender, EventArgs e)
         {
-            this.ShowWindow();
+            ShowWindowAsync(_HwndSource.Handle, SW_SHOWNORMAL);
         }
 
         private void MenuItem_Exit_Click(object sender, EventArgs e)
@@ -464,18 +459,7 @@ namespace SalamanderWnmp.UI
 
         private void MenuItem_About_Click(object sender, EventArgs e)
         {
-            Window winOpened = null;
-            if (!HasWindowOpened("MenuAbout", ref winOpened))
-            {
-                AboutWin win = new AboutWin();
-                showWins.Add(win);
-                win.Closing += ChildWindow_Closing;
-                win.Show();
-            } 
-            else
-            {
-                winOpened.Activate();
-            }
+            OpenWindow("MenuAbout");
         }
     }
 }
