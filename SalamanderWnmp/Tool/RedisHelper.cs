@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -59,7 +58,7 @@ namespace SalamanderWnmp.Tool
             /// <returns></returns>
             public string GetConnectionStr()
             {
-                return Host + ":" + Port + ",allowAdmin=true";
+                return Host + ":" + Port + ",allowAdmin=true,connectTimeout=3000";
             }
 
             /// <summary>
