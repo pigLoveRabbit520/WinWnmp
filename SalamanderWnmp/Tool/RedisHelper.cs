@@ -102,6 +102,11 @@ namespace SalamanderWnmp.Tool
             /// </summary>
             public NodeType NodeType { get; set; }
 
+            /// <summary>
+            /// 节点存储的值
+            /// </summary>
+            public object Value { get; set; }
+
 
             private ObservableCollection<Node> nodes;
             /// <summary>
@@ -188,6 +193,7 @@ namespace SalamanderWnmp.Tool
                 nodes.Add(new Node {
                     Name = item.Key,
                     NodeType = NodeType.Connnection,
+                    Value = item.Value,
                     Nodes = new ObservableCollection<Node>()
                 });
             }
