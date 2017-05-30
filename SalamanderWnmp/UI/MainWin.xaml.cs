@@ -444,12 +444,12 @@ namespace SalamanderWnmp.UI
 
         private void NotificationAreaIcon_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ShowWindowAsync(_HwndSource.Handle, SW_SHOWNORMAL);
+            ShowWindowAndSetForeground();
         }
 
         private void MenuItem_Show_Click(object sender, EventArgs e)
         {
-            ShowWindowAsync(_HwndSource.Handle, SW_SHOWNORMAL);
+            ShowWindowAndSetForeground();
         }
 
         private void MenuItem_Exit_Click(object sender, EventArgs e)
