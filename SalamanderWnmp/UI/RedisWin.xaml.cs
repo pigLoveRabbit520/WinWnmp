@@ -138,6 +138,22 @@ namespace SalamanderWnmp.UI
                     }
                 }
             }
+            else if(node.NodeType == NodeType.Key)
+            {
+                RedisKey key = (RedisKey)node.Value;
+                Node[] nodes = GetConnectionAndDBNode(node);
+                if(nodes != null)
+                {
+                    Node nodeConn = nodes[0];
+                    Node nodeDB = nodes[1];
+                    ConnectionMultiplexer conn = redisConns[nodeConn.Name];
+                    IDatabase db = conn.GetDatabase((int)nodeDB.Value);
+                    txtKeyType.Text = db.KeyType(key).ToString();
+                    txtKeyName.Text = node.Name;
+                    TimeSpan? span = db.KeyTimeToLive(key);
+                    txtTTL.Text = "-1" ?? ((TimeSpan)span).Seconds.ToString();
+                }
+            }
             e.Handled = true;
         }
 
@@ -147,7 +163,7 @@ namespace SalamanderWnmp.UI
         /// <param name="keyName"></param>
         /// <param name="nodes"></param>
         /// <returns></returns>
-        private bool IsKeyNameExists(string keyName ,ObservableCollection<Node> nodes)
+        private bool IsKeyNameExists(string keyName, ObservableCollection<Node> nodes)
         {
             foreach (var node in nodes)
             {
@@ -168,6 +184,24 @@ namespace SalamanderWnmp.UI
             {
                 if (node.Nodes.Contains(nodeDb))
                     return node;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 获取Connection和Db node实例
+        /// </summary>
+        /// <param name="nodeKey"></param>
+        /// <returns></returns>
+        private Node[] GetConnectionAndDBNode(Node nodeKey)
+        {
+            foreach (var nodeConn in nodes)
+            {
+                foreach (var nodeDb in nodeConn.Nodes)
+                {
+                    if (nodeDb.Nodes.Contains(nodeKey))
+                        return new Node[] { nodeConn, nodeDb };
+                }
             }
             return null;
         }
