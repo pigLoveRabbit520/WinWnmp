@@ -89,6 +89,57 @@
                     </Paragraph>
                 </FlowDocument>
             </TabItem>
+            <TabItem Header="Mysql">
+                <FlowDocument>
+                    <Paragraph>
+                        wnmp控制mysql是通过mysql服务的，在服务列表中，可以发现一个名为
+                        <Bold Foreground="{StaticResource RedTxt}">mysql-salamander</Bold> 的服务（该服务在首次启动的时候会自动安装）
+                    </Paragraph>
+                    <Paragraph>
+                        什么是
+                        <Bold Foreground="{StaticResource RedTxt}">数据库分区</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        以mysql为例。mysql数据库中的数据是以文件的形势存在磁盘上的，默认放在/mysql/data下面（可以通过my.cnf中的datadir来查看），一张表主要对应着三个文件，一个是frm存放表结构的，一个是myd存放表数据的，一个是myi存表索引的。如果一张表的数据量太大的话，那么myd,myi就会变的很大，查找数据就会变的很慢，这个时候我们可以利用mysql的分区功能，在物理上将这一张表对应的三个文件，分割成许多个小块，这样呢，我们查找一条数据时，就不用全部查找了，只要知道这条数据在哪一块，然后在那一块找就行了。如果表的数据太大，可能一个磁盘放不下，这个时候，我们可以把数据分配到不同的磁盘里面去。
+                    </Paragraph>
+                    <Paragraph>
+                        分区的二种方式
+                    </Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>横向分区</Paragraph>
+                            <Paragraph>什么是横向分区呢？就是横着来分区了，举例来说明一下，假如有100W条数据，分成十份，前10W条数据放到第一个分区，第二个10W条数据放到第二个分区，依此类推。也就是把表分成了十分，根用merge来分表，有点像哦。取出一条数据的时候，这条数据包含了表结构中的所有字段，也就是说横向分区，并没有改变表的结构。</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>纵向分区</Paragraph>
+                            <Paragraph>
+                                什么是纵向分区呢？就是竖来分区了，举例来说明，在设计用户表的时候，开始的时候没有考虑好，而把个人的所有信息都放到了一张表里面去，这样这个表里面就会有比较大的字段，如个人简介，而这些简介呢，也许不会有好多人去看，所以等到有人要看的时候，在去查找，分表的时候，可以把这样的大字段，分开来。
+                            </Paragraph>
+                        </ListItem>
+                    </List>
+                    <Paragraph>
+                        Mysql水平分区类型
+                    </Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Range（范围）</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>List（预定义列表）</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Hash（哈希）</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Composite（复合模式）</Paragraph>
+                        </ListItem>
+                    </List>
+                    <Paragraph>
+                        水平分区对性能的优化
+                        <Hyperlink NavigateUri="http://blog.csdn.net/tjcyjd/article/details/11194489" RequestNavigate="Hyperlink_RequestNavigate">文章</Hyperlink>
+                    </Paragraph>
+                </FlowDocument>
+            </TabItem>
             <TabItem Header="Composer">
                 <FlowDocument>
                     <Paragraph>
