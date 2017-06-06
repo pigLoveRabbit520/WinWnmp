@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
+        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+        xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:cvt="clr-namespace:SalamanderWnmp.Converter"
         mc:Ignorable="d" Title="{x:Static prop:Resources.CodePanel}" 
-        Height="540" Width="570"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Height="600" Width="680"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
             <Setter Property="Margin" Value="0,0,8,0" />
@@ -43,30 +45,70 @@
             </WrapPanel>
         </Border>
 
-        <TextBox x:Name="txtCode" Grid.Row="2" Margin="10" Padding="5" BorderThickness="1"  AcceptsReturn="True" 
-                 AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <TextBox.Resources>
-                <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Left" AlignmentY="Top">
-                    <VisualBrush.Visual>
-                        <Border Background="Transparent" Padding="5">
-                            <TextBlock FontStyle="Italic" Text="请输入代码"/>
-                        </Border>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </TextBox.Resources>
-            <TextBox.Style>
-                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
-                        </Trigger>
-                        <Trigger Property="Text" Value="">
-                            <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>            
-        </TextBox>
+        <DockPanel Grid.Row="2" Margin="10">
+            <ToolBar DockPanel.Dock="Top">
+                <ToolBar.Resources>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}, AncestorLevel=1}, Path=IsEnabled}" Value="False">
+                                <Setter Property="Opacity" Value="0.30" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToolBar.Resources>
+                <Button Click="openFileClick">
+                    <Image Source="/Images/Editor/Open.png" Height="16"/>
+                </Button>
+                <Button Click="saveFileClick">
+                    <Image Source="/Images/Editor/Save.png" Height="16"/>
+                </Button>
+                <Separator/>
+                <Button Command="Cut">
+                    <Image Source="/Images/Editor/Cut.png" Height="16"/>
+                </Button>
+                <Button Command="Copy">
+                    <Image Source="/Images/Editor/Copy.png" Height="16"/>
+                </Button>
+                <Button Command="Paste">
+                    <Image Source="/Images/Editor/Paste.png" Height="16"/>
+                </Button>
+                <Button Command="Delete">
+                    <Image Source="/Images/Editor/Delete.png" Height="16"/>
+                </Button>
+                <Separator/>
+                <Button Command="Undo">
+                    <Image Source="/Images/Editor/Undo.png" Height="16"/>
+                </Button>
+                <Button Command="Redo">
+                    <Image Source="/Images/Editor/Redo.png" Height="16"/>
+                </Button>
+                <Separator/>
+                <CheckBox IsChecked="{Binding ElementName=textEditor,Path=WordWrap}">
+                    <Image Source="/Images/Editor/WordWrap.png" Height="16"/>
+                </CheckBox>
+                <CheckBox IsChecked="{Binding ElementName=textEditor,Path=ShowLineNumbers}">
+                    <TextBlock Width="16" TextAlignment="Center">#</TextBlock>
+                </CheckBox>
+                <CheckBox IsChecked="{Binding ElementName=textEditor,Path=Options.ShowEndOfLine}">
+                    <TextBlock Width="16" TextAlignment="Center">¶</TextBlock>
+                </CheckBox>
+                <ComboBox Name="highlightingComboBox"
+				SelectedItem="{Binding SyntaxHighlighting, ElementName=textEditor}"
+				ItemsSource="{Binding Source={x:Static avalonEdit:HighlightingManager.Instance}, Path=HighlightingDefinitions}"
+				SelectionChanged="HighlightingComboBox_SelectionChanged"/>
+            </ToolBar>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <avalonEdit:TextEditor Name="textEditor" FontFamily="Consolas"
+				FontSize="10pt" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
+				SyntaxHighlighting="C#">
+                    Welcome to AvalonEdit!
+                </avalonEdit:TextEditor>
+                <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Left"/>
+            </Grid>
+        </DockPanel>
 
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>

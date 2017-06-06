@@ -72,6 +72,10 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.5.0.3\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="StackExchange.Redis, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -106,6 +110,8 @@
     <Compile Include="Converter\LanToBoolConverter .cs" />
     <Compile Include="Converter\ProcessColorConverter.cs" />
     <Compile Include="Converter\ProcessTextConverter.cs" />
+    <Compile Include="EditorClass\BraceFoldingStrategy.cs" />
+    <Compile Include="EditorClass\MyCompletionData.cs" />
     <Compile Include="Tool\DispatcherHelper.cs" />
     <Compile Include="Programs\Nginx.cs" />
     <Compile Include="Tool\EnvironmentAutoConfig.cs" />
@@ -284,6 +290,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <EmbeddedResource Include="CustomHighlighting.xshd" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -364,6 +371,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\dir.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Editor\Copy.png" />
+    <Resource Include="Images\Editor\Cut.png" />
+    <Resource Include="Images\Editor\Delete.png" />
+    <Resource Include="Images\Editor\Open.png" />
+    <Resource Include="Images\Editor\Paste.png" />
+    <Resource Include="Images\Editor\Redo.png" />
+    <Resource Include="Images\Editor\Save.png" />
+    <Resource Include="Images\Editor\Undo.png" />
+    <Resource Include="Images\Editor\WordWrap.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
