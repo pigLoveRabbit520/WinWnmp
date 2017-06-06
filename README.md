@@ -37,12 +37,16 @@
 ## Notice(注意)
 php 版本为7.0.1 64位版本，需要MSVC14 (Visual C++ 2015)运行库支持，下载：https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe
 
+## Third Party Libraries(第三方库)
+*	[AvalonEdit](https://github.com/icsharpcode/AvalonEdit)
+*   [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis)
+
 
 
 ## Contact Me(联系我)
-* 我的技术栈：PHP，java，node，C#，Go，VC++/C  喜欢技术的童鞋可以找我交流
-* Blog：http://51nazi.com
-* segmentfault：https://segmentfault.com/u/baofan_55d05d0eebd33
+*	我的技术栈：PHP，java，node，C#，Go，VC++/C  喜欢技术的童鞋可以找我交流
+*	Blog：http://51nazi.com
+*	[segmentfault](https://segmentfault.com/u/baofan_55d05d0eebd33)
 
 
 
