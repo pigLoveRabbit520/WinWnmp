@@ -55,6 +55,18 @@ namespace SalamanderWnmp.UserClass
             this.Close();
         }
 
+
+        /// <summary>
+        /// 最小化窗口事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+            e.Handled = true;
+        }
+
         /// <summary>
         /// 显示WIndow并且将创建指定窗口的线程设置到前台
         /// </summary>

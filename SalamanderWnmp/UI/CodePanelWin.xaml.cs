@@ -231,24 +231,6 @@ namespace SalamanderWnmp.UI
             textEditor.Save(currentFileName);
         }
 
-        //void propertyGridComboBoxSelectionChanged(object sender, RoutedEventArgs e)
-        //{
-        //    if (propertyGrid == null)
-        //        return;
-        //    switch (propertyGridComboBox.SelectedIndex)
-        //    {
-        //        case 0:
-        //            propertyGrid.SelectedObject = textEditor;
-        //            break;
-        //        case 1:
-        //            propertyGrid.SelectedObject = textEditor.TextArea;
-        //            break;
-        //        case 2:
-        //            propertyGrid.SelectedObject = textEditor.Options;
-        //            break;
-        //    }
-        //}
-
         CompletionWindow completionWindow;
 
         void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
@@ -341,6 +323,18 @@ namespace SalamanderWnmp.UI
             {
                 ((XmlFoldingStrategy)foldingStrategy).UpdateFoldings(foldingManager, textEditor.Document);
             }
+        }
+
+        private void AddFontSize_Click(object sender, RoutedEventArgs e)
+        {
+            this.textEditor.FontSize++;
+        }
+
+        private void MinusFontSize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.textEditor.FontSize <= 4)
+                return;
+            this.textEditor.FontSize--;
         }
     }
     #endregion

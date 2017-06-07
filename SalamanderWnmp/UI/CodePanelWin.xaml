@@ -32,6 +32,9 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static prop:Resources.CodePanel}" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,10" HorizontalAlignment="Left" Padding="10,0,0,0"/>
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button x:Name="btnMinimize" Width="20" Height="20" Click="btnMinimize_Click" Style="{StaticResource ImageButton}" ToolTip="最小化">
+                    <Image Source="/Images/minimize.png" />
+                </Button>
                 <Button x:Name="btnExit"  Width="20" Height="20" Margin="0" Style="{StaticResource ExitButton}" Click="btnClose_Click"/>
             </StackPanel>
         </Grid>
@@ -57,40 +60,46 @@
                             </Style.Triggers>
                         </Style>
                     </ToolBar.Resources>
-                    <Button Click="openFileClick">
+                    <Button Click="openFileClick" ToolTip="打开">
                         <Image Source="/Images/Editor/Open.png" Height="16"/>
                     </Button>
-                    <Button Click="saveFileClick">
+                    <Button Click="saveFileClick" ToolTip="保存">
                         <Image Source="/Images/Editor/Save.png" Height="16"/>
                     </Button>
                     <Separator/>
-                    <Button Command="Cut">
+                    <Button Command="Cut" ToolTip="剪切">
                         <Image Source="/Images/Editor/Cut.png" Height="16"/>
                     </Button>
-                    <Button Command="Copy">
+                    <Button Command="Copy" ToolTip="复制">
                         <Image Source="/Images/Editor/Copy.png" Height="16"/>
                     </Button>
-                    <Button Command="Paste">
+                    <Button Command="Paste" ToolTip="粘贴">
                         <Image Source="/Images/Editor/Paste.png" Height="16"/>
                     </Button>
-                    <Button Command="Delete">
+                    <Button Command="Delete" ToolTip="删除">
                         <Image Source="/Images/Editor/Delete.png" Height="16"/>
                     </Button>
+                    <Button Click="AddFontSize_Click" ToolTip="增大字号">
+                        <Image Source="/Images/Editor/font_add.png" Height="16"/>
+                    </Button>
+                    <Button Click="MinusFontSize_Click" ToolTip="增大字号">
+                        <Image Source="/Images/Editor/font_minus.png" Height="16"/>
+                    </Button>
                     <Separator/>
-                    <Button Command="Undo">
+                    <Button Command="Undo" ToolTip="撤销">
                         <Image Source="/Images/Editor/Undo.png" Height="16"/>
                     </Button>
-                    <Button Command="Redo">
+                    <Button Command="Redo" ToolTip="重做">
                         <Image Source="/Images/Editor/Redo.png" Height="16"/>
                     </Button>
                     <Separator/>
-                    <CheckBox IsChecked="{Binding ElementName=textEditor,Path=WordWrap}">
+                    <CheckBox IsChecked="{Binding ElementName=textEditor,Path=WordWrap}" ToolTip="文字换行">
                         <Image Source="/Images/Editor/WordWrap.png" Height="16"/>
                     </CheckBox>
-                    <CheckBox IsChecked="{Binding ElementName=textEditor,Path=ShowLineNumbers}">
+                    <CheckBox IsChecked="{Binding ElementName=textEditor,Path=ShowLineNumbers}" ToolTip="显示行数">
                         <TextBlock Width="16" TextAlignment="Center">#</TextBlock>
                     </CheckBox>
-                    <CheckBox IsChecked="{Binding ElementName=textEditor,Path=Options.ShowEndOfLine}">
+                    <CheckBox IsChecked="{Binding ElementName=textEditor,Path=Options.ShowEndOfLine}" ToolTip="显示行尾">
                         <TextBlock Width="16" TextAlignment="Center">¶</TextBlock>
                     </CheckBox>
                     <ComboBox Name="highlightingComboBox"
@@ -103,8 +112,8 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <avalonEdit:TextEditor Name="textEditor" FontFamily="Consolas"
-				FontSize="10pt" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
-				SyntaxHighlighting="C#" >
+				FontSize="10pt" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+				SyntaxHighlighting="C#">
                     </avalonEdit:TextEditor>
                     <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Left"/>
                 </Grid>
