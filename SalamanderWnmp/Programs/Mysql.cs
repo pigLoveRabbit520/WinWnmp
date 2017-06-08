@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace SalamanderWnmp.Programs
 {
-    class MysqlProgram : WnmpProgram
+    class MysqlProgram : BaseProgram
     {
         private readonly ServiceController mysqlController = new ServiceController();
         public const string ServiceName = "mysql-salamander";

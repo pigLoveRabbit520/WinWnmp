@@ -5,7 +5,7 @@ using SalamanderWnmp.Tool;
 
 namespace SalamanderWnmp.Programs
 {
-    class PHPProgram : WnmpProgram
+    class PHPProgram : BaseProgram
     {
         /// <summary>
         /// fastcgi管理器

@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace SalamanderWnmp.Programs
 {
-    class NginxProgram : WnmpProgram
+    class NginxProgram : BaseProgram
     {
 
         public override void Setup()

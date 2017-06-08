@@ -80,7 +80,7 @@ namespace SalamanderWnmp.Tool
         /// <summary>
         /// 判断PHP，mysql，nginx是否在wnmp目录中
         /// </summary>
-        public static void CheckForApps(WnmpProgram nginx, WnmpProgram mysql, WnmpProgram php)
+        public static void CheckForApps(BaseProgram nginx, BaseProgram mysql, BaseProgram php)
         {
             Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
             if (!Directory.Exists(nginx.workingDir))

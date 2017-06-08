@@ -44,7 +44,7 @@ namespace SalamanderWnmp
 
 
         public static readonly MysqlProgram Mysql = new MysqlProgram();
-        public static readonly WnmpProgram Nginx = new NginxProgram();
+        public static readonly BaseProgram Nginx = new NginxProgram();
         public static readonly PHPProgram PHP = new PHPProgram();
 
     }

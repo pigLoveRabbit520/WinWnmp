@@ -217,7 +217,7 @@
     <Compile Include="Tool\Log.cs" />
     <Compile Include="Programs\Mysql.cs" />
     <Compile Include="Programs\PHP.cs" />
-    <Compile Include="Programs\WnmpProgram.cs" />
+    <Compile Include="Programs\BaseProgram.cs" />
     <Compile Include="UI\MainWin.xaml.cs">
       <DependentUpon>MainWin.xaml</DependentUpon>
       <SubType>Code</SubType>

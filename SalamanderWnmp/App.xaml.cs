@@ -16,10 +16,10 @@ namespace SalamanderWnmp
     /// <summary>
     /// App.xaml 的交互逻辑
     /// </summary>
-    public partial class App : Application
+    public partial class SalamanderApp : Application
     {
 
-        public App()
+        public SalamanderApp()
         {
             Process process = GetRuningInstance();
             if (process != null)
