@@ -26,7 +26,7 @@
             </StackPanel>
         </Grid>
 
-        <ListView x:Name="lvConditions" Margin="5" Grid.Row="1">
+        <ListView x:Name="lvConditions" Margin="5" Grid.Row="1" GridViewColumnHeader.Click="GridViewColumnHeader_Click" IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="进程名" DisplayMemberBinding="{Binding ProcName}"></GridViewColumn>

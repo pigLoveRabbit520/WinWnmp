@@ -8,7 +8,6 @@ namespace SalamanderWnmp.Tool
 {
     class PortScanHelper
     {
-        private static List<PortInfo> portInfoList = new List<PortInfo>();
 
         public class PortInfo
         {
@@ -36,6 +35,7 @@ namespace SalamanderWnmp.Tool
         /// <returns></returns>
         public static List<PortInfo> GetPortInfoList()
         {
+            List<PortInfo> portInfoList = new List<PortInfo>();
             Process ps = new Process();
             // 设置命令行、参数    
             ps.StartInfo.FileName = "netstat";
@@ -60,6 +60,15 @@ namespace SalamanderWnmp.Tool
                         {
                             int pid = Int32.Parse(cols[4]);
                             string[] portStr = cols[1].Split(':');
+                            string procName = null;
+                            try
+                            {
+                                procName = Process.GetProcessById(pid).ProcessName;
+                            }
+                            catch
+                            {
+                                continue;
+                            }
                             PortInfo info = new PortInfo
                             {
                                 ProtocolType = cols[0],

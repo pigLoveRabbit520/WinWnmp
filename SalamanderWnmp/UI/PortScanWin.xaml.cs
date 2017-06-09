@@ -2,6 +2,7 @@
 using SalamanderWnmp.UserClass;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,28 @@ namespace SalamanderWnmp.UI
         private void btnScan_Click(object sender, RoutedEventArgs e)
         {
             lvConditions.ItemsSource = PortScanHelper.GetPortInfoList();
+        }
+
+        private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            if (e.OriginalSource is GridViewColumnHeader)
+            {
+                GridViewColumn clickedColumn = (e.OriginalSource as GridViewColumnHeader).Column;
+                if (clickedColumn != null)
+                {
+                    //Get binding property of clicked column
+                    string bindingProperty = (clickedColumn.DisplayMemberBinding as Binding).Path.Path;
+                    SortDescriptionCollection sdc = lvConditions.Items.SortDescriptions;
+                    ListSortDirection sortDirection = ListSortDirection.Ascending;
+                    if (sdc.Count > 0)
+                    {
+                        SortDescription sd = sdc[0];
+                        sortDirection = (ListSortDirection)((((int)sd.Direction) + 1) % 2);
+                        sdc.Clear();
+                    }
+                    sdc.Add(new SortDescription(bindingProperty, sortDirection));
+                }
+            }
         }
     }
 }
