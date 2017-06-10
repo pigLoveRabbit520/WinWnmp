@@ -153,7 +153,7 @@ namespace SalamanderWnmp.UI
                     RunCodeStatus.Running);
             }).SetAfterWork((result) =>
             {
-                DispatcherHelper.UIDispatcher.Invoke(new Action<String>(ChangOutputTxt), result);
+                DispatcherHelper.UIDispatcher.Invoke(new Action<String>((txt) => { this.txtOutput.Text = txt; }), result);
                 DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonContent),
                     RunCodeStatus.Stop);
             }).Run(code, SelectedLan);
@@ -179,15 +179,6 @@ namespace SalamanderWnmp.UI
             }
         }
 
-        /// <summary>
-        /// 改变状态文本
-        /// </summary>
-        /// <param name="txt"></param>
-        private void ChangOutputTxt(String txt)
-        {
-            this.txtOutput.Text = txt;
-        }
-
        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -199,7 +190,6 @@ namespace SalamanderWnmp.UI
             this.txtOutput.Text = "";            
         }
 
-        string currentFileName;
 
         void openFileClick(object sender, RoutedEventArgs e)
         {
@@ -207,7 +197,7 @@ namespace SalamanderWnmp.UI
             dlg.CheckFileExists = true;
             if (dlg.ShowDialog() ?? false)
             {
-                currentFileName = dlg.FileName;
+                string currentFileName = dlg.FileName;
                 textEditor.Load(currentFileName);
                 textEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(Path.GetExtension(currentFileName));
             }
@@ -215,20 +205,16 @@ namespace SalamanderWnmp.UI
 
         void saveFileClick(object sender, EventArgs e)
         {
-            if (currentFileName == null)
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.DefaultExt = ".txt";
+            if (dlg.ShowDialog() ?? false)
             {
-                SaveFileDialog dlg = new SaveFileDialog();
-                dlg.DefaultExt = ".txt";
-                if (dlg.ShowDialog() ?? false)
-                {
-                    currentFileName = dlg.FileName;
-                }
-                else
-                {
-                    return;
-                }
+                textEditor.Save(dlg.FileName);
             }
-            textEditor.Save(currentFileName);
+            else
+            {
+                return;
+            }
         }
 
         CompletionWindow completionWindow;
