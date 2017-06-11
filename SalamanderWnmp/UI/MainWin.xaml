@@ -84,7 +84,7 @@
             <local:SalamanderListBox x:Name="lbSliderContainer" Style="{StaticResource MainWinListBox}" BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False">
                 <local:SalamanderListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
+                        <StackPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </local:SalamanderListBox.ItemsPanel>
                 <ListBoxItem x:Name="areaFirst" Style="{StaticResource MainWinSliderListBoxItem}">

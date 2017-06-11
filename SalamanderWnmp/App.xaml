@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
              StartupUri="UI/MainWin.xaml">
     <Application.Resources>
@@ -295,8 +296,10 @@
                         <ControlTemplate TargetType="{x:Type ListBox}">
                             <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
                                 <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
-                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Height="Auto">
-                                        
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                        <i:Interaction.Behaviors>
+                                            <ei:FluidMoveBehavior/>
+                                        </i:Interaction.Behaviors>
                                     </ItemsPresenter>
                                 </ScrollViewer>
                             </Border>
