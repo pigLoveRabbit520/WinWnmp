@@ -26,12 +26,14 @@ namespace SalamanderWnmp.UserClass
             if (scroll != null)
             {
                 int d = e.Delta;
-                if (d > 0)
-                {
-                    scroll.LineRight();
-                }
                 if (d < 0)
                 {
+                    scroll.LineRight();
+                    scroll.LineRight();
+                }
+                if (d > 0)
+                {
+                    scroll.LineLeft();
                     scroll.LineLeft();
                 }
                 scroll.ScrollToTop();
