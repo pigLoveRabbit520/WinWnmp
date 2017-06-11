@@ -81,12 +81,12 @@
             </Grid.RowDefinitions>
 
 
-            <ListBox x:Name="lbSliderContainer" Style="{StaticResource MainWinListBox}" BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True">
-                <ListBox.ItemsPanel>
+            <local:SalamanderListBox x:Name="lbSliderContainer" Style="{StaticResource MainWinListBox}" BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False">
+                <local:SalamanderListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
                     </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
+                </local:SalamanderListBox.ItemsPanel>
                 <ListBoxItem x:Name="areaFirst" Style="{StaticResource MainWinSliderListBoxItem}">
                     <Border Padding="0, 10">
                         <Grid>
@@ -214,7 +214,7 @@
                         </Grid>
                     </Border>
                 </ListBoxItem>
-            </ListBox>
+            </local:SalamanderListBox>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <RadioButton x:Name="btnSlideForward" Style="{StaticResource IndicatorRadio}" Margin="0,0,5,0"  IsChecked="True"  Click="btnSlide_Click"/>
