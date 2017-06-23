@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -83,6 +85,27 @@ namespace SalamanderWnmp.Tool
             }
 
             return portInfoList;
+        }
+
+        /// <summary>
+        /// 通过TCP监听列表判断端口是否被占
+        /// </summary>
+        /// <param name="port"></param>
+        /// <returns></returns>
+        public static bool IsPortInUseByTCP(int port)
+        {
+            bool inUse = false;
+            IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties();
+            IPEndPoint[] ipEndPoints = ipProperties.GetActiveTcpListeners();
+            foreach (IPEndPoint endPoint in ipEndPoints)
+            {
+                if (endPoint.Port == port)
+                {
+                    inUse = true;
+                    break;
+                }
+            }
+            return inUse;
         }
     }
 }
