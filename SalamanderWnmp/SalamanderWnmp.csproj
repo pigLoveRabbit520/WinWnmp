@@ -123,7 +123,9 @@
     <Compile Include="Tool\EnvironmentAutoConfig.cs" />
     <Compile Include="Tool\CodeHelper.cs" />
     <Compile Include="Tool\HttpHelper.cs" />
+    <Compile Include="Tool\IEProxySetting.cs" />
     <Compile Include="Tool\PortScanHelper.cs" />
+    <Compile Include="Tool\ProxyHelper.cs" />
     <Compile Include="Tool\RedisHelper.cs" />
     <Compile Include="Tool\ViewHelper.cs" />
     <Compile Include="UI\AboutWin.xaml.cs">
