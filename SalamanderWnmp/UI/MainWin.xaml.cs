@@ -106,6 +106,7 @@ namespace SalamanderWnmp.UI
                 Common.Settings.UpdateSettings();
             }
             ini();
+            this.lbSliderContainer.AddHandler(ScrollViewer.ScrollChangedEvent, new ScrollChangedEventHandler(listBoxScrollView_ScrollChanged), true);
         }
 
         private void ini()
@@ -387,6 +388,26 @@ namespace SalamanderWnmp.UI
             }
 
             e.Handled = true;
+        }
+
+        private const double ITEM_WIDTH = 480;
+
+        // ListBox中ScrollView滚动事件监听
+        private void listBoxScrollView_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            ScrollViewer sv = e.OriginalSource as ScrollViewer;
+            if (sv != null)
+            {
+                Console.WriteLine(sv.HorizontalOffset);
+                if(sv.HorizontalOffset == 0)
+                {
+                    btnSlideForward.IsChecked = true;
+                }
+                else if(sv.HorizontalOffset == ITEM_WIDTH)
+                {
+                    btnSlideBack.IsChecked = true;
+                }
+            }
         }
 
         private void codePanelToggleButton_Checked(object sender, RoutedEventArgs e)
