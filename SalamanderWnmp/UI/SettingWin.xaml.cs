@@ -20,25 +20,29 @@ namespace SalamanderWnmp.UI
     public partial class SettingWin : SalamanderWindow
     {
         private PHPConfigurationManager PHPConfigurationMgr = new PHPConfigurationManager();
+        private Ini settingsCopy = new Ini();
 
 
         public SettingWin()
         {
             InitializeComponent();
+            settingsCopy.ReadSettings();
         }
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            gridRegular.DataContext = Common.Settings;
-            PHPConfigurationMgr.LoadPHPExtensions(Common.Settings.PHPDirName.Value);
+            gridRegular.DataContext = settingsCopy;
+            gridMysql.DataContext = settingsCopy;
+            PHPConfigurationMgr.LoadPHPExtensions(settingsCopy.PHPDirName.Value);
             lbPHPExt.ItemsSource = PHPConfigurationMgr.GetExtensions();
             txtTotal.DataContext = lbPHPExt;
             e.Handled = true;
         }
 
-        private void btnSaveRegular_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            Common.ChangeSettings(settingsCopy);
             Common.Settings.UpdateSettings();
             Common.Nginx.Setup();
             Common.Mysql.Setup();

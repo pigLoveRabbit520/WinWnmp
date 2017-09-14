@@ -94,12 +94,34 @@ namespace SalamanderWnmp.Configuration
         /// <summary>
         /// php-cgi开启的个数
         /// </summary>
-        public Option<uint> PHP_Processes { get { return this.php_Processes; } set { this.php_Processes = value; } }
-        private Option<uint> php_Processes = new Option<uint>
+        public Option<uint> PHPProcesses { get { return this.phpProcesses; } set { this.phpProcesses = value; } }
+        private Option<uint> phpProcesses = new Option<uint>
         {
             Name = "phpProcesses",
             Description = "Amount of php-cgi processes",
             Value = 4,
+        };
+
+        /// <summary>
+        /// MySQL命令行用户
+        /// </summary>
+        public Option<string> MysqlClientUser { get { return this.mysqlClientUser; } set { this.mysqlClientUser = value; } }
+        private Option<string> mysqlClientUser = new Option<string>
+        {
+            Name = "mysqlClientUser",
+            Description = "One user of MySQL for logining",
+            Value = "root",
+        };
+
+        /// <summary>
+        /// MySQL命令行用户密码
+        /// </summary>
+        public Option<string> MysqlClientUserPass { get { return this.mysqlClientUserPass; } set { this.mysqlClientUserPass = value; } }
+        private Option<string> mysqlClientUserPass = new Option<string>
+        {
+            Name = "mysqlClientUserPass",
+            Description = "Password for that user",
+            Value = "",
         };
 
 
@@ -130,9 +152,11 @@ namespace SalamanderWnmp.Configuration
             options.Add(StartMinimizedToTray);
             options.Add(MinimizeWnmpToTray);
             options.Add(FirstRun);
-            options.Add(PHP_Processes);
+            options.Add(PHPProcesses);
             options.Add(PHP_Port);
             options.Add(PHPDirName);
+            options.Add(MysqlClientUser);
+            options.Add(mysqlClientUserPass);
         }
 
         private readonly string IniFile = Constants.APP_STARTUP_PATH + @"\Wnmp.ini";

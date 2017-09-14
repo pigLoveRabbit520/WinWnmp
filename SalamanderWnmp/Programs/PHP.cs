@@ -42,7 +42,7 @@ namespace SalamanderWnmp.Programs
             this.workingDir = Common.APP_STARTUP_PATH;
             this.progLogSection = Log.LogSection.WNMP_PHP;
             this.startArgs = String.Format("\"{0} -c {1}\" {2} {3}+10", Common.Settings.PHPDirName.Value + "/php-cgi.exe",
-                        Common.Settings.PHPDirName.Value + "/php.ini", Common.Settings.PHP_Port.Value, Common.Settings.PHP_Processes.Value);
+                        Common.Settings.PHPDirName.Value + "/php.ini", Common.Settings.PHP_Port.Value, Common.Settings.PHPProcesses.Value);
             this.killStop = true;
             this.confDir = "/php/";
             this.logDir = "/php/logs/";

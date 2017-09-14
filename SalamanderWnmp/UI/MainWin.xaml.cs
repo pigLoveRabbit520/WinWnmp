@@ -482,5 +482,11 @@ namespace SalamanderWnmp.UI
         {
             OpenWindow("MenuAbout");
         }
+
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MysqlProgram.OpenMySQLClientCmd();
+            e.Handled = true;
+        }
     }
 }

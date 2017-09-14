@@ -113,7 +113,7 @@ namespace SalamanderWnmp.UserClass
         protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
 
-        // API 常熟定义
+        // API 常数定义
         protected const int SW_HIDE = 0;
         protected const int SW_SHOWNORMAL = 1;
         protected const int SW_MAXIMIZE = 3;

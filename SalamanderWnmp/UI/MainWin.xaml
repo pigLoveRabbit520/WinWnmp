@@ -132,7 +132,7 @@
                             </StackPanel>
 
                             <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="stackMysql">
-                                <Image Source="/Images/mysql.png" Height="60"/>
+                                <Image Source="/Images/mysql.png" Height="60" MouseLeftButtonUp="Image_MouseLeftButtonUp" Cursor="Hand" ToolTip="MySQL Client"/>
                                 <TextBlock x:Name="lblMysql" Margin="0, 5" Text="{Binding Running, Converter={StaticResource cvtText}}"  Foreground="{Binding Running, Converter={StaticResource cvtColor}}"
                                    HorizontalAlignment="Center"/>
                                 <Grid>

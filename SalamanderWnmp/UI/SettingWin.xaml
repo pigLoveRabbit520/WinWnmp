@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen"
-        Title="{x:Static prop:Resources.Settings}" Height="340" Width="350" Loaded="Window_Loaded">
+        Title="{x:Static prop:Resources.Settings}" Height="360" Width="380" Loaded="Window_Loaded">
     <local:SalamanderWindow.Resources>
         <Style TargetType="TextBox" x:Key="RegularTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Width" Value="80" />
@@ -76,9 +76,9 @@
 
 
                     <TextBlock Grid.Row="6"  Text="PHP-CGI进程数" VerticalAlignment="Center" />
-                    <component:NumericControl Width="80" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" MinValue="1" MaxValue="5" Increment="1" Value="{Binding PHP_Processes.Value, Mode=TwoWay}"/>
+                    <component:NumericControl Width="80" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" MinValue="1" MaxValue="5" Increment="1" Value="{Binding PHPProcesses.Value, Mode=TwoWay}"/>
 
-                    <Button Grid.ColumnSpan="2"  Grid.Row="7" Style="{StaticResource SaveBtn}" Click="btnSaveRegular_Click"/>
+                    <Button Grid.ColumnSpan="2"  Grid.Row="7" Style="{StaticResource SaveBtn}" Click="btnSave_Click"/>
                 </Grid>
             </TabItem>
             
@@ -109,6 +109,35 @@
                     </ListBox>
 
                     <Button Grid.Row="2" Style="{StaticResource SaveBtn}" Click="btnSavePHPExt_Click"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="MySQL">
+                <Grid Margin="15, 10" x:Name="gridMysql">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="MySQL命令行用户名" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Style="{StaticResource RegularTextBox}" Text="{Binding MysqlClientUser.Value, Mode=TwoWay}"/>
+
+                    <TextBlock Grid.Row="1" Text="MySQL命令行用户密码" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource RegularTextBox}" Text="{Binding MysqlClientUserPass.Value, Mode=TwoWay}"/>
+
+                    <Button Grid.ColumnSpan="2"  Grid.Row="7" Style="{StaticResource SaveBtn}" Click="btnSave_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

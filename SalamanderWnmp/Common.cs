@@ -11,6 +11,7 @@ namespace SalamanderWnmp
     class Common
     {
         private static Ini settings = null;
+
         /// <summary>
         /// 应用程序配置(单例模式)
         /// </summary>
@@ -22,6 +23,18 @@ namespace SalamanderWnmp
                     settings = new Ini();
                 }
                 return settings;
+            }
+        }
+
+        /// <summary>
+        /// 改变全局设置量
+        /// </summary>
+        /// <param name="settingsNew"></param>
+        public static void ChangeSettings(Ini settingsNew)
+        {
+            if(settingsNew != null)
+            {
+                settings = settingsNew;
             }
         }
 

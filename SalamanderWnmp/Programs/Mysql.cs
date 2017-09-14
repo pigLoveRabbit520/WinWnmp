@@ -1,6 +1,7 @@
 ﻿using SalamanderWnmp.Tool;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
 using System.Text.RegularExpressions;
@@ -165,6 +166,21 @@ namespace SalamanderWnmp.Programs
             this.killStop = true;
             this.confDir = "/mysql/";
             this.logDir = "/mysql/data/";
+        }
+
+        /// <summary>
+        /// 打开MySQL Client命令行
+        /// </summary>
+        public static void OpenMySQLClientCmd()
+        {
+            Process ps = new Process();
+            ps.StartInfo.FileName = Common.APP_STARTUP_PATH + String.Format("{0}/bin/mysql.exe", Common.Settings.MysqlDirName.Value);
+            ps.StartInfo.Arguments = String.Format("-u{0} -p{1}", Common.Settings.MysqlClientUser.Value, Common.Settings.MysqlClientUserPass.Value);
+            ps.StartInfo.UseShellExecute = false;
+            ps.StartInfo.CreateNoWindow = false;
+
+            ps.Start();
+
         }
     }
 }
