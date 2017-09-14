@@ -5,10 +5,11 @@
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen"
-        Title="{x:Static prop:Resources.Settings}" Height="360" Width="380" Loaded="Window_Loaded">
+        Title="{x:Static prop:Resources.Settings}" Height="360" Width="370" Loaded="Window_Loaded">
     <local:SalamanderWindow.Resources>
         <Style TargetType="TextBox" x:Key="RegularTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-            <Setter Property="Width" Value="80" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Padding" Value="0, 3" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -76,7 +77,7 @@
 
 
                     <TextBlock Grid.Row="6"  Text="PHP-CGI进程数" VerticalAlignment="Center" />
-                    <component:NumericControl Width="80" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" MinValue="1" MaxValue="5" Increment="1" Value="{Binding PHPProcesses.Value, Mode=TwoWay}"/>
+                    <component:NumericControl Width="100" Grid.Row="6" Grid.Column="1"  VerticalAlignment="Center" MinValue="1" MaxValue="5" Increment="1" Value="{Binding PHPProcesses.Value, Mode=TwoWay}"/>
 
                     <Button Grid.ColumnSpan="2"  Grid.Row="7" Style="{StaticResource SaveBtn}" Click="btnSave_Click"/>
                 </Grid>
