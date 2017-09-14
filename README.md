@@ -16,7 +16,9 @@
 
 ## Other Functions(其他功能)
 #### Regulaer Settings(常规设置)
-![常规设置](https://cloud.githubusercontent.com/assets/16663435/23488508/00fdf128-ff28-11e6-9b2f-711b5a46b5f9.png)
+![常规设置](https://user-images.githubusercontent.com/16663435/30427886-22070566-9984-11e7-9fc0-9900064b7d71.png)
+
+
 
 
 #### Theme Color Panel(调色面板)
