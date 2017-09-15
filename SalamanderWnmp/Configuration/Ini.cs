@@ -154,7 +154,9 @@ namespace SalamanderWnmp.Configuration
             options.Add(FirstRun);
             options.Add(PHPProcesses);
             options.Add(PHP_Port);
+            options.Add(NginxDirName);
             options.Add(PHPDirName);
+            options.Add(MysqlDirName);
             options.Add(MysqlClientUser);
             options.Add(mysqlClientUserPass);
         }
