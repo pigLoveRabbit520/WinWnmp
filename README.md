@@ -7,6 +7,7 @@
 
 ## Download(集成包下载)
 [下载地址](http://ongd1spyv.bkt.clouddn.com/SalamanderWnmp.7z)
+[下载地址(OpenResty)](http://ongd1spyv.bkt.clouddn.com/SalamanderWnmp-OpenResty.7z)
 
 ## Main Window(主界面)
 ![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/25646342/079fc59a-2fea-11e7-9e54-836da73ec8d6.png)
