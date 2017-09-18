@@ -104,13 +104,13 @@ namespace SalamanderWnmp.Programs
             try {
                 if (!File.Exists(Common.APP_STARTUP_PATH + Common.Settings.MysqlDirName.Value + "/my.ini"))
                 {
-                    Log.wnmp_log_notice("my.ini file not exist", progLogSection);
+                    Log.wnmp_log_error("my.ini file not exist", progLogSection);
                     return;
                 }
                 int port = GetIniMysqlListenPort();// -1表示提取出错
                 if (port != -1 && PortScanHelper.IsPortInUseByTCP(port))
                 {
-                    Log.wnmp_log_notice("Port " + port + " is used", progLogSection);
+                    Log.wnmp_log_error("Port " + port + " is used", progLogSection);
                     return;
                 }
                 mysqlController.Start();

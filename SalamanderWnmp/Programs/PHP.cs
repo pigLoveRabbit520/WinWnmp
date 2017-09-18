@@ -21,6 +21,18 @@ namespace SalamanderWnmp.Programs
             ps.StartInfo.EnvironmentVariables.Add("PHP_HELP_MAX_REQUESTS", "100");
         }
 
+        public override void Start()
+        {
+            if(!IsRunning() && PortScanHelper.IsPortInUseByTCP(Common.Settings.PHP_Port.Value))
+            {
+                Log.wnmp_log_error("Port " + Common.Settings.PHP_Port.Value + " is used", progLogSection);
+            } 
+            else
+            {
+                base.Start();
+            }
+        }
+
 
 
         public override void Stop()

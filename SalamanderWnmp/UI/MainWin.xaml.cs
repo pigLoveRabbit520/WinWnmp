@@ -398,7 +398,6 @@ namespace SalamanderWnmp.UI
             ScrollViewer sv = e.OriginalSource as ScrollViewer;
             if (sv != null)
             {
-                Console.WriteLine(sv.HorizontalOffset);
                 if(sv.HorizontalOffset == 0)
                 {
                     btnSlideForward.IsChecked = true;
