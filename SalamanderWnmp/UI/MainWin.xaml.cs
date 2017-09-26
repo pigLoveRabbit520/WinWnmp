@@ -482,9 +482,15 @@ namespace SalamanderWnmp.UI
             OpenWindow("MenuAbout");
         }
 
-        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void MySQL_Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MysqlProgram.OpenMySQLClientCmd();
+            e.Handled = true;
+        }
+
+        private void Nginx_Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            NginxProgram.OpenNginxtCmd();
             e.Handled = true;
         }
     }

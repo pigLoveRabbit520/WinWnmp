@@ -34,7 +34,7 @@ namespace SalamanderWnmp.Programs
         /// </summary>
         public void InstallService()
         {
-            StartProcess(exeName, startArgs, true);
+            StartProcess(exeFile, startArgs, true);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace SalamanderWnmp.Programs
                     return;
                 }
                 mysqlController.Start();
-                Log.wnmp_log_notice("Started " + progName, progLogSection);
+                Log.wnmp_log_notice("Started " + programName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }
@@ -129,7 +129,7 @@ namespace SalamanderWnmp.Programs
             try {
                 mysqlController.Stop();
                 mysqlController.WaitForStatus(ServiceControllerStatus.Stopped);
-                Log.wnmp_log_notice("Stopped " + progName, progLogSection);
+                Log.wnmp_log_notice("Stopped " + programName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Stop(): " + ex.Message, progLogSection);
             }
@@ -155,9 +155,9 @@ namespace SalamanderWnmp.Programs
 
         public override void Setup()
         {
-            this.exeName = Common.APP_STARTUP_PATH + String.Format("{0}/bin/mysqld.exe", Common.Settings.MysqlDirName.Value);
+            this.exeFile = Common.APP_STARTUP_PATH + String.Format("{0}/bin/mysqld.exe", Common.Settings.MysqlDirName.Value);
             this.procName = "mysqld";
-            this.progName = "mysql";
+            this.programName = "MySQL";
             this.workingDir = Common.APP_STARTUP_PATH + Common.Settings.MysqlDirName.Value;
             this.progLogSection = Log.LogSection.WNMP_MARIADB;
             this.startArgs = "--install-manual " + MysqlProgram.ServiceName + " --defaults-file=\"" +

@@ -1,30 +1,67 @@
 ﻿using System;
 using System.Diagnostics;
-using SalamanderWnmp.Configuration;
-using SalamanderWnmp.UI;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.ComponentModel;
-using System.Threading;
-using System.Windows;
 using SalamanderWnmp.Tool;
 
 namespace SalamanderWnmp.Programs
 {
     public abstract class BaseProgram: INotifyPropertyChanged
     {
-        public string exeName { get; set; }    // Location of the executable file
-        public string procName { get; set; }   // Name of the process
-        public string progName { get; set; }   // User-friendly name of the program 
-        public string workingDir { get; set; }   // working directory
-        public Log.LogSection progLogSection { get; set; } // LogSection of the program
-        public string startArgs { get; set; }  // Start Arguments
-        public string stopArgs { get; set; }   // Stop Arguments if KillStop is false
-        public bool killStop { get; set; }     // Kill process instead of stopping it gracefully
-        public string confDir { get; set; }    // Directory where all the programs configuration files are
-        public string logDir { get; set; }     // Directory where all the programs log files are
+        /// <summary>
+        /// exe 执行文件位置
+        /// </summary>
+        public string exeFile { get; set; }
 
-        protected string errOutput = ""; // Output when start the process fail
+        /// <summary>
+        /// 进程名称
+        /// </summary>
+        public string procName { get; set; }   
+
+        /// <summary>
+        /// 进程别名，用来在日志窗口显示
+        /// </summary>
+        public string programName { get; set; }
+
+        /// <summary>
+        /// 进程工作目录（Nginx需要这个参数）
+        /// </summary>
+        public string workingDir { get; set; }
+
+        /// <summary>
+        /// 进程日志前缀
+        /// </summary>
+        public Log.LogSection progLogSection { get; set; }
+
+        /// <summary>
+        /// 进程开启的参数
+        /// </summary>
+        public string startArgs { get; set; }
+
+        /// <summary>
+        /// 关闭进程参数
+        /// </summary>
+        public string stopArgs { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool killStop { get; set; }
+
+        /// <summary>
+        /// 进程配置目录
+        /// </summary>
+        public string confDir { get; set; }
+
+        /// <summary>
+        /// 进程日志目录
+        /// </summary>
+        public string logDir { get; set; }
+
+
+        /// <summary>
+        /// 进程异常退出的记录信息
+        /// </summary>
+        protected string errOutput = "";
 
 
 
@@ -118,8 +155,8 @@ namespace SalamanderWnmp.Programs
                 return;
             }
             try {
-                StartProcess(exeName, startArgs);
-                Log.wnmp_log_notice("Started " + progName, progLogSection);
+                StartProcess(exeFile, startArgs);
+                Log.wnmp_log_notice("Started " + programName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }
@@ -132,12 +169,12 @@ namespace SalamanderWnmp.Programs
                 return;
             }
             if (killStop == false)
-                StartProcess(exeName, stopArgs, true);
+                StartProcess(exeFile, stopArgs, true);
             var processes = Process.GetProcessesByName(procName);
             foreach (var process in processes) {
                     process.Kill();
             }
-            Log.wnmp_log_notice("Stopped " + progName, progLogSection);
+            Log.wnmp_log_notice("Stopped " + programName, progLogSection);
         }
 
         /// <summary>
@@ -159,7 +196,7 @@ namespace SalamanderWnmp.Programs
         {
             this.Stop();
             this.Start();
-            Log.wnmp_log_notice("Restarted " + progName, progLogSection);
+            Log.wnmp_log_notice("Restarted " + programName, progLogSection);
         }
 
         /// <summary>

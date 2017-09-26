@@ -30,7 +30,7 @@ namespace SalamanderWnmp.Tool
                 case LogSection.WNMP_NGINX:
                     return "Wnmp Nginx";
                 case LogSection.WNMP_MARIADB:
-                    return "Wnmp Mysql";
+                    return "Wnmp MySQL";
                 case LogSection.WNMP_PHP:
                     return "Wnmp PHP";
                 default:

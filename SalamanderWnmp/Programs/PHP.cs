@@ -43,14 +43,14 @@ namespace SalamanderWnmp.Programs
             }
             KillProcess(FPM_NAME);
             KillProcess(PHP_CGI_NAME);
-            Log.wnmp_log_notice("Stopped " + progName, progLogSection);
+            Log.wnmp_log_notice("Stopped " + programName, progLogSection);
         }
 
         public override void Setup()
         {
-            this.exeName = Common.APP_STARTUP_PATH + FPM_NAME; // exe设置为fastcgi管理器程序
+            this.exeFile = Common.APP_STARTUP_PATH + FPM_NAME; // exe设置为fastcgi管理器程序
             this.procName = FPM_NAME;
-            this.progName = "PHP";
+            this.programName = "PHP";
             this.workingDir = Common.APP_STARTUP_PATH;
             this.progLogSection = Log.LogSection.WNMP_PHP;
             this.startArgs = String.Format("\"{0} -c {1}\" {2} {3}+10", Common.Settings.PHPDirName.Value + "/php-cgi.exe",
