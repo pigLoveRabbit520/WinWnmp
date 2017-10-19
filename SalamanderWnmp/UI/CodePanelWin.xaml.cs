@@ -22,7 +22,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// CodePanel.xaml 的交互逻辑
     /// </summary>
-    public partial class CodePanelWin : SalamanderWindow
+    public partial class CodePanelWin : Window
     {
 
 
@@ -65,18 +65,7 @@ namespace SalamanderWnmp.UI
 
 
             InitializeComponent();
-            this.MouseMove += CodePanelWin_MouseMove;
 
-            #if DOTNET4
-			this.SetValue(TextOptions.TextFormattingModeProperty, TextFormattingMode.Display);
-            #endif
-            //propertyGridComboBox.SelectedIndex = 2;
-
-            //textEditor.TextArea.SelectionBorder = null;
-
-            //textEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinition("C#");
-            //textEditor.SyntaxHighlighting = customHighlighting;
-            // initial highlighting now set by XAML
 
             textEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
             textEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
@@ -87,33 +76,6 @@ namespace SalamanderWnmp.UI
             foldingUpdateTimer.Start();
 
 
-        }
-
-        private void CodePanelWin_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (Mouse.LeftButton != MouseButtonState.Pressed)
-            {
-                FrameworkElement element = e.OriginalSource as FrameworkElement;
-                if (element != null && !element.Name.Contains("Resize"))
-                    this.Cursor = Cursors.Arrow;
-            }
-        }
-
-        private void ResizePressed(object sender, MouseEventArgs e)
-        {
-            FrameworkElement element = sender as FrameworkElement;
-            ResizeDirection direction = (ResizeDirection)Enum.Parse(typeof(ResizeDirection), element.Name.Replace("Resize", ""));
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.Cursor = Cursors.SizeNWSE;
-                ResizeWindow(direction);
-            }
-            e.Handled = true;
-        }
-
-        private void ResizeWindow(ResizeDirection direction)
-        {
-            SendMessage(_HwndSource.Handle, WM_SYSCOMMAND, (IntPtr)(61440 + direction), IntPtr.Zero);
         }
 
 
@@ -149,12 +111,12 @@ namespace SalamanderWnmp.UI
             CodeHelper helper = new CodeHelper();
             helper.SetPreWork(() =>
             {
-                DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonContent),
+                DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonStatus),
                     RunCodeStatus.Running);
             }).SetAfterWork((result) =>
             {
                 DispatcherHelper.UIDispatcher.Invoke(new Action<String>((txt) => { this.txtOutput.Text = txt; }), result);
-                DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonContent),
+                DispatcherHelper.UIDispatcher.Invoke(new Action<RunCodeStatus>(SetRunButtonStatus),
                     RunCodeStatus.Stop);
             }).Run(code, SelectedLan);
         }
@@ -164,16 +126,14 @@ namespace SalamanderWnmp.UI
         /// 更改运行按钮的Content
         /// </summary>
         /// <param name="status"></param>
-        private void SetRunButtonContent(RunCodeStatus status)
+        private void SetRunButtonStatus(RunCodeStatus status)
         {
             switch(status)
             {
                 case RunCodeStatus.Running:
-                    this.btnRun.Content = "执行中...";
                     this.btnRun.IsEnabled = false;
                     break;
                 case RunCodeStatus.Stop:
-                    this.btnRun.Content = "运行";
                     this.btnRun.IsEnabled = true;
                     break;
             }
