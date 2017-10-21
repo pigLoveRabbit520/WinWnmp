@@ -1,12 +1,10 @@
 ﻿using SalamanderWnmp.Tool;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace SalamanderWnmp.Programs
 {
@@ -26,7 +24,7 @@ namespace SalamanderWnmp.Programs
         /// </summary>
         public void RemoveService()
         {
-            StartProcess("cmd.exe", stopArgs, true);
+            StartProcess("cmd.exe", stopArgs);
         }
 
         /// <summary>
@@ -34,7 +32,7 @@ namespace SalamanderWnmp.Programs
         /// </summary>
         public void InstallService()
         {
-            StartProcess(exeFile, startArgs, true);
+            StartProcess(exeFile, startArgs);
         }
 
         /// <summary>

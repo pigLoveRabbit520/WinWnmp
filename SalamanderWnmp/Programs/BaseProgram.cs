@@ -101,7 +101,6 @@ namespace SalamanderWnmp.Programs
             {
                 this.Running = false;
             }
-               
         }
 
         /// <summary>
@@ -110,7 +109,7 @@ namespace SalamanderWnmp.Programs
         /// <param name="exe"></param>
         /// <param name="args"></param>
         /// <param name="wait"></param>
-        public void StartProcess(string exe, string args, bool wait = false)
+        public void StartProcess(string exe, string args, EventHandler exitedHandler = null)
         {
             ps = new Process();
             ps.StartInfo.FileName = exe;
@@ -121,11 +120,13 @@ namespace SalamanderWnmp.Programs
             ps.StartInfo.WorkingDirectory = workingDir;
             ps.StartInfo.CreateNoWindow = true;
             ps.EnableRaisingEvents = true;
+            // ErrorDataReceived event signals each time the process writes a line 
+            // to the redirected StandardError stream
             ps.ErrorDataReceived += (sender, e) => {
                 errOutput += e.Data;
             };
-            ps.Exited += (sender, e) => {
-                if(!String.IsNullOrEmpty(errOutput))
+            ps.Exited += exitedHandler != null ? exitedHandler : (sender, e) => {
+                if (!String.IsNullOrEmpty(errOutput))
                 {
                     Log.wnmp_log_error("Failed: " + errOutput, progLogSection);
                     errOutput = "";
@@ -135,17 +136,8 @@ namespace SalamanderWnmp.Programs
 
             ps.BeginOutputReadLine();
             ps.BeginErrorReadLine();
-
-
-            if (wait) {
-                ps.WaitForExit();
-                ps.Close();
-            }
         }
 
-
-        /// ErrorDataReceived event signals each time the process writes a line 
-        /// to the redirected StandardError stream
 
 
         public virtual void Start()
@@ -169,7 +161,7 @@ namespace SalamanderWnmp.Programs
                 return;
             }
             if (killStop == false)
-                StartProcess(exeFile, stopArgs, true);
+                StartProcess(exeFile, stopArgs);
             var processes = Process.GetProcessesByName(procName);
             foreach (var process in processes) {
                     process.Kill();

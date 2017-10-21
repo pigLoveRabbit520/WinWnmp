@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Windows.Controls;
-using SalamanderWnmp.UI;
 using SalamanderWnmp.Tool;
 
 namespace SalamanderWnmp.Programs
 {
     class PHPProgram : BaseProgram
     {
-        /// <summary>
-        /// fastcgi管理器
-        /// 源码：https://github.com/Nazi-Lucy/php-cgi-spawner
-        /// </summary>
-        private const string FPM_NAME = "php-cgi-spawner";
 
         private const string PHP_CGI_NAME = "php-cgi";
+        private const string PHP_MAX_REQUEST = "PHP_FCGI_MAX_REQUESTS";
 
 
         public PHPProgram()
         {
-            ps.StartInfo.EnvironmentVariables.Add("PHP_HELP_MAX_REQUESTS", "100");
+            if (Environment.GetEnvironmentVariable(PHP_MAX_REQUEST) == null)
+                Environment.SetEnvironmentVariable(PHP_MAX_REQUEST, "200");
         }
 
         public override void Start()
@@ -27,13 +22,14 @@ namespace SalamanderWnmp.Programs
             {
                 Log.wnmp_log_error("Port " + Common.Settings.PHP_Port.Value + " is used", progLogSection);
             } 
-            else
+            else if(!IsRunning())
             {
-                base.Start();
+                for (int i = 0; i < Common.Settings.PHPProcesses.Value; i++)
+                {
+                    StartProcess(this.exeFile, this.startArgs);
+                }
             }
         }
-
-
 
         public override void Stop()
         {
@@ -41,20 +37,20 @@ namespace SalamanderWnmp.Programs
             {
                 return;
             }
-            KillProcess(FPM_NAME);
             KillProcess(PHP_CGI_NAME);
             Log.wnmp_log_notice("Stopped " + programName, progLogSection);
         }
 
         public override void Setup()
         {
-            this.exeFile = Common.APP_STARTUP_PATH + FPM_NAME; // exe设置为fastcgi管理器程序
-            this.procName = FPM_NAME;
+            string phpDirPath = Common.APP_STARTUP_PATH + Common.Settings.PHPDirName.Value;
+
+            this.exeFile = string.Format("{0}/php-cgi.exe", phpDirPath);
+            this.procName = PHP_CGI_NAME;
             this.programName = "PHP";
-            this.workingDir = Common.APP_STARTUP_PATH;
+            this.workingDir = phpDirPath;
             this.progLogSection = Log.LogSection.WNMP_PHP;
-            this.startArgs = String.Format("\"{0} -c {1}\" {2} {3}+10", Common.Settings.PHPDirName.Value + "/php-cgi.exe",
-                        Common.Settings.PHPDirName.Value + "/php.ini", Common.Settings.PHP_Port.Value, Common.Settings.PHPProcesses.Value);
+            this.startArgs = String.Format("-b 127.0.0.1:{0} -c {1}/php.ini", Common.Settings.PHP_Port.Value, phpDirPath);
             this.killStop = true;
             this.confDir = "/php/";
             this.logDir = "/php/logs/";
