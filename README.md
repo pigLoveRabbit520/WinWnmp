@@ -27,8 +27,8 @@
 
 
 #### Coding Panel(编程面板)
-![编程面板](https://cloud.githubusercontent.com/assets/16663435/26825004/fe849c30-4ae5-11e7-9fd7-ca6f9b07083e.png)
-)
+
+![编程面板](https://user-images.githubusercontent.com/16663435/31847846-111c1ea0-b656-11e7-9a9c-39cb1bc528af.png)
 
 #### Questions Panel(常见问题面板)
 ![常见问题面板](https://cloud.githubusercontent.com/assets/16663435/25732424/fc42c0f0-3181-11e7-9ebf-c9cd1eba747e.png)
