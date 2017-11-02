@@ -20,7 +20,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="85"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="140"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Padding="10, 8" x:Name="lanList">
@@ -111,8 +112,9 @@
             </DockPanel>
         </Border>
 
+        <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" Background="{StaticResource ThemeColor}"></GridSplitter>
 
-        <TextBox x:Name="txtOutput" Grid.Row="2" Margin="1, 5" IsReadOnly="True" Padding="5" BorderThickness="1" VerticalScrollBarVisibility="Auto" 
+        <TextBox x:Name="txtOutput" Grid.Row="3" IsReadOnly="True" Padding="5" BorderThickness="0" VerticalScrollBarVisibility="Auto" 
                  HorizontalScrollBarVisibility="Auto" />
 
     </Grid>
