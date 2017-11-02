@@ -119,7 +119,7 @@ namespace SalamanderWnmp.Programs
             ps.StartInfo.RedirectStandardError = true;
             ps.StartInfo.WorkingDirectory = workingDir;
             ps.StartInfo.CreateNoWindow = true;
-            ps.EnableRaisingEvents = true;
+            ps.Start();
             // ErrorDataReceived event signals each time the process writes a line 
             // to the redirected StandardError stream
             ps.ErrorDataReceived += (sender, e) => {
@@ -132,7 +132,7 @@ namespace SalamanderWnmp.Programs
                     errOutput = "";
                 }
             };
-            ps.Start();
+            ps.EnableRaisingEvents = true;
 
             ps.BeginOutputReadLine();
             ps.BeginErrorReadLine();
@@ -150,7 +150,7 @@ namespace SalamanderWnmp.Programs
                 StartProcess(exeFile, startArgs);
                 Log.wnmp_log_notice("Started " + programName, progLogSection);
             } catch (Exception ex) {
-                Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
+                Log.wnmp_log_error("Start: " + ex.Message, progLogSection);
             }
         }
 
