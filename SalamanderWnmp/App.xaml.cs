@@ -35,6 +35,7 @@ namespace SalamanderWnmp
         {
             Settings s = new Settings();
             s.Reset();
+            Common.PHP.StopWatchPHPFCGINum();
             base.OnExit(e);
         }
 

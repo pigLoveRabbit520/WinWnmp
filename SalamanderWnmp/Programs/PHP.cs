@@ -1,6 +1,5 @@
 ﻿using System;
 using SalamanderWnmp.Tool;
-using System.Diagnostics;
 using System.Threading;
 
 namespace SalamanderWnmp.Programs
@@ -86,7 +85,7 @@ namespace SalamanderWnmp.Programs
             watchThread.Start();
         }
 
-        private void StopWatchPHPFCGINum()
+        public void StopWatchPHPFCGINum()
         {
             watchPHPFCGI = false;
         }
