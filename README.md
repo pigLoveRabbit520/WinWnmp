@@ -66,7 +66,6 @@ extension=php_gettext.dll
 
 
 ## Contact Me(联系我)
-*	我的技术栈：PHP，java，node，C#，Go，VC++/C  喜欢技术的童鞋可以找我交流
 *	[Blog](http://51nazi.com)
 *	[segmentfault](https://segmentfault.com/u/salamander)
 
