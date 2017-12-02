@@ -38,7 +38,7 @@
 下载集成包后，运行SalamanderWnmp.exe（首次运行会自动配置），开启nginx和php，然后在浏览器中输入http://localhost/  即可看到Hello Salamander！字样，说明配置成功。（使用数据库功能，则打开mysql）
 
 ## Notice(注意)
-*   php 版本为7.0.1 64位版本，需要MSVC14 (Visual C++ 2015)运行库支持，下载：https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe
+*   php 版本为7.1.12 64位版本，需要MSVC14 (Visual C++ 2015)运行库支持，下载：https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe
 *   MySQL的默认账户为root，密码为空
 
 ## Switch PHP Version(切换PHP版本)
