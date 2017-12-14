@@ -21,6 +21,7 @@ namespace SalamanderWnmp.Tool
             WNMP_NGINX,
             WNMP_MARIADB,
             WNMP_PHP,
+            WNMP_REDIS,
         }
         public static string LogSectionToString(LogSection logSection)
         {
@@ -33,6 +34,8 @@ namespace SalamanderWnmp.Tool
                     return "Wnmp MySQL";
                 case LogSection.WNMP_PHP:
                     return "Wnmp PHP";
+                case LogSection.WNMP_REDIS:
+                    return "Wnmp Redis";
                 default:
                     return "";
             }

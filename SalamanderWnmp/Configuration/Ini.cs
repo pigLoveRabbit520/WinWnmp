@@ -102,6 +102,14 @@ namespace SalamanderWnmp.Configuration
             Value = 4,
         };
 
+        public Option<string> RedisDirName { get { return this.redisDirName; } set { this.redisDirName = value; } }
+        private Option<string> redisDirName = new Option<string>
+        {
+            Name = "redisDirName",
+            Description = "Redis directory name",
+            Value = "redis",
+        };
+
         /// <summary>
         /// MySQL命令行用户
         /// </summary>
@@ -157,6 +165,7 @@ namespace SalamanderWnmp.Configuration
             options.Add(NginxDirName);
             options.Add(PHPDirName);
             options.Add(MysqlDirName);
+            options.Add(RedisDirName);
             options.Add(MysqlClientUser);
             options.Add(mysqlClientUserPass);
         }

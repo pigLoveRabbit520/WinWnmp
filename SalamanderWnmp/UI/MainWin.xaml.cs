@@ -94,6 +94,7 @@ namespace SalamanderWnmp.UI
             Common.Nginx.Setup();
             Common.Mysql.Setup();
             Common.PHP.Setup();
+            Common.Redis.Setup();
             if (Common.Settings.FirstRun.Value)
             {
                 EnvironmentAutoConfig.Run();
@@ -118,7 +119,7 @@ namespace SalamanderWnmp.UI
             this.stackPHP.DataContext = Common.PHP;
             this.stackMysql.DataContext = Common.Mysql;
             this.stackCodePanel.DataContext = this;
-            this.stackRedisPanel.DataContext = this;
+            this.stackRedisPanel.DataContext = Common.Redis;
             this.stackHttpRequester.DataContext = this;
         }
 
@@ -171,6 +172,7 @@ namespace SalamanderWnmp.UI
                 Common.Nginx.SetStatus();
                 Common.Mysql.SetStatus();
                 Common.PHP.SetStatus();
+                Common.Redis.SetStatus();
                 CheckWindowOpenStatus();
             };
             timer.Start();
@@ -429,18 +431,13 @@ namespace SalamanderWnmp.UI
 
         private void redisPanelToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            OpenWindow("MenuRedis");
+            Common.Redis.Start();
             e.Handled = true;
         }
 
         private void redisPanelToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            Window winOpened = null;
-            if (HasWindowOpened("MenuRedis", ref winOpened))
-            {
-                winOpened.Close();
-                showWins.Remove(winOpened);
-            }
+            Common.Redis.Stop();
             e.Handled = true;
         }
 

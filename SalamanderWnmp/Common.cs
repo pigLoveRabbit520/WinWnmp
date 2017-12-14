@@ -10,6 +10,14 @@ namespace SalamanderWnmp
 {
     class Common
     {
+        /// <summary>
+        /// 不能实例化Common类
+        /// </summary>
+        private Common()
+        {
+
+        }
+
         private static Ini settings = null;
 
         /// <summary>
@@ -38,14 +46,6 @@ namespace SalamanderWnmp
             }
         }
 
-        /// <summary>
-        /// 不能实例化Common类
-        /// </summary>
-        private Common()
-        {
-
-        }
-
 
         // 应用启动目录
         public static readonly String APP_STARTUP_PATH = AppDomain.CurrentDomain.BaseDirectory;
@@ -59,6 +59,7 @@ namespace SalamanderWnmp
         public static readonly MysqlProgram Mysql = new MysqlProgram();
         public static readonly BaseProgram Nginx = new NginxProgram();
         public static readonly PHPProgram PHP = new PHPProgram();
+        public static readonly RedisProgram Redis = new RedisProgram();
 
     }
 }
