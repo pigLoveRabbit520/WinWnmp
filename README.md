@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/slimphp/Slim.svg?branch=develop)](https://travis-ci.org/slimphp/Slim)
 [![Coverage Status](https://coveralls.io/repos/slimphp/Slim/badge.svg)](https://coveralls.io/r/slimphp/Slim)
-[![Total Downloads](https://poser.pugx.org/slim/slim/downloads)](https://packagist.org/packages/slim/slim)
 [![License](https://poser.pugx.org/slim/slim/license)](https://packagist.org/packages/slim/slim)
 
 ## Download(集成包下载)
@@ -10,9 +9,9 @@
 * [下载地址(OpenResty)](http://ongd1spyv.bkt.clouddn.com/SalamanderWnmp-OpenResty.7z)
 
 ## Main Window(主界面)
-![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/25646342/079fc59a-2fea-11e7-9e54-836da73ec8d6.png)
+![SalamanderWnmp](https://user-images.githubusercontent.com/16663435/33982852-0c885306-e0ed-11e7-98ad-6c44f32d1598.png)
 
-![SalamanderWnmp](https://cloud.githubusercontent.com/assets/16663435/25646415/acd9bf20-2fea-11e7-9ed2-f878ff66b2e5.png)
+![SalamanderWnmp](https://user-images.githubusercontent.com/16663435/33982788-d03bc112-e0ec-11e7-88f9-a4a8acf71735.png)
 
 
 ## Other Functions(其他功能)
