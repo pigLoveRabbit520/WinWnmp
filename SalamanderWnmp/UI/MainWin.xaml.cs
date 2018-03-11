@@ -98,13 +98,13 @@ namespace SalamanderWnmp.UI
             if (Common.Settings.FirstRun.Value)
             {
                 EnvironmentAutoConfig.Run();
-                // 判断mysql服务是否安装过
-                if(Common.Mysql.ServiceExists())
-                {
-                    Common.Mysql.RemoveService();
-                }
                 Common.Settings.FirstRun.Value = false;
                 Common.Settings.UpdateSettings();
+            }
+            // 判断mysql服务是否安装过
+            if (Common.Mysql.ServiceExists())
+            {
+                Common.Mysql.RemoveService();
             }
             ini();
             this.lbSliderContainer.AddHandler(ScrollViewer.ScrollChangedEvent, new ScrollChangedEventHandler(listBoxScrollView_ScrollChanged), true);
@@ -323,6 +323,10 @@ namespace SalamanderWnmp.UI
             if(btn.Name == "MenuDir")
             {
                 Process.Start("explorer.exe", Constants.APP_STARTUP_PATH);
+            }
+            else if(btn.Name == "MenuHosts")
+            {
+                Process.Start("explorer.exe", Constants.HOSTS_DIR);
             }
             else
             {

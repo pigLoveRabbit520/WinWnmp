@@ -138,6 +138,9 @@
   <data name="DefaultThemeColor" xml:space="preserve">
     <value>#16a085</value>
   </data>
+  <data name="Hosts" xml:space="preserve">
+    <value>host文件</value>
+  </data>
   <data name="HttpRequester" xml:space="preserve">
     <value>Http请求器</value>
   </data>

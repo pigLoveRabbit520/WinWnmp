@@ -66,8 +66,9 @@
                         <local:ImageMenu x:Name="MenuRedis" Grid.Row="2" MyText="{x:Static prop:Resources.RedisPanel}" MySource="/Images/Menu/redis.png"/>
                         <local:ImageMenu x:Name="MenuHttp" Grid.Row="3" MyText="{x:Static prop:Resources.HttpRequester}" MySource="/Images/Menu/http.png"/>
                         <local:ImageMenu x:Name="MenuPortScaner" Grid.Row="4" MyText="{x:Static prop:Resources.PortScaner}" MySource="/Images/Menu/scan.png"/>
-                        <local:ImageMenu x:Name="MenuQuestions" Grid.Row="5" MyText="{x:Static prop:Resources.CommonQuestions}" MySource="/Images/Menu/about.png"/>
-                        <local:ImageMenu x:Name="MenuAbout" Grid.Row="6" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/author.png"/>
+                        <local:ImageMenu x:Name="MenuHosts" Grid.Row="5" MyText="{x:Static prop:Resources.Hosts}" MySource="/Images/Menu/hosts.png"/>
+                        <local:ImageMenu x:Name="MenuQuestions" Grid.Row="6" MyText="{x:Static prop:Resources.CommonQuestions}" MySource="/Images/Menu/about.png"/>
+                        <local:ImageMenu x:Name="MenuAbout" Grid.Row="7" MyText="{x:Static prop:Resources.About}" MySource="/Images/Menu/author.png"/>
                     </Grid>
                 </Border>
             </Popup>

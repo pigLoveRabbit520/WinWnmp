@@ -10,6 +10,8 @@ namespace SalamanderWnmp
         // 应用启动目录
         public static readonly String APP_STARTUP_PATH = AppDomain.CurrentDomain.BaseDirectory;
 
+        public static readonly String HOSTS_DIR = "C:\\Windows\\System32\\drivers\\etc";
+
         public static readonly string AUTHOR = "salamander";
 
     }

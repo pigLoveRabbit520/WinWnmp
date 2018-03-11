@@ -124,6 +124,15 @@ namespace SalamanderWnmp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 host文件 的本地化字符串。
+        /// </summary>
+        public static string Hosts {
+            get {
+                return ResourceManager.GetString("Hosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Http请求器 的本地化字符串。
         /// </summary>
         public static string HttpRequester {
