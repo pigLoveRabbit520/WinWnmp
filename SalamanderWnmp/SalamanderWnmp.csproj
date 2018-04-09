@@ -105,6 +105,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WnmpUI">
+      <HintPath>..\..\software\SalamanderWnmp\libs\WnmpUI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -149,7 +152,6 @@
     </Compile>
     <Compile Include="UserClass\NotificationAreaIcon.cs" />
     <Compile Include="UserClass\SalamanderListBox.cs" />
-    <Compile Include="UserClass\SalamanderWindow.cs" />
     <Compile Include="UserComponent\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>

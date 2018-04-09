@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
@@ -9,13 +6,17 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace SalamanderWnmp.UserClass
+namespace WnmpUI
 {
-    public class SalamanderWindow : Window
+    public class BaseWindow : Window
     {
-        public SalamanderWindow()
+        public BaseWindow()
         {
-            this.Style = Application.Current.Resources["BaseWindow"] as Style;
+            Style styleBase = Application.Current.Resources["BaseWindow"] as Style;
+            if(styleBase != null)
+            {
+                this.Style = styleBase;
+            }
             this.SourceInitialized += delegate (object sender, EventArgs e)
             {
                 this._HwndSource = PresentationSource.FromVisual((Visual)sender) as HwndSource;

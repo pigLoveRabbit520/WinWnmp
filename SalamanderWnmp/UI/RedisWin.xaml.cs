@@ -15,7 +15,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// RedisWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class RedisWin : SalamanderWindow
+    public partial class RedisWin : WnmpUI.BaseWindow
     {
         // Connection Map
         private static Dictionary<string, ConnectionMultiplexer> redisConns = 

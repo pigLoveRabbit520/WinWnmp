@@ -16,7 +16,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// HttpRequester.xaml 的交互逻辑
     /// </summary>
-    public partial class HttpRequesterWin : SalamanderWindow
+    public partial class HttpRequesterWin : WnmpUI.BaseWindow
     {
         public HttpRequesterWin()
         {

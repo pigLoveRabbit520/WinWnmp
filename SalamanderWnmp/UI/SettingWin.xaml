@@ -1,12 +1,12 @@
-﻿<local:SalamanderWindow x:Class="SalamanderWnmp.UI.SettingWin"
+﻿<myui:BaseWindow x:Class="SalamanderWnmp.UI.SettingWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:component="clr-namespace:SalamanderWnmp.UserComponent"
-        xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
+        xmlns:myui="clr-namespace:WnmpUI;assembly=WnmpUI"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
         WindowStartupLocation="CenterScreen"
         Title="{x:Static prop:Resources.Settings}" Height="400" Width="380" Loaded="Window_Loaded">
-    <local:SalamanderWindow.Resources>
+    <myui:BaseWindow.Resources>
         <Style TargetType="TextBox" x:Key="RegularTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Width" Value="100" />
             <Setter Property="Padding" Value="0, 3" />
@@ -21,7 +21,7 @@
             <Setter Property="Margin" Value="0,10,0,0" />
             <Setter Property="Content" Value="保存设置" />
         </Style>
-    </local:SalamanderWindow.Resources>
+    </myui:BaseWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -147,4 +147,4 @@
             </TabItem>
         </TabControl>
     </Grid>
-</local:SalamanderWindow>
+</myui:BaseWindow>

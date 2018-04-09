@@ -14,7 +14,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// ChangeThemeColor.xaml 的交互逻辑
     /// </summary>
-    public partial class ChangeThemeColorWin : SalamanderWindow
+    public partial class ChangeThemeColorWin : WnmpUI.BaseWindow
     {
         /// <summary>
         /// 修改前的主题颜色

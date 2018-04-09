@@ -20,7 +20,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// PortScan.xaml 的交互逻辑
     /// </summary>
-    public partial class PortScanWin : SalamanderWindow
+    public partial class PortScanWin : WnmpUI.BaseWindow
     {
         public PortScanWin()
         {

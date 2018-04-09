@@ -1,7 +1,8 @@
-﻿<local:SalamanderWindow x:Class="SalamanderWnmp.UI.AboutWin"
+﻿<myui:BaseWindow x:Class="SalamanderWnmp.UI.AboutWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prop="clr-namespace:SalamanderWnmp.Properties"
+        xmlns:myui="clr-namespace:WnmpUI;assembly=WnmpUI"    
         xmlns:local="clr-namespace:SalamanderWnmp.UserClass"
         WindowStartupLocation="CenterScreen"
         Title="{x:Static prop:Resources.About}" Height="280" Width="320">
@@ -52,4 +53,4 @@
             <Hyperlink NavigateUri="https://github.com/salamander-mh/SalamanderWnmp" RequestNavigate="Hyperlink_RequestNavigate">源码</Hyperlink> （欢迎star哦^_^）
         </TextBlock>
     </Grid>
-</local:SalamanderWindow>
+</myui:BaseWindow>

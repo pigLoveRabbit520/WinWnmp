@@ -12,7 +12,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// AddRedisConnWin.xaml 的交互逻辑
     /// </summary>
-    public partial class AddRedisConnWin : SalamanderWindow
+    public partial class AddRedisConnWin : WnmpUI.BaseWindow
     {
         /// <summary>
         /// 展示类型，0为添加Window，1为编辑Window

@@ -16,7 +16,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// LoadingWin.xaml 的交互逻辑
     /// </summary>
-    public partial class LoadingWin : Window
+    public partial class LoadingWin : WnmpUI.BaseWindow
     {
         public LoadingWin()
         {

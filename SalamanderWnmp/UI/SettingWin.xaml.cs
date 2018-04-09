@@ -5,10 +5,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static SalamanderWnmp.Configuration.PHPConfigurationManager;
 
@@ -17,7 +13,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// SettingWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SettingWin : SalamanderWindow
+    public partial class SettingWin : WnmpUI.BaseWindow
     {
         private PHPConfigurationManager PHPConfigurationMgr = new PHPConfigurationManager();
         private Ini settingsCopy = new Ini();

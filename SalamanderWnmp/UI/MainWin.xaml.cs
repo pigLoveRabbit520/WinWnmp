@@ -8,9 +8,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +20,7 @@ namespace SalamanderWnmp.UI
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWin : SalamanderWindow, INotifyPropertyChanged
+    public partial class MainWin : WnmpUI.BaseWindow, INotifyPropertyChanged
     {
         #region 属性
         public event PropertyChangedEventHandler PropertyChanged;
