@@ -19,8 +19,6 @@
 ![常规设置](https://user-images.githubusercontent.com/16663435/30427886-22070566-9984-11e7-9fc0-9900064b7d71.png)
 
 
-
-
 #### Theme Color Panel(调色面板)
 ![调色面板](https://cloud.githubusercontent.com/assets/16663435/23488548/4fcc4b6a-ff28-11e6-8a1c-cf45b961340d.png)
 
@@ -67,6 +65,10 @@ extension=php_gettext.dll
 ## Contact Me(联系我)
 *	[Blog](http://51nazi.com)
 *	[segmentfault](https://segmentfault.com/u/salamander)
+
+## Sponsor（赞助）
+支付宝  
+![支付宝](https://sfault-image.b0.upaiyun.com/315/687/3156878684-5af15a96373a3_articlex)
 
 
 
