@@ -5,8 +5,8 @@
 [![License](https://poser.pugx.org/slim/slim/license)](https://packagist.org/packages/slim/slim)
 
 ## Download(集成包下载)
-* [下载地址(Nginx)](http://ongd1spyv.bkt.clouddn.com/SalamanderWnmp.7z)
-* [下载地址(OpenResty)](http://ongd1spyv.bkt.clouddn.com/SalamanderWnmp-OpenResty.7z)
+* [下载地址(Nginx)](http://file.51nazi.com/SalamanderWnmp.7z)
+* [下载地址(OpenResty)](http://file.51nazi.com/SalamanderWnmp-OpenResty.7z)
 
 ## Main Window(主界面)
 ![SalamanderWnmp](https://user-images.githubusercontent.com/16663435/33982852-0c885306-e0ed-11e7-98ad-6c44f32d1598.png)
