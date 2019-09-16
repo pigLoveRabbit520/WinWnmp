@@ -67,7 +67,7 @@ extension=php_gettext.dll
 *	[segmentfault](https://segmentfault.com/u/salamander)
 
 ## Sponsor（赞助）
-支付宝  
+#### 支付宝  
 ![支付宝](https://github.com/salamander-mh/SalamanderWnmp/blob/master/support_img/alipay.jpg)
 
 
