@@ -63,7 +63,7 @@ extension=php_gettext.dll
 
 
 ## Contact Me(联系我)
-*	[Blog](http://51nazi.com)
+*	[Blog](https://blog-cn.51lucy.com/)
 *	[segmentfault](https://segmentfault.com/u/salamander)
 
 ## Sponsor（赞助）
