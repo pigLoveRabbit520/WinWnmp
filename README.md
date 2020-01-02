@@ -68,7 +68,8 @@ extension=php_gettext.dll
 
 ## Sponsor（赞助）
 #### 支付宝  
-![支付宝](/support_img/alipay.jpg | width=200)
+<img src="/support_img/alipay.jpg" width="48" alt="支付宝">
+
 
 
 
