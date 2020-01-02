@@ -68,7 +68,7 @@ extension=php_gettext.dll
 
 ## Sponsor（赞助）
 #### 支付宝  
-![支付宝](https://github.com/salamander-mh/SalamanderWnmp/blob/master/support_img/alipay.jpg)
+![支付宝](/support_img/alipay.jpg)
 
 
 
