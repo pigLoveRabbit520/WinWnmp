@@ -337,9 +337,6 @@
     <Resource Include="Images\Menu\about.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\author.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Menu\settings.png" />
   </ItemGroup>
   <ItemGroup>
@@ -404,6 +401,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Menu\hosts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\author.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

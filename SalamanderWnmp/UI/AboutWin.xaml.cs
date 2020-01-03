@@ -29,7 +29,7 @@ namespace SalamanderWnmp.UI
 
         private void imgPortrait_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("http://ongd1spyv.bkt.clouddn.com/"));
+            Process.Start(new ProcessStartInfo("https://blog-cn.51lucy.com/"));
             e.Handled = true;
         }
     }
