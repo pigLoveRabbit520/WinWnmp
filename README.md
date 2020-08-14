@@ -18,7 +18,7 @@
 
 
 ## Notice(注意)
-*   php 版本为7.3.21 64位版本，需要MSVC15 (Visual C++ 2017)运行库支持，[下载](https://aka.ms/vs/16/release/vc_redist.x64.exe)
+*   php 版本为**7.3.21** 64位版本，需要MSVC15 (Visual C++ 2017)运行库支持，[下载](https://aka.ms/vs/16/release/vc_redist.x64.exe)
 *   MySQL的默认账户为root，密码为空
 
 
