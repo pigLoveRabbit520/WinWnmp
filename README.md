@@ -13,7 +13,7 @@
 
 
 ## Usage(使用)
-1. 下载集成包后，运行SalamanderWnmp.exe（首次运行会自动配置）
+1. 下载集成包后，运行`SalamanderWnmp.exe`（首次运行会自动配置）
 2. 开启nginx和php，然后在浏览器中输入http://localhost/  即可看到`Hello Salamander！`字样，说明配置成功。（使用数据库功能，则打开mysql）
 
 
